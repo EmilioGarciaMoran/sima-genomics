@@ -1,0 +1,69 @@
+==========================================================================================
+MAXIMUM PARSIMONY ANALYSIS (FITCH ALGORITHM)
+==========================================================================================
+
+Sequences loaded: 6
+  Pan_outgroup                    17150 bp
+  Sima_430ka                      17150 bp
+  Denisova3_70ka                  17150 bp
+  Neandertal_Vindija_44ka         17150 bp
+  Feldhofer1_40ka                 17150 bp
+  Mezmaiskaya1_60ka               17150 bp
+
+Alignment length: 17150 bp
+
+==========================================================================================
+STEP 1: EXTRACT PARSIMONY-INFORMATIVE SITES
+==========================================================================================
+Parsimony-informative sites (with polarization): 265
+
+==========================================================================================
+STEP 2: SCORE SITES UNDER H1 vs H2 (FITCH PARSIMONY)
+==========================================================================================
+
+Total parsimony cost:
+  H1 (Sima sister-group):  586 steps
+  H2 (Sima ancestral):     644 steps
+  Difference (H2 - H1):    58 steps
+
+✓ H1 (sister-group) is MORE PARSIMONIOUS
+  Improvement: 9.01%
+
+Site-by-site comparison:
+  H1 better:  104 sites
+  H2 better:  23 sites
+  Tied:       138 sites
+
+==========================================================================================
+STEP 3: BOOTSTRAP VALIDATION (1000 replicates)
+==========================================================================================
+  200/1000 replicates...
+  400/1000 replicates...
+  600/1000 replicates...
+  800/1000 replicates...
+  1000/1000 replicates...
+
+Bootstrap results (1000 replicates):
+  H1 preferred: 1000/1000 (100.0%)
+  H2 preferred: 0/1000 (0.0%)
+  Tied:         0/1000 (0.0%)
+
+Bootstrap cost distributions:
+  H1: 585.8 ± 15.4 (min 535, max 633)
+  H2: 644.4 ± 14.3 (min 601, max 692)
+
+Effect size (Cohen's d): 3.94
+
+==========================================================================================
+STEP 4: TEMPLETON-LIKE TOPOLOGY TEST
+==========================================================================================
+
+Sites with clear support (diff ≥2 steps):
+  Clear H1 support: 0 sites
+  Clear H2 support: 23 sites
+  Marginal/tied:    242 sites
+Traceback (most recent call last):
+  File "/home/egarmo/sima/inputMitocondria/maximum_parsimony_fitch.py", line 356, in <module>
+    p_binomial = stats.binom_test(successes, n_decisive, 0.5, alternative='two-sided')
+                 ^^^^^^^^^^^^^^^^
+AttributeError: module 'scipy.stats' has no attribute 'binom_test'. Did you mean: 'binomtest'?

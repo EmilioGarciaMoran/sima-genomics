@@ -1,0 +1,7 @@
+set autoclose=yes nowarn=yes;
+execute alignment_6magnificos.phy;
+lset nst=2 rates=gamma;
+mcmc ngen=1000000 samplefreq=100 printfreq=1000 diagnfreq=5000 filename=mrbayes;
+sump burnin=2500;
+sumt burnin=2500 contype=halfcompat;
+quit;

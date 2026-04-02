@@ -1,0 +1,20 @@
+FASE 1 COMPLETADA - lun 02 feb 2026 20:15:51 CET
+ARCHIVOS GENERADOS:
+-rw-rw-r-- 1 egarmo egarmo  96K feb  2 15:58 alignment_6_mtdna_CODING_aligned.fasta
+-rw-rw-r-- 1 egarmo egarmo  95K feb  2 15:50 alignment_6_mtdna_CODING.fasta
+-rw-rw-r-- 1 egarmo egarmo 103K feb  1 17:15 alignment_6_mtdna.fasta
+-rw-rw-r-- 1 egarmo egarmo  17K feb  1 16:49 Denisova3_FN673705.fasta
+-rw-rw-r-- 1 egarmo egarmo  17K feb  1 17:14 HomoSapiens_moderno_mtDNA.fasta
+-rw-rw-r-- 1 egarmo egarmo  17K feb  1 16:49 Neandertal_KC879692.fasta
+-rwxrwxr-x 1 egarmo egarmo 2,0K feb  2 00:40 nj_parsimony.py
+-rwxrwxr-x 1 egarmo egarmo 2,5K feb  2 15:58 nj_parsimony_with_pan.py
+-rw-rw-r-- 1 egarmo egarmo 1,4K feb  1 22:45 parsimonia_análisis.py
+-rw-rw-r-- 1 egarmo egarmo 1,4K feb  2 15:49 remove_dloop.py
+-rw-rw-r-- 1 egarmo egarmo  17K feb  1 17:02 Sima_KF683087.fasta
+-rw-rw-r-- 1 egarmo egarmo 4,1K feb  1 17:14 Ust-Ishim_mtDNA.fasta
+
+RESULTADOS CLAVE:
+H1 (sister-group): 1,415 steps
+H2 (ancestral): 869 steps
+Reduction: 38.6%
+Robust to D-loop removal: 38.1%

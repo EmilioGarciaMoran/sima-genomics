@@ -1,0 +1,25 @@
+mtDNA ANALYSIS - CURRENT STATE (2026-02-01)
+
+COMPLETED:
+✓ alignment_6_mtdna.fasta (6 taxa, with Pan)
+✓ alignment_6_mtdna_CODING.fasta (6 taxa, D-loop removed)
+✓ Distance matrices calculated (both versions)
+✓ NJ trees reconstructed
+✓ Parsimony scoring: H1=1415/1237, H2=869/766 (38.6% / 38.1%)
+✓ Bootstrap support values needed
+✓ Statistical tests needed (AU test)
+
+PENDING (for next phase):
+[ ] MSA 4 hominins only (without Pan)
+[ ] Pan pairwise distances (computed separately)
+[ ] NJ tree with Pan post-hoc rooting
+[ ] Parsimony comparison with clean alignment
+[ ] Methods section update (ChatGPT version)
+[ ] Results section update (lenguaje correcto)
+[ ] Nuclear integration (73 SNPs)
+[ ] D-loop robustness paper section
+
+READY FOR INTEGRATION:
+- mtDNA distance economy: 38%+ reduction (H2 more parsimonious)
+- Consistent across D-loop removal (38.1% vs 38.6%)
+- Suggests ancestral position for Sima (to be confirmed by nuclear)
