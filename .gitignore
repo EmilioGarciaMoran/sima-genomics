@@ -1,0 +1,47 @@
+# Credenciales — NUNCA
+aws/
+*.pem
+*.csv
+*.backup
+credentials*
+
+# Datos brutos pesados
+*.bam
+*.bam.bai
+*.sra
+*.fa
+*.fa.gz
+*.fasta
+*.fastq.gz
+*.fq.gz
+*.vcf.gz
+*.tbi
+*.gfa
+*.vg
+*.gbz
+*.gbwt
+*.dist
+*.min
+*.xg
+*.og
+sra_cache/
+ref/
+ftp.eva.mpg.de/
+ERR995360/
+pangenome/
+data/
+SAFARI/
+obj/
+lib/
+bin/
+docker/
+
+# Compilados
+*.o
+*.d
+*.a
+*.so*
+
+# Logs y temporales
+*.log
+__pycache__/
