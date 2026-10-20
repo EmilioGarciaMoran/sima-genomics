@@ -45,3 +45,6 @@ docker/
 # Logs y temporales
 *.log
 __pycache__/
+
+# Excepción: secuencias pequeñas del pipeline mtDNA reproducible (versionadas a propósito)
+!mtDNA_repro/data/**/*.fasta
