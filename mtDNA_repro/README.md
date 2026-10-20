@@ -66,3 +66,11 @@ Los cálculos de la fase 3a eran correctos; el error fue de lectura (`results/LE
 
 - Solo 6 taxones, sin humanos modernos ni más denisovanos (Meyer 2014 usó ~120 genomas).
 - Las secuencias versionadas proceden del modo `recover` porque NCBI no era accesible desde el entorno de construcción. Sus longitudes coinciden con GenBank. Para cerrar la verificación, hay que ejecutar `bash run_all.sh genbank` en local y comprobar que `sequences/SEQUENCES.tsv` no cambia.
+
+## Verificación de reproducibilidad (20 oct 2026)
+
+Ejecución completa de `bash run_all.sh recover 2` en un clon limpio de la rama `a74368f` (15 min 38 s, 2 núcleos), comparada con `git diff` contra los resultados versionados:
+
+- **Idénticos bit a bit:** `sequences/`, `alignments/`, `results/CLADE_SUPPORT.tsv`, `results/LEGACY_PHASE3A_CHECK.txt`.
+- **Diferencias numéricas mínimas:** la log-verosimilitud varía en la 4ª–5ª cifra decimal (p. ej. −30700.65589 frente a −30700.65562) y las longitudes de rama en la 8ª. Es redondeo de coma flotante del optimizador multihilo de IQ-TREE.
+- **Sin cambios** en ningún soporte bootstrap, p-valor (KH, SH, AU) ni topología.
