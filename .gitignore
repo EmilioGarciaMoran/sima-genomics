@@ -47,4 +47,5 @@ docker/
 __pycache__/
 
 # Excepción: secuencias pequeñas del pipeline mtDNA reproducible (versionadas a propósito)
-!mtDNA_repro/data/**/*.fasta
+!mtDNA_repro/sequences/*.fasta
+!mtDNA_repro/alignments/*.fasta
