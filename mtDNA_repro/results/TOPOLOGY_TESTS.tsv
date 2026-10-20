@@ -1,0 +1,13 @@
+alineamiento	modelo	hipotesis	logL	deltaL	p_KH	p_SH	p_AU
+full	HKY+G4	H0_Sima_basal	-30707.12813	10.52	0.0287	0.0289	0.0109
+full	HKY+G4	H1_Sima+Denisova	-30696.60772	0	0.926	1	0.946
+full	HKY+G4	H2_Sima+Neandertales	-30705.34449	8.7368	0.0743	0.0743	0.0705
+full	TPM2u+F+G4	H0_Sima_basal	-30700.65589	12.348	0.0181	0.0181	0.00912
+full	TPM2u+F+G4	H1_Sima+Denisova	-30688.30776	0	0.956	1	0.962
+full	TPM2u+F+G4	H2_Sima+Neandertales	-30698.98526	10.677	0.0444	0.0444	0.0494
+coding	HKY+G4	H0_Sima_basal	-27622.24132	6.3898	0.0586	0.0586	0.0376
+coding	HKY+G4	H1_Sima+Denisova	-27615.85156	0	0.941	1	0.963
+coding	HKY+G4	H2_Sima+Neandertales	-27622.24182	6.3903	0.0584	0.0584	0.0379
+coding	HKY+F+G4	H0_Sima_basal	-27622.24141	6.3899	0.0586	0.0586	0.0376
+coding	HKY+F+G4	H1_Sima+Denisova	-27615.85154	0	0.941	1	0.963
+coding	HKY+F+G4	H2_Sima+Neandertales	-27622.24191	6.3904	0.0584	0.0584	0.0379
