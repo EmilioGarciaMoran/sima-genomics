@@ -4,6 +4,8 @@
 #   bash scripts/01_get_sequences.sh genbank   # descarga de NCBI (recomendado, en tu máquina)
 #   bash scripts/01_get_sequences.sh recover   # quita los huecos del alineamiento legacy de phase3a
 #
+# En modo genbank se conserva el título original de GenBank en la cabecera (title=...).
+# Al final se ejecuta scripts/validate_sequences.py, que aborta si algo no cuadra.
 # Salida: sequences/<taxon>.fasta, sequences/all_raw.fasta, sequences/SEQUENCES.tsv (longitud, nº de N, sha256)
 # Ejecutar desde mtDNA_repro/.
 set -euo pipefail
@@ -16,7 +18,7 @@ case "$MODE" in
   genbank)
     tail -n +2 accessions.tsv | while IFS=$'\t' read -r taxon acc _; do
       curl -sSf "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=${acc}&rettype=fasta&retmode=text" \
-        | sed "1s/.*/>${taxon} ${acc} source=GenBank/" > "$RAW/${taxon}.fasta"
+        | sed "1s/^>[^ ]* \(.*\)$/>${taxon} ${acc} source=GenBank title=\1/" > "$RAW/${taxon}.fasta"
       sleep 0.4
     done ;;
   recover)
@@ -47,3 +49,6 @@ tail -n +2 accessions.tsv | while IFS=$'\t' read -r taxon acc _; do
   printf "%s\t%s\t%s\t%s\t%s\n" "$taxon" "$acc" "${#seq}" "$n" "$sha" >> "$RAW/SEQUENCES.tsv"
 done
 cat "$RAW/SEQUENCES.tsv"
+
+# Validación obligatoria antes de alinear (aborta si alguna secuencia no es lo que dice ser)
+python3 -I scripts/validate_sequences.py accessions.tsv "$RAW"

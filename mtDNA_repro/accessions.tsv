@@ -1,7 +1,7 @@
-taxon	accession	specimen	age_ka	reference
-Sima_430ka	KF683087.1	Sima de los Huesos, Femur XIII	430	Meyer et al. 2014
-Denisova3_	NC_013993.1	Denisova 3	70	Krause et al. 2010
-Neandertal	AM948965.1	Vindija 33.16	44	Green et al. 2008
-Feldhofer1	FM865407.1	Feldhofer 1	40	Briggs et al. 2009
-Mezmaiskay	FM865411.1	Mezmaiskaya 1	60	Briggs et al. 2009
-Pan_outgro	NC_001643.1	Pan troglodytes (reference)	0	Horai et al. 1995
+taxon	accession	specimen	age_ka	reference	expected_title_regex
+Sima_430ka	KF683087.1	Sima de los Huesos, Femur XIII	430	Meyer et al. 2014	Homo heidelbergensis
+Denisova3_	NC_013993.1	Denisova 3	70	Krause et al. 2010	Homo sp\. Altai
+Neandertal	AM948965.1	Vindija 33.16	44	Green et al. 2008	neanderthalensis
+Feldhofer1	FM865407.1	Feldhofer 1	40	Briggs et al. 2009	neanderthalensis.*Feldhofer
+Mezmaiskay	FM865411.1	Mezmaiskaya 1	60	Briggs et al. 2009	neanderthalensis.*Mezmaiska
+Pan_outgro	NC_001643.1	Pan troglodytes (reference)	0	Horai et al. 1995	Pan troglodytes
