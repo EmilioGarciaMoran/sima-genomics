@@ -85,3 +85,11 @@ El autor ejecutó `bash run_all.sh genbank 4` en su propio ordenador (4 hilos, s
 - **Distintos en pequeña medida:** UFBoot (hasta 0,6 puntos, p. ej. 98,0 frente a 97,8) y los p-valores AU (tercera cifra decimal, p. ej. 0,0091 frente a 0,0052). Ninguna conclusión cambió.
 
 Causa: con varios hilos, UFBoot y el test AU de IQ-TREE dependen del número de hilos aunque la semilla sea la misma. **Desde el commit `9da38d9`, ambos se ejecutan siempre con un solo hilo (`-T 1`)**, lo que hace sus resultados independientes de la máquina y del argumento de hilos. Comprobado: dos ejecuciones con `-T 1` producen ficheros UFBoot y p-valores AU idénticos. Las tablas de arriba corresponden ya a esta configuración. El bootstrap estándar, que es lo lento y ya era estable, sigue usando los hilos indicados.
+
+**Confirmado entre máquinas (21 oct 2026, 07:15):** con los scripts de `9da38d9`, el ordenador del autor (`run_all.sh genbank 4`, 4 hilos) y el entorno de construcción (2 hilos) produjeron ficheros idénticos byte a byte:
+
+| Fichero | md5 (ambas máquinas) |
+|---|---|
+| `results/CLADE_SUPPORT.tsv` | `947cf7be69f3b6c08a3c3ca3c6c6915f` |
+| `results/TOPOLOGY_TESTS.tsv` | `a46fe13b6f0a2003a0c2dafc68114799` |
+| `results/correction/CORRECTION_NOTICE_v2.pdf` (versión de `9da38d9`) | `97f071451bfa6573aff168c5d41ecba8` |
