@@ -9,3 +9,5 @@ dependencies:
   - mafft=7.526
   - iqtree=3.0.1
   - raxml-ng=1.2.2
+  - biopython=1.84
+  - matplotlib-base=3.9
