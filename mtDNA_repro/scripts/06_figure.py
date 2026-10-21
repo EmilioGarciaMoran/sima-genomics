@@ -8,7 +8,7 @@ Lee results/trees/iq_{full,coding}_mfp_ufboot.contree, enraíza en Pan_outgro y 
 nodo con el soporte UFBoot que figura en el propio fichero. Además anota el soporte de
 Sima+Denisova en las 1000 réplicas de cada método, leído de results/CLADE_SUPPORT.tsv.
 
-uso: python scripts/06_figure.py     (desde mtDNA_repro/, entorno mtphylo)
+uso: python3 scripts/06_figure.py     (desde mtDNA_repro/, entorno mtphylo)
 salidas: results/figures/figure1_mtDNA_rooted.{pdf,png}
 """
 import csv
