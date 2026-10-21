@@ -1,0 +1,8 @@
+MAFFT: v7.526 (2024/Apr/26)
+Comando: mafft --globalpair --maxiterate 1000 --thread 1 sequences/all_raw.fasta
+
+aln_full        columnas= 17150 columnas_con_hueco= 1170 variables= 1649 parsimonia_informativas= 292
+aln_coding      columnas= 15409 columnas_con_hueco=   15 variables= 1514 parsimonia_informativas= 256
+legacy phase3a  columnas= 17150 columnas_con_hueco= 1170 variables= 1644 parsimonia_informativas= 292
+
+Columnas idénticas (mismos residuos homólogos) entre aln_full y legacy: 17138 de 17150 (aln_full) / 17150 (legacy)

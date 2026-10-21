@@ -1,0 +1,16 @@
+== ¿Se enraizó el árbol IQ-TREE original? ==
+NOTE: Tree is UNROOTED although outgroup taxon 'Sima_430ka' is drawn at root
+
+== Árbol de consenso original (iqtree_hky.contree) ==
+(Sima_430ka:0.0047910951,Denisova3_:0.0097186500,(((Neandertal:0.0003089568,Feldhofer1:0.0002974547)100:0.0014280873,Mezmaiskay:0.0010848635)100:0.0088861992,Pan_outgro:0.1319689844)93:0.0051668375);
+
+== Agrupaciones presentes en el árbol ML original (100 = presente, 0 = ausente) ==
+analisis	n_replicas	%Sima+Denisova	%Sima+Neandertales	%Denisova+Neandertales
+phase3a_IQTREE_HKY+G4_ML_tree	1	100.0	0.0	0.0
+
+== Réplicas bootstrap originales de RAxML-NG (raxml_gtr.raxml.bootstraps) ==
+analisis	n_replicas	%Sima+Denisova	%Sima+Neandertales	%Denisova+Neandertales
+phase3a_RAxML_GTR+G_stdboot	1000	98.4	1.6	0.0
+
+Lectura: el nodo con soporte 93 del árbol original separa {Sima, Denisova} de
+{Neandertales, Pan}. Enraizado en Pan, ese nodo es el clado Sima+Denisova.

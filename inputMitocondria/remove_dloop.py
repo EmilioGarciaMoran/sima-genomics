@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# DEPRECATED (2026-10-20): NO USAR.
+# Este script elimina las primeras 1122 columnas del alineamiento, que no son el D-loop.
+# En coordenadas rCRS el D-loop ocupa 16024-16569 y 1-576 (final y principio de la molécula).
+# Sustituido por mtDNA_repro/scripts/02_align.sh (aln_coding.fasta).
 
 def read_fasta(filename):
     seqs = {}
