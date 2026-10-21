@@ -18,11 +18,13 @@ Semilla fija (12345) en todos los análisis estocásticos.
 
 | Paso | Script | Qué hace | Salidas |
 |---|---|---|---|
-| 1 | `scripts/01_get_sequences.sh` | Obtiene las 6 secuencias de `accessions.tsv` (GenBank, o sin huecos del alineamiento legacy) | `sequences/` |
+| 1 | `scripts/01_get_sequences.sh` + `validate_sequences.py` | Obtiene las 6 secuencias de `accessions.tsv` (GenBank, o sin huecos del alineamiento legacy) y **aborta si alguna no es el mtDNA completo del taxón esperado** (título GenBank, longitud, composición, hash verificado) | `sequences/` |
 | 2 | `scripts/02_align.sh` | MAFFT G-INS-i; versión sin D-loop (posiciones 600–16000 de Vindija); comparación con el alineamiento legacy | `alignments/` |
 | 3 | `scripts/03_trees.sh` | Árboles ML enraizados en Pan: IQ-TREE (modelo BIC + UFBoot 1000; HKY+G4 + bootstrap estándar 1000) y RAxML-NG (GTR+G + bootstrap 1000). Recuento de agrupaciones en las réplicas | `results/trees/`, `results/CLADE_SUPPORT.tsv`, `results/ML_TREES.tsv` |
 | 4 | `scripts/04_topology_tests.sh` | H0/H1/H2 evaluadas juntas: KH, SH, AU (10.000 RELL) | `results/topology/`, `results/TOPOLOGY_TESTS.tsv` |
 | 5 | `scripts/05_legacy_check.sh` | Relee los resultados originales de la fase 3a con el mismo recuento | `results/LEGACY_PHASE3A_CHECK.txt` |
+| 6 | `scripts/06_figure.py es\|en` | Figura 1 dibujada leyendo los árboles de IQ-TREE (sin teclear topologías) | `results/figures/` |
+| 7 | `scripts/07_correction_notice.py` | Nota de corrección en PDF (fichero de la v2 en Zenodo); tablas leídas de `results/*.tsv`, PDF reproducible bit a bit | `results/correction/` |
 
 Hipótesis: **H0** Sima basal a (Denisova + Neandertales) · **H1** Sima hermano de Denisova · **H2** Sima hermano de los Neandertales.
 

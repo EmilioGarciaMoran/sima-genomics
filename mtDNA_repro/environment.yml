@@ -11,3 +11,4 @@ dependencies:
   - raxml-ng=1.2.2
   - biopython=1.84
   - matplotlib-base=3.9
+  - reportlab=4.2
