@@ -20,7 +20,9 @@ raxml-ng --version | awk '/RAxML/ && !f {print; f=1}' >> "$OUT/VERSIONS.txt"
 
 for A in full coding; do
   ALN=alignments/aln_${A}.fasta
-  iqtree3 -s "$ALN" -m MFP -o Pan_outgro -B 1000 -wbt -seed $SEED -T "$T" -pre "$OUT/iq_${A}_mfp_ufboot" -redo -quiet
+  # UFBoot con un solo hilo: con varios hilos el resultado cambia ligeramente según su número
+  # (comprobado: 4 frente a 2 hilos dieron 97,8 frente a 98,0). Con -T 1 es igual en cualquier máquina.
+  iqtree3 -s "$ALN" -m MFP -o Pan_outgro -B 1000 -wbt -seed $SEED -T 1 -pre "$OUT/iq_${A}_mfp_ufboot" -redo -quiet
   iqtree3 -s "$ALN" -m HKY+G4 -o Pan_outgro -b 1000 -seed $SEED -T "$T" -pre "$OUT/iq_${A}_hky_stdboot" -redo -quiet
   raxml-ng --all --msa "$ALN" --model GTR+G --outgroup Pan_outgro --bs-trees 1000 \
            --seed $SEED --threads "$T" --prefix "$OUT/rx_${A}_gtr" --redo > /dev/null

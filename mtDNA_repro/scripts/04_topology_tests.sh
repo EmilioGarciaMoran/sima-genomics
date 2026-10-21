@@ -32,7 +32,7 @@ for A in full coding; do
   for M in HKY+G4 "$BIC"; do
     P="$OUT/${A}_${M//+/_}"
     iqtree3 -s "alignments/aln_${A}.fasta" -m "$M" -o Pan_outgro -z "$OUT/hypotheses.trees" \
-            -zb 10000 -au -seed $SEED -T "$T" -pre "$P" -redo -quiet
+            -zb 10000 -au -seed $SEED -T 1 -pre "$P" -redo -quiet   # 1 hilo: p-valores idénticos en cualquier máquina
     sed -n '/^Tree      logL/,/^$/p' "$P.iqtree" | awk -v a="$A" -v m="$M" '
       $1 ~ /^[123]$/ {
         h = ($1==1) ? "H0_Sima_basal" : ($1==2) ? "H1_Sima+Denisova" : "H2_Sima+Neandertales"
