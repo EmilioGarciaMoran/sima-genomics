@@ -29,21 +29,21 @@ Full re-analysis, from GenBank accessions to topology tests: [`mtDNA_repro/`](mt
 
 | Alignment | Analysis | Sima+Denisova | Sima+Neandertals | Denisova+Neandertals |
 |---|---|---|---|---|
-| full | IQ-TREE TPM2u+F+G4, UFBoot | 98.0 | 2.0 | 0.0 |
+| full | IQ-TREE TPM2u+F+G4, UFBoot | 97.9 | 2.1 | 0.0 |
 | full | IQ-TREE HKY+G4, standard bootstrap | 92.9 | 7.1 | 0.0 |
 | full | RAxML-NG GTR+G, standard bootstrap | 97.9 | 2.1 | 0.0 |
-| no D-loop | IQ-TREE HKY+F+G4, UFBoot | 97.4 | 1.2 | 1.4 |
+| no D-loop | IQ-TREE HKY+F+G4, UFBoot | 97.2 | 0.9 | 1.9 |
 | no D-loop | IQ-TREE HKY+G4, standard bootstrap | 98.8 | 0.4 | 0.8 |
 | no D-loop | RAxML-NG GTR+G, standard bootstrap | 99.6 | 0.3 | 0.1 |
 
-**Topology tests** (p-AU, 10,000 RELL; [`TOPOLOGY_TESTS.tsv`](mtDNA_repro/results/TOPOLOGY_TESTS.tsv)): "Sima basal" is rejected in all four tests (p = 0.009–0.038); Sima + Denisova is the maximum-likelihood topology in all four (p = 0.95–0.96).
+**Topology tests** (p-AU, 10,000 RELL; [`TOPOLOGY_TESTS.tsv`](mtDNA_repro/results/TOPOLOGY_TESTS.tsv)): "Sima basal" is rejected in all four tests (p = 0.006–0.043); Sima + Denisova is the maximum-likelihood topology in all four (p = 0.95–0.97).
 
 ![Figure 1](mtDNA_repro/results/figures/figure1_mtDNA_rooted_en.png)
 
 This agrees with Meyer et al. (2014, posterior probability 1) and with Posth et al. (2017), who also rooted on chimpanzee. The mito-nuclear discordance is explained by the replacement model: Sima retains the ancestral, Denisovan-like mtDNA of the early Neandertal lineage, which was later replaced in Neandertals by an introgressed African mtDNA between ~413 and ~268 ka (Posth et al. 2017). A parallel replacement occurred in the Y chromosome (Petr et al. 2020).
 
 ### Reproducibility
-`bash mtDNA_repro/run_all.sh genbank` re-runs everything (~16 min on 2 cores). A clean-clone re-run reproduces sequences, alignments and all bootstrap frequencies bit for bit. The author's independent run, downloading from GenBank, returned sequence hashes identical to those committed.
+`bash mtDNA_repro/run_all.sh genbank` re-runs everything (~16 min on 2 cores). Repeated runs give identical results. Standard bootstrap frequencies were also identical on a second machine using a different number of threads; UFBoot and the topology tests are run single-threaded because, multithreaded, their values shifted slightly with the thread count (by up to 0.6 bootstrap points and 0.004 in p-AU, never changing a conclusion). The author's independent run, downloading from GenBank, returned sequence hashes identical to those committed.
 
 ## 2. Phase 2 analyses (withdrawn)
 

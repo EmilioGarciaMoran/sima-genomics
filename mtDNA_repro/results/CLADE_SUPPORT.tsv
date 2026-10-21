@@ -1,7 +1,7 @@
 analisis	n_replicas	%Sima+Denisova	%Sima+Neandertales	%Denisova+Neandertales
-full_IQTREE_TPM2u+F+G4_UFBoot	1000	98.0	2.0	0.0
+full_IQTREE_TPM2u+F+G4_UFBoot	1000	97.9	2.1	0.0
 full_IQTREE_HKY+G4_stdboot	1000	92.9	7.1	0.0
 full_RAxML_GTR+G_stdboot	1000	97.9	2.1	0.0
-coding_IQTREE_HKY+F+G4_UFBoot	1000	97.4	1.2	1.4
+coding_IQTREE_HKY+F+G4_UFBoot	1000	97.2	0.9	1.9
 coding_IQTREE_HKY+G4_stdboot	1000	98.8	0.4	0.8
 coding_RAxML_GTR+G_stdboot	1000	99.6	0.3	0.1

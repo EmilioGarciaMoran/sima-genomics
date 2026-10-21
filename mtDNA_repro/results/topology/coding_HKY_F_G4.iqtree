@@ -34,10 +34,10 @@ Model of substitution: HKY+F+G4
 Rate parameter R:
 
   A-C: 1.0000
-  A-G: 46.0067
+  A-G: 46.0068
   A-T: 1.0000
   C-G: 1.0000
-  C-T: 46.0067
+  C-T: 46.0068
   G-T: 1.0000
 
 State frequencies: (empirical counts from alignment)
@@ -59,7 +59,7 @@ Gamma shape alpha: 0.07286
 
  Category  Relative_rate  Proportion
   1         3.026e-09      0.25
-  2         8.192e-05      0.25
+  2         8.193e-05      0.25
   3         0.03218        0.25
   4         3.968          0.25
 Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
@@ -93,7 +93,7 @@ NOTE: Tree is UNROOTED although outgroup taxon 'Pan_outgro' is drawn at root
 
 Tree in newick format:
 
-((Sima_430ka:0.0046189801,Denisova3_:0.0081962541):0.0041960648,((Neandertal:0.0002602226,Feldhofer1:0.0001302465):0.0010765077,Mezmaiskay:0.0008257765):0.0088909827,Pan_outgro:0.1322004245);
+((Sima_430ka:0.0046189807,Denisova3_:0.0081962544):0.0041960767,((Neandertal:0.0002602226,Feldhofer1:0.0001302465):0.0010765079,Mezmaiskay:0.0008257764):0.0088909675,Pan_outgro:0.1322003714);
 
 
 USER TREES
@@ -103,9 +103,9 @@ See results/topology/coding_HKY_F_G4.trees for trees with branch lengths.
 
 Tree      logL    deltaL  bp-RELL    p-KH     p-SH       c-ELW       p-AU
 -------------------------------------------------------------------------
-  1 -27622.24141  6.3899  0.0258 - 0.0586 + 0.0586 +    0.0462 +   0.0376 - 
-  2 -27615.85154       0   0.946 +  0.941 +      1 +     0.908 +    0.963 + 
-  3 -27622.24191  6.3904  0.0283 + 0.0584 + 0.0584 +    0.0462 -   0.0379 - 
+  1 -27622.24144  6.3899  0.0258 - 0.0586 + 0.0586 +    0.0462 +   0.0426 - 
+  2 -27615.85154       0   0.946 +  0.941 +      1 +     0.908 +    0.959 + 
+  3 -27622.24194  6.3904  0.0283 + 0.0584 + 0.0584 +    0.0462 -   0.0421 - 
 
 deltaL  : logL difference from the maximal logl in the set.
 bp-RELL : bootstrap proportion using RELL method (Kishino et al. 1990).
@@ -122,7 +122,7 @@ ALISIM COMMAND
 --------------
 To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
 
---alisim simulated_MSA -t results/topology/coding_HKY_F_G4.treefile -m "HKY{46.0067}+F{0.310228,0.310022,0.130281,0.249469}+G4{0.0728613}" --length 15409
+--alisim simulated_MSA -t results/topology/coding_HKY_F_G4.treefile -m "HKY{46.0068}+F{0.310228,0.310022,0.130281,0.249469}+G4{0.0728623}" --length 15409
 
 To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
 
@@ -137,7 +137,7 @@ For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
 TIME STAMP
 ----------
 
-Date and time: Tue Oct 20 23:41:19 2026
-Total CPU time used: 0.509 seconds (0h:0m:0s)
-Total wall-clock time used: 10.1 seconds (0h:0m:10s)
+Date and time: Wed Oct 21 06:59:40 2026
+Total CPU time used: 0.129 seconds (0h:0m:0s)
+Total wall-clock time used: 12.7 seconds (0h:0m:12s)
 

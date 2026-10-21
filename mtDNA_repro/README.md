@@ -36,10 +36,10 @@ Hipótesis: **H0** Sima basal a (Denisova + Neandertales) · **H1** Sima hermano
 
 | Alineamiento | Análisis | Sima+Denisova | Sima+Neandertales | Denisova+Neandertales |
 |---|---|---|---|---|
-| completo | IQ-TREE TPM2u+F+G4, UFBoot | 98.0 | 2.0 | 0.0 |
+| completo | IQ-TREE TPM2u+F+G4, UFBoot | 97.9 | 2.1 | 0.0 |
 | completo | IQ-TREE HKY+G4, bootstrap estándar | 92.9 | 7.1 | 0.0 |
 | completo | RAxML-NG GTR+G, bootstrap estándar | 97.9 | 2.1 | 0.0 |
-| sin D-loop | IQ-TREE HKY+F+G4, UFBoot | 97.4 | 1.2 | 1.4 |
+| sin D-loop | IQ-TREE HKY+F+G4, UFBoot | 97.2 | 0.9 | 1.9 |
 | sin D-loop | IQ-TREE HKY+G4, bootstrap estándar | 98.8 | 0.4 | 0.8 |
 | sin D-loop | RAxML-NG GTR+G, bootstrap estándar | 99.6 | 0.3 | 0.1 |
 
@@ -47,10 +47,10 @@ Hipótesis: **H0** Sima basal a (Denisova + Neandertales) · **H1** Sima hermano
 
 | Alineamiento | Modelo | H0 Sima basal | H1 Sima+Denisova | H2 Sima+Neandertales |
 |---|---|---|---|---|
-| completo | HKY+G4 | 0.011 | 0.946 | 0.071 |
-| completo | TPM2u+F+G4 | 0.009 | 0.962 | 0.049 |
-| sin D-loop | HKY+G4 | 0.038 | 0.963 | 0.038 |
-| sin D-loop | HKY+F+G4 | 0.038 | 0.963 | 0.038 |
+| completo | HKY+G4 | 0.014 | 0.948 | 0.067 |
+| completo | TPM2u+F+G4 | 0.006 | 0.968 | 0.042 |
+| sin D-loop | HKY+G4 | 0.043 | 0.959 | 0.042 |
+| sin D-loop | HKY+F+G4 | 0.043 | 0.959 | 0.042 |
 
 **Conclusión de los datos:** con enraizamiento explícito en *Pan*, el mtDNA de Sima es hermano del de Denisova en todos los análisis. H0 (Sima basal) queda rechazada por el test AU en los cuatro casos. Esto coincide con Meyer et al. (2014), que usaron un análisis bayesiano (MrBayes) enraizado en chimpancé y bonobo.
 
@@ -76,3 +76,12 @@ Ejecución completa de `bash run_all.sh recover 2` en un clon limpio de la rama 
 - **Idénticos bit a bit:** `sequences/`, `alignments/`, `results/CLADE_SUPPORT.tsv`, `results/LEGACY_PHASE3A_CHECK.txt`.
 - **Diferencias numéricas mínimas:** la log-verosimilitud varía en la 4ª–5ª cifra decimal (p. ej. −30700.65589 frente a −30700.65562) y las longitudes de rama en la 8ª. Es redondeo de coma flotante del optimizador multihilo de IQ-TREE.
 - **Sin cambios** en ningún soporte bootstrap, p-valor (KH, SH, AU) ni topología.
+
+## Segunda verificación: otra máquina y otro número de hilos (21 oct 2026)
+
+El autor ejecutó `bash run_all.sh genbank 4` en su propio ordenador (4 hilos, secuencias descargadas de GenBank) y lo comparó con los resultados versionados, obtenidos con 2 hilos:
+
+- **Idénticos:** las 6 secuencias (hash), los alineamientos y las frecuencias del bootstrap estándar de IQ-TREE y RAxML-NG.
+- **Distintos en pequeña medida:** UFBoot (hasta 0,6 puntos, p. ej. 98,0 frente a 97,8) y los p-valores AU (tercera cifra decimal, p. ej. 0,0091 frente a 0,0052). Ninguna conclusión cambió.
+
+Causa: con varios hilos, UFBoot y el test AU de IQ-TREE dependen del número de hilos aunque la semilla sea la misma. **Desde el commit `9da38d9`, ambos se ejecutan siempre con un solo hilo (`-T 1`)**, lo que hace sus resultados independientes de la máquina y del argumento de hilos. Comprobado: dos ejecuciones con `-T 1` producen ficheros UFBoot y p-valores AU idénticos. Las tablas de arriba corresponden ya a esta configuración. El bootstrap estándar, que es lo lento y ya era estable, sigue usando los hilos indicados.

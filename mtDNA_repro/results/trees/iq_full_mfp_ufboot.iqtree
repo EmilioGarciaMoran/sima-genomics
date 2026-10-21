@@ -92,10 +92,10 @@ TPM2+I           -31602.366   63228.732 -        0   63228.751 -        0   6332
 TPM2u+G4         -31602.413   63228.826 -        0   63228.844 -        0   63321.823 -        0
 TPM2+G4          -31602.435   63228.870 -        0   63228.888 -        0   63321.867 -        0
 TPM2+G4          -31602.435   63228.870 -        0   63228.888 -        0   63321.867 -        0
-TIM+G4           -31598.422   63222.844 -        0   63222.866 -        0   63323.591 -        0
-TIMe+G4          -31598.438   63222.876 -        0   63222.897 -        0   63323.622 -        0
-TIMe+G4          -31598.438   63222.876 -        0   63222.897 -        0   63323.622 -        0
-TIM+I            -31598.706   63223.413 -        0   63223.434 -        0   63324.160 -        0
+TIM+G4           -31598.422   63222.844 -        0   63222.865 -        0   63323.591 -        0
+TIMe+G4          -31598.438   63222.875 -        0   63222.897 -        0   63323.622 -        0
+TIMe+G4          -31598.438   63222.875 -        0   63222.897 -        0   63323.622 -        0
+TIM+I            -31598.706   63223.413 -        0   63223.434 -        0   63324.159 -        0
 TIMe+I           -31598.719   63223.437 -        0   63223.458 -        0   63324.184 -        0
 TIMe+I           -31598.719   63223.437 -        0   63223.458 -        0   63324.184 -        0
 TIM3+G4          -31600.068   63226.136 -        0   63226.157 -        0   63326.882 -        0
@@ -139,7 +139,7 @@ JC+G4            -33004.223   66028.446 -        0   66028.459 -        0   6610
 JC+I+G4          -33004.312   66030.625 -        0   66030.640 -        0   66115.872 -        0
 JC+R2            -33007.452   66036.904 -        0   66036.919 -        0   66122.151 -        0
 JC+I+R2          -33004.920   66033.841 -        0   66033.859 -        0   66126.838 -        0
-JC+R3            -33004.538   66035.076 -        0   66035.098 -        0   66135.823 -        0
+JC+R3            -33004.538   66035.076 -        0   66035.097 -        0   66135.823 -        0
 JC+I+R3          -33004.185   66036.370 -        0   66036.394 -        0   66144.866 -        0
 JC               -33041.029   66100.059 -        0   66100.069 -        0   66169.807 -        0
 
@@ -157,11 +157,11 @@ Model of substitution: TPM2u+F+G4
 
 Rate parameter R:
 
-  A-C: 4.4244
-  A-G: 128.6199
-  A-T: 4.4244
+  A-C: 4.4243
+  A-G: 128.6204
+  A-T: 4.4243
   C-G: 1.0000
-  C-T: 128.6199
+  C-T: 128.6204
   G-T: 1.0000
 
 State frequencies: (empirical counts from alignment)
@@ -174,15 +174,15 @@ State frequencies: (empirical counts from alignment)
 Rate matrix Q:
 
   A   -0.6036   0.04302    0.5261   0.03439
-  C   0.04277    -1.047  0.004091    0.9998
+  C   0.04276    -1.047  0.004091    0.9998
   G     1.243  0.009723    -1.261  0.007773
-  T   0.04277     1.251  0.004091    -1.297
+  T   0.04276     1.251  0.004091    -1.297
 
 Model of rate heterogeneity: Gamma with 4 categories
 Gamma shape alpha: 0.1081
 
  Category  Relative_rate  Proportion
-  1         1.478e-06      0.25
+  1         1.477e-06      0.25
   2         0.001805       0.25
   3         0.116          0.25
   4         3.882          0.25
@@ -191,12 +191,12 @@ Relative rates are computed as MEAN of the portion of the Gamma distribution fal
 MAXIMUM LIKELIHOOD TREE
 -----------------------
 
-Log-likelihood of the tree: -30688.3005 (s.e. 162.9279)
+Log-likelihood of the tree: -30688.3005 (s.e. 162.9280)
 Unconstrained log-likelihood (without tree): -36920.1632
 Number of free parameters (#branches + #model parameters): 15
-Akaike information criterion (AIC) score: 61406.6010
+Akaike information criterion (AIC) score: 61406.6011
 Corrected Akaike information criterion (AICc) score: 61406.6291
-Bayesian information criterion (BIC) score: 61522.8473
+Bayesian information criterion (BIC) score: 61522.8474
 
 Total tree length (sum of branch lengths): 0.1613
 Sum of internal branch lengths: 0.0154 (9.5397% of tree length)
@@ -218,13 +218,13 @@ Numbers in parentheses are  ultrafast bootstrap support (%)
 
 Tree in newick format:
 
-((Sima_430ka:0.0047852254,Denisova3_:0.0097375961)98:0.0051576902,((Neandertal:0.0003083818,Feldhofer1:0.0002963073)100:0.0014271264,Mezmaiskay:0.0010819311)100:0.0088016662,Pan_outgro:0.1296926371);
+((Sima_430ka:0.0047852265,Denisova3_:0.0097375984)98:0.0051576822,((Neandertal:0.0003083818,Feldhofer1:0.0002963073)100:0.0014271263,Mezmaiskay:0.0010819313)100:0.0088016774,Pan_outgro:0.1296930342);
 
 CONSENSUS TREE
 --------------
 
 Consensus tree is constructed from 1000 bootstrap trees
-Log-likelihood of consensus tree: -30688.300583
+Log-likelihood of consensus tree: -30688.300599
 Robinson-Foulds distance between ML tree and consensus tree: 0
 
 Branches with support >0.000000% are kept (extended consensus)
@@ -246,13 +246,13 @@ Numbers in parentheses are bootstrap supports (%)
 
 Consensus tree in newick format: 
 
-((Sima_430ka:0.0047852253,Denisova3_:0.0097383031)98:0.0051662705,((Neandertal:0.0003087093,Feldhofer1:0.0002969349)100:0.0014266297,Mezmaiskay:0.0010827055)100:0.0087882477,Pan_outgro:0.1296906461);
+((Sima_430ka:0.0047852258,Denisova3_:0.0097383065)98:0.0051662604,((Neandertal:0.0003087093,Feldhofer1:0.0002969349)100:0.0014266299,Mezmaiskay:0.0010827056)100:0.0087882622,Pan_outgro:0.1296910447);
 
 ALISIM COMMAND
 --------------
 To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
 
---alisim simulated_MSA -t results/trees/iq_full_mfp_ufboot.treefile -m "TPM2u{4.42437,128.62}+F{0.309279,0.311115,0.130891,0.248716}+G4{0.108054}" --length 17150
+--alisim simulated_MSA -t results/trees/iq_full_mfp_ufboot.treefile -m "TPM2u{4.42433,128.62}+F{0.309279,0.311115,0.130891,0.248716}+G4{0.108052}" --length 17150
 
 To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
 
@@ -267,7 +267,7 @@ For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
 TIME STAMP
 ----------
 
-Date and time: Tue Oct 20 23:26:41 2026
-Total CPU time used: 1.798766 seconds (0h:0m:1s)
-Total wall-clock time used: 1.005551117 seconds (0h:0m:1s)
+Date and time: Wed Oct 21 06:49:39 2026
+Total CPU time used: 0.541869 seconds (0h:0m:0s)
+Total wall-clock time used: 0.650944487 seconds (0h:0m:0s)
 

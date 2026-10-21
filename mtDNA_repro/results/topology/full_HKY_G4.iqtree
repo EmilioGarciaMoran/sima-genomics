@@ -93,7 +93,7 @@ NOTE: Tree is UNROOTED although outgroup taxon 'Pan_outgro' is drawn at root
 
 Tree in newick format:
 
-((Sima_430ka:0.0047896215,Denisova3_:0.0097622100):0.0050891661,((Neandertal:0.0003082332,Feldhofer1:0.0002973115):0.0014302349,Mezmaiskay:0.0010838162):0.0089297964,Pan_outgro:0.1333020109);
+((Sima_430ka:0.0047896215,Denisova3_:0.0097622101):0.0050891657,((Neandertal:0.0003082332,Feldhofer1:0.0002973114):0.0014302349,Mezmaiskay:0.0010838162):0.0089297970,Pan_outgro:0.1333020221);
 
 
 USER TREES
@@ -103,9 +103,9 @@ See results/topology/full_HKY_G4.trees for trees with branch lengths.
 
 Tree      logL    deltaL  bp-RELL    p-KH     p-SH       c-ELW       p-AU
 -------------------------------------------------------------------------
-  1 -30707.12813   10.52  0.0041 - 0.0287 - 0.0289 -    0.0102 -   0.0109 - 
-  2 -30696.60772       0   0.934 +  0.926 +      1 +      0.92 +    0.946 + 
-  3 -30705.34449  8.7368  0.0619 + 0.0743 + 0.0743 +    0.0702 +   0.0705 + 
+  1 -30707.12813   10.52  0.0041 - 0.0287 - 0.0289 -    0.0102 -   0.0136 - 
+  2 -30696.60772       0   0.934 +  0.926 +      1 +      0.92 +    0.948 + 
+  3 -30705.34449  8.7368  0.0619 + 0.0743 + 0.0743 +    0.0702 +   0.0666 + 
 
 deltaL  : logL difference from the maximal logl in the set.
 bp-RELL : bootstrap proportion using RELL method (Kishino et al. 1990).
@@ -137,7 +137,7 @@ For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
 TIME STAMP
 ----------
 
-Date and time: Tue Oct 20 23:40:48 2026
-Total CPU time used: 0.843 seconds (0h:0m:0s)
-Total wall-clock time used: 11.3 seconds (0h:0m:11s)
+Date and time: Wed Oct 21 06:59:01 2026
+Total CPU time used: 0.175 seconds (0h:0m:0s)
+Total wall-clock time used: 13.5 seconds (0h:0m:13s)
 

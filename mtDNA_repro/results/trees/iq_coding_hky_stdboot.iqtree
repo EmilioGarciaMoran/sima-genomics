@@ -55,11 +55,11 @@ Rate matrix Q:
   T   0.02738     1.259    0.0115    -1.298
 
 Model of rate heterogeneity: Gamma with 4 categories
-Gamma shape alpha: 0.07289
+Gamma shape alpha: 0.07288
 
  Category  Relative_rate  Proportion
-  1         3.045e-09      0.25
-  2         8.218e-05      0.25
+  1         3.043e-09      0.25
+  2         8.216e-05      0.25
   3         0.03222        0.25
   4         3.968          0.25
 Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
@@ -94,13 +94,13 @@ Numbers in parentheses are  standard bootstrap support (%)
 
 Tree in newick format:
 
-((Sima_430ka:0.0046190474,Denisova3_:0.0081962096)99:0.0041975998,((Neandertal:0.0002607632,Feldhofer1:0.0001305737)100:0.0010773964,Mezmaiskay:0.0008249770)100:0.0088888259,Pan_outgro:0.1321970420);
+((Sima_430ka:0.0046190473,Denisova3_:0.0081962101)99:0.0041975840,((Neandertal:0.0002607632,Feldhofer1:0.0001305737)100:0.0010773965,Mezmaiskay:0.0008249769)100:0.0088888458,Pan_outgro:0.1321971989);
 
 CONSENSUS TREE
 --------------
 
 Consensus tree is constructed from 1000 bootstrap trees
-Log-likelihood of consensus tree: -27615.851529
+Log-likelihood of consensus tree: -27615.851531
 Robinson-Foulds distance between ML tree and consensus tree: 0
 
 Branches with support >0.000000% are kept (extended consensus)
@@ -122,13 +122,13 @@ Numbers in parentheses are bootstrap supports (%)
 
 Consensus tree in newick format: 
 
-((Sima_430ka:0.0046186843,Denisova3_:0.0081947764)99:0.0042457312,((Neandertal:0.0002611753,Feldhofer1:0.0001301075)100:0.0010762937,Mezmaiskay:0.0008249341)100:0.0088153192,Pan_outgro:0.1321583699);
+((Sima_430ka:0.0046186841,Denisova3_:0.0081947766)99:0.0042457222,((Neandertal:0.0002611753,Feldhofer1:0.0001301074)100:0.0010762936,Mezmaiskay:0.0008249341)100:0.0088153287,Pan_outgro:0.1321585206);
 
 ALISIM COMMAND
 --------------
 To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
 
---alisim simulated_MSA -t results/trees/iq_coding_hky_stdboot.treefile -m "HKY{46.0076}+F{0.310228,0.310022,0.130281,0.249469}+G4{0.0728851}" --length 15409
+--alisim simulated_MSA -t results/trees/iq_coding_hky_stdboot.treefile -m "HKY{46.0076}+F{0.310228,0.310022,0.130281,0.249469}+G4{0.0728836}" --length 15409
 
 To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
 
@@ -143,7 +143,7 @@ For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
 TIME STAMP
 ----------
 
-Date and time: Tue Oct 20 23:39:54 2026
-Total CPU time used: 620.821198 seconds (0h:10m:20s)
-Total wall-clock time used: 345.0669745 seconds (0h:5m:45s)
+Date and time: Wed Oct 21 06:58:35 2026
+Total CPU time used: 428.313216 seconds (0h:7m:8s)
+Total wall-clock time used: 236.9372644 seconds (0h:3m:56s)
 

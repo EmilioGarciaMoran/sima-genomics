@@ -94,13 +94,13 @@ Numbers in parentheses are  standard bootstrap support (%)
 
 Tree in newick format:
 
-((Sima_430ka:0.0047891675,Denisova3_:0.0097622557)93:0.0050891939,((Neandertal:0.0003082332,Feldhofer1:0.0002973115)100:0.0014302349,Mezmaiskay:0.0010838151)100:0.0089297814,Pan_outgro:0.1333019526);
+((Sima_430ka:0.0047891675,Denisova3_:0.0097622557)93:0.0050891935,((Neandertal:0.0003082332,Feldhofer1:0.0002973114)100:0.0014302349,Mezmaiskay:0.0010838151)100:0.0089297819,Pan_outgro:0.1333019603);
 
 CONSENSUS TREE
 --------------
 
 Consensus tree is constructed from 1000 bootstrap trees
-Log-likelihood of consensus tree: -30696.607726
+Log-likelihood of consensus tree: -30696.607727
 Robinson-Foulds distance between ML tree and consensus tree: 0
 
 Branches with support >0.000000% are kept (extended consensus)
@@ -122,7 +122,7 @@ Numbers in parentheses are bootstrap supports (%)
 
 Consensus tree in newick format: 
 
-((Sima_430ka:0.0047899315,Denisova3_:0.0097617419)93:0.0051191433,((Neandertal:0.0003089059,Feldhofer1:0.0002972663)100:0.0014287935,Mezmaiskay:0.0010838451)100:0.0088840400,Pan_outgro:0.1332855073);
+((Sima_430ka:0.0047899315,Denisova3_:0.0097617419)93:0.0051191431,((Neandertal:0.0003089059,Feldhofer1:0.0002972663)100:0.0014287935,Mezmaiskay:0.0010838451)100:0.0088840403,Pan_outgro:0.1332855151);
 
 ALISIM COMMAND
 --------------
@@ -143,7 +143,7 @@ For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
 TIME STAMP
 ----------
 
-Date and time: Tue Oct 20 23:33:41 2026
-Total CPU time used: 756.490539 seconds (0h:12m:36s)
-Total wall-clock time used: 419.9111753 seconds (0h:6m:59s)
+Date and time: Wed Oct 21 06:54:23 2026
+Total CPU time used: 517.186737 seconds (0h:8m:37s)
+Total wall-clock time used: 284.5391957 seconds (0h:4m:44s)
 

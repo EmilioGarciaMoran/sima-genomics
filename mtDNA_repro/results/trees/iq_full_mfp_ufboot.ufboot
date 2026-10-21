@@ -794,7 +794,7 @@
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
-((Sima_430ka,((Neandertal,Feldhofer1),Mezmaiskay)),Denisova3_,Pan_outgro);
+((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
@@ -934,6 +934,7 @@
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
+((Sima_430ka,((Neandertal,Feldhofer1),Mezmaiskay)),Denisova3_,Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
@@ -979,8 +980,7 @@
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
-((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
-((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
+((Sima_430ka,((Neandertal,Feldhofer1),Mezmaiskay)),Denisova3_,Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
 ((Sima_430ka,Denisova3_),((Neandertal,Feldhofer1),Mezmaiskay),Pan_outgro);
