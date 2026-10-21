@@ -1,0 +1,27 @@
+# sima-genomics
+
+Ancient-DNA analyses of the Sima de los Huesos hominins (Atapuerca, ~430 ka).
+Análisis de ADN antiguo de los homínidos de la Sima de los Huesos (Atapuerca, ~430 ka).
+
+> **⚠ Correction (21 Oct 2026).** The mitochondrial conclusion of the April 2026 preprint (Zenodo doi:10.5281/zenodo.19389351) and of the October 2026 manuscript is corrected. With explicit outgroup rooting, Sima is sister to Denisova, as in Meyer et al. (2014). The nuclear figures are under verification. **Read [`CORRECTION.md`](CORRECTION.md) first.**
+>
+> **⚠ Corrección (21 oct 2026).** La conclusión mitocondrial del preprint de abril de 2026 y del manuscrito de octubre de 2026 queda corregida: con raíz explícita en el grupo externo, Sima es hermano de Denisova, como en Meyer et al. (2014). Las cifras nucleares están en verificación. Detalles en [`CORRECTION.md`](CORRECTION.md).
+
+## Contents
+
+| Path | What it is |
+|---|---|
+| [`CORRECTION.md`](CORRECTION.md) | What was claimed, what is correct, and the evidence |
+| [`mtDNA_repro/`](mtDNA_repro/) | **Current, reproducible mtDNA analysis**: GenBank → validation → MAFFT → IQ-TREE / RAxML-NG → topology tests → figure, one command |
+| [`documents/SUPERSEDED.md`](documents/SUPERSEDED.md) | Status of every earlier manuscript |
+| `inputMitocondria/`, `figures/`, `documents/`, `nuclear_analysis/` | Earlier work, kept for traceability; withdrawn or superseded items carry a notice |
+| [`REFERENCES.md`](REFERENCES.md) | Cited articles with DOIs |
+
+## Reproduce the mtDNA analysis
+
+```bash
+cd mtDNA_repro
+micromamba create -f environment.yml && micromamba activate mtphylo
+bash run_all.sh genbank 2      # ~16 min on 2 cores
+git diff --stat -- sequences alignments results/CLADE_SUPPORT.tsv   # no output = reproduced
+```
