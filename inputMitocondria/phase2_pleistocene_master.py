@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# RETIRADO (2026-10-21): NO USAR. Ver CORRECTION.md, sección "Fase 2".
+# Este script usa accesiones escritas a mano que NO son de homínidos:
+#   - KX198073/74/75/78/79 (Oase1, Tianyuan, Kostenki14, Vindija33, Denisova4_8) = hongo Agaricus, gen EF1a
+#   - KY751401 (Sima_SH5) = Henneguya tucunarei, 18S (parasito de peces); HST real = KY751400
+#   - KP295291 (UstIshim) = Phytophthora castaneae, HSP90 (oomiceto)
+# Cualquier resultado obtenido con él queda retirado.
 """
 Phase 2: Complete Pleistocene Homo mtDNA MSA
 All publicly available sequences (curated, ~2024)

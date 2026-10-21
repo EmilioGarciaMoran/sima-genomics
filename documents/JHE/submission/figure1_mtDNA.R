@@ -1,3 +1,6 @@
+# OBSOLETO (2026-10-21): NO USAR. Ver CORRECTION.md, sección "Figuras".
+# El árbol está escrito a mano (Newick literal): usa longitudes de rama reales de IQ-TREE sobre una topología 'Sima basal' que no es la que dio el análisis, y el '93%' se coloca con text() en coordenadas fijas.
+# Sustituido por mtDNA_repro/scripts/06_figure.py, que dibuja los árboles leyendo la salida de IQ-TREE.
 # ============================================================
 # Figure 1 — Mitochondrial DNA phylogeny ONLY
 # IQ-TREE v3.0.1 · HKY+G4 · rooted on Pan troglodytes

@@ -1,4 +1,9 @@
 #!/bin/bash
+# RETIRADO (2026-10-21): NO USAR. Ver CORRECTION.md, sección "Fase 2".
+# Este script usa accesiones escritas a mano que NO son de homínidos:
+#   - NC_024829 (Denisova2) = cloroplasto del alga Nephroselmis astigmatica
+#   - EU260658 (Neandertal) = virus de inmunodeficiencia de simios (SIV), gen tat parcial
+# Cualquier resultado obtenido con él queda retirado.
 # Phase 2: Download ALL Pleistocene mtDNA from GenBank
 # Core MSA: Sima + Denisova (2,3,8,15,19,20,21) + Neandertal + Homo sapiens
 # External: Ust-Ishim, Pan (pairwise post-hoc)

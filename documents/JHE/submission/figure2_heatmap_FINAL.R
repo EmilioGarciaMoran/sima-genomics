@@ -1,3 +1,6 @@
+# EN VERIFICACIÓN (2026-10-21): los valores de esta figura están tecleados a mano y no hay en el
+# repositorio salidas de ANGSD que los respalden. No usar hasta recuperarlas y verificarlas.
+# Ver CORRECTION.md, sección "ADN nuclear".
 # Figure 2: Pairwise Nuclear Genetic Distance Heatmap
 # Sima de los Huesos — Journal of Human Evolution
 # Data: chromosome 1, ~2.19M subsampled sites, ANGSD genotype likelihoods

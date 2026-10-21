@@ -1,3 +1,6 @@
+# OBSOLETO (2026-10-21): NO USAR. Ver CORRECTION.md, sección "Figuras".
+# Los dos árboles están escritos a mano con longitudes inventadas; el nuclear no procede de ningún análisis (no se infirió árbol nuclear).
+# Sustituido por mtDNA_repro/scripts/06_figure.py, que dibuja los árboles leyendo la salida de IQ-TREE.
 # Figure 1: Mito-nuclear tanglegram — Sima de los Huesos
 # Journal of Human Evolution submission
 # R packages required: ape, dendextend

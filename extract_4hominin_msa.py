@@ -1,3 +1,7 @@
+# RETIRADO (2026-10-21): NO USAR. Ver CORRECTION.md, sección "Fase 2".
+# Este script usa accesiones escritas a mano que NO son de homínidos:
+#   - KC758896 (Ust-Ishim) = Ostrinia scapulalis, transportador ABC (polilla)
+# Cualquier resultado obtenido con él queda retirado.
 from Bio import SeqIO
 
 # Read alignment
