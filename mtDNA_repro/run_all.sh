@@ -25,6 +25,7 @@ bash scripts/02_align.sh
 bash scripts/03_trees.sh "$T"
 bash scripts/04_topology_tests.sh "$T"
 bash scripts/05_legacy_check.sh
-python3 scripts/06_figure.py
+python3 scripts/06_figure.py es
+python3 scripts/06_figure.py en
 echo
 echo "Hecho. Compara sequences/SEQUENCES.tsv y los results/*.tsv con la versión del repositorio (git diff)."

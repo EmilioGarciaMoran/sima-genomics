@@ -38,7 +38,7 @@ Full re-analysis, from GenBank accessions to topology tests: [`mtDNA_repro/`](mt
 
 **Topology tests** (p-AU, 10,000 RELL; [`TOPOLOGY_TESTS.tsv`](mtDNA_repro/results/TOPOLOGY_TESTS.tsv)): "Sima basal" is rejected in all four tests (p = 0.009–0.038); Sima + Denisova is the maximum-likelihood topology in all four (p = 0.95–0.96).
 
-![Figure 1](mtDNA_repro/results/figures/figure1_mtDNA_rooted.png)
+![Figure 1](mtDNA_repro/results/figures/figure1_mtDNA_rooted_en.png)
 
 This agrees with Meyer et al. (2014, posterior probability 1) and with Posth et al. (2017), who also rooted on chimpanzee. The mito-nuclear discordance is explained by the replacement model: Sima retains the ancestral, Denisovan-like mtDNA of the early Neandertal lineage, which was later replaced in Neandertals by an introgressed African mtDNA between ~413 and ~268 ka (Posth et al. 2017). A parallel replacement occurred in the Y chromosome (Petr et al. 2020).
 
