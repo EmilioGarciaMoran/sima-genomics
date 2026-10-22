@@ -1,0 +1,1 @@
+Aquí van los recortes generados por scripts/00_make_slices.py (BAM, regions.fa, MANIFEST.tsv).

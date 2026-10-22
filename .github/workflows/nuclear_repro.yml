@@ -1,0 +1,33 @@
+name: nuclear_repro
+
+on:
+  push:
+    paths: ["nuclear_repro/**", ".github/workflows/nuclear_repro.yml"]
+  pull_request:
+    paths: ["nuclear_repro/**", ".github/workflows/nuclear_repro.yml"]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: nuclear_repro
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install "pysam>=0.22" "pytest>=8"
+      # Flujo completo sobre el caso sintético (resultados conocidos de antemano)
+      - run: python -m pytest -v tests
+      # Si ya hay recortes reales versionados, el pipeline tiene que reproducir los resultados del repositorio
+      - name: Datos reales (si existen)
+        run: |
+          if ls slices/*.bam >/dev/null 2>&1 && awk '!/^#/ && $1 != "id"' catalog/positions.tsv | grep -q .; then
+            bash run_all.sh slices catalog results
+            # REPORT.md y angsd/ dependen de si ANGSD está instalado; aquí no lo está
+            git diff --exit-code -- results/ ':!results/REPORT.md' ':!results/angsd'
+          else
+            echo "Aún no hay recortes reales en slices/: solo se ejecuta el caso sintético"
+          fi
