@@ -72,7 +72,7 @@ NUBE (cloud/run_vectors.sh, solo lo que falta)              REPOSITORIO (run_all
 ```bash
 # 1. Ventanas: una por cromosoma, 100.000-200.000
 python3 cloud/make_windows.py --fai hg19.fa.fai --ref hg19.fa --start 100000 --size 100000
-# 2. En la instancia (datos en DATA_DIR; ver pairwise/specimens.tsv)
+# 2. En la instancia (ver "Primera ejecución en la nube")
 BUCKET=s3://sima-egarmo-2026 bash cloud/run_vectors.sh DATA_DIR hg19.fa 8
 # 3. De vuelta en local: traer, ejecutar y versionar
 aws s3 sync s3://sima-egarmo-2026/pairwise/windows/ pairwise/windows/
@@ -81,6 +81,26 @@ bash run_all.sh && git add pairwise/ results/pairwise/
 # Más adelante: ampliar (se suman a las anteriores) y volver a lanzar 2 y 3
 python3 cloud/make_windows.py --fai hg19.fa.fai --ref hg19.fa --start 5000000 --size 100000 --every 10000000
 ```
+
+### Primera ejecución en la nube (lanzada a mano)
+
+La instancia se arranca a mano. El script se encarga de que, una vez lanzado, el coste esté acotado y no se pierda nada:
+
+1. **Instancia bajo demanda, no spot**, con el rol IAM de S3 (sin claves en la máquina). Como red de seguridad independiente del script, conviene una alerta de AWS Budgets.
+2. **Plan, sin calcular nada:** `PLAN=1 bash cloud/run_vectors.sh DATA_DIR hg19.fa` muestra cuántas ventanas y trabajos hay pendientes y qué límites se aplicarán.
+3. **Piloto de una ventana:** `MAX_WINDOWS=1 BUCKET=s3://... bash cloud/run_vectors.sh DATA_DIR hg19.fa 8`. Revisa `pairwise/runs/<fecha>/SUMMARY.txt` y los tiempos de `done`. Con eso sabes cuánto tarda cada ventana antes de lanzar el resto.
+4. **El resto,** con límites ajustados a lo visto en el piloto: `MAX_HOURS=3 BUCKET=... bash cloud/run_vectors.sh DATA_DIR hg19.fa 8`. Añade `SHUTDOWN=1` si no vas a estar delante cuando termine.
+
+Lo que garantiza el script:
+
+- **Antes de calcular:** comprueba que existen todos los ficheros de entrada y que se puede escribir en S3. Si algo falta, se detiene sin gastar.
+- **Una sola ejecución a la vez** sobre el mismo directorio: una segunda se rechaza (cerrojo).
+- **Fallos aislados:** cada trabajo tiene tiempo máximo (`JOB_TIMEOUT`, 1 h) y un reintento. Si vuelve a fallar se apunta en `runs/<fecha>/failed`, los demás siguen, y la siguiente ejecución lo reintenta.
+- **Hora límite** (`MAX_HOURS`, 4 h por defecto): pasado ese tiempo no se empieza nada nuevo, y lo que queda pendiente se recoge en la siguiente ejecución.
+- **Pase lo que pase** (fallos, hora límite, Ctrl-C): al salir escribe el resumen y el `MD5SUMS`, sube a S3 todo lo terminado (con 3 intentos) y, si `SHUTDOWN=1`, apaga la instancia. El código de salida es 1 si hubo fallos.
+- **Latido** cada 5 minutos en `s3://.../pairwise/runs/<fecha>/HEARTBEAT.txt`, para ver el progreso desde fuera.
+
+`tests/test_cloud_run.py` prueba cada una de estas garantías con un `aws` simulado: plan sin efectos, piloto, entrada corrupta, hora límite, fichero ausente, doble Ctrl-C y ejecución simultánea.
 
 Como solo se leen las ventanas, `path` en `specimens.tsv` puede ser una URL a un BAM o VCF indexado (por ejemplo, los VCF públicos de Leipzig): htslib descarga solo los tramos necesarios, sin bajar el genoma entero.
 
@@ -104,7 +124,7 @@ Panel de especímenes propuesto en `pairwise/specimens.tsv`: Sima (FemurXIII y l
 
 ## Estado
 
-- [x] Flujo completo probado con datos sintéticos (`tests/`, 17 pruebas: detección de mezcla hg19/hg38 y de recortes alterados, recuperación de un árbol simulado, vectores deterministas, acumulación de ventanas y rechazo de vectores de otro panel)
+- [x] Flujo completo probado con datos sintéticos (`tests/`, 24 pruebas: detección de mezcla hg19/hg38 y de recortes alterados, recuperación de un árbol simulado, vectores deterministas, acumulación de ventanas, rechazo de vectores de otro panel y modos de fallo de la ejecución en la nube)
 - [ ] `catalog/positions.tsv` con las 66 posiciones y `catalog/cds_regions.bed` con las 189 regiones CDS
 - [ ] Recortes reales en `slices/` y resultados versionados en `results/`
 - [ ] Primeras ventanas reales (100.000–200.000 de cada cromosoma) procesadas en la nube y versionadas en `pairwise/windows/`

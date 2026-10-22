@@ -32,9 +32,9 @@ def windows(d, *chroms):
               "--start", 0, "--size", 10000, "--every", 10000, "--out", d / "pairwise" / "windows.bed")
 
 
-def cloud(d):
-    return sh("bash", "cloud/run_vectors.sh", d / "data", d / "data" / "ref.fa", 2,
-              env={"PAIRWISE_DIR": str(d / "pairwise")})
+def cloud(d, check=True, **env):
+    return sh("bash", "cloud/run_vectors.sh", d / "data", d / "data" / "ref.fa", 2, check=check,
+              env={"PAIRWISE_DIR": str(d / "pairwise"), "HEARTBEAT_MIN": "1", **env})
 
 
 @pytest.fixture(scope="module")
@@ -118,7 +118,7 @@ def test_accumulation_matches_single_run(pw, tmp_path):
     assert first and all("chr1_" in str(p) for p in first)
     assert "12 ventanas nuevas, 24 en total" in windows(d, "chr2").stdout
     r = cloud(d)
-    assert "paneles por hacer: 12" in r.stdout                 # solo las ventanas nuevas
+    assert "trabajos: 12 paneles + 84 vectores" in r.stdout    # solo las ventanas nuevas
     second = snapshot(d)
     assert all(second[p] == b for p, b in first.items())      # chr1 intacto, byte a byte
     sh(sys.executable, "scripts/05_pairwise.py", d / "pairwise", d / "results")
@@ -133,7 +133,7 @@ def test_new_or_missing_vector_is_computed_alone(pw, tmp_path):
     target = sorted((d / "pairwise" / "windows").glob("chr*"))[5] / "vectors" / "Gorilla.vec.gz"
     target.unlink()
     r = cloud(d)
-    assert "paneles por hacer: 0" in r.stdout and "vectores por hacer: 1" in r.stdout
+    assert "trabajos: 0 paneles + 1 vectores" in r.stdout
     assert target.exists()
 
 
