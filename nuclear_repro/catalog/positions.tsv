@@ -1,0 +1,5 @@
+## Catálogo de posiciones funcionales (rellenar con las 66 del manuscrito, en el ensamblaje de BUILD).
+## pos: 1-based. ref: base de la referencia (se verifica contra la referencia recortada).
+## anc: alelo ancestral (chimpancé, o REF si no hay dato). der: alelo derivado. Solo SNV.
+## Columnas separadas por tabuladores; las líneas que empiezan por "##" se ignoran.
+id	chrom	pos	ref	anc	der	gene	panel	source

@@ -1,0 +1,14 @@
+# Entorno fijado para el pipeline nuclear reproducible
+# micromamba create -f environment.yml && micromamba activate nucrepro
+name: nucrepro
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  # Versiones mínimas: fijar las exactas con `micromamba env export` tras la primera ejecución real
+  - pysam>=0.22
+  - numpy>=1.24
+  - samtools>=1.17
+  - angsd>=0.940     # solo para el paso 3b (el manuscrito usó 0.941); su versión queda en results/angsd/VERSION.txt
+  - pytest>=8

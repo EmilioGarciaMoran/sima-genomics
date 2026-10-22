@@ -49,3 +49,8 @@ __pycache__/
 # Excepción: secuencias pequeñas del pipeline mtDNA reproducible (versionadas a propósito)
 !mtDNA_repro/sequences/*.fasta
 !mtDNA_repro/alignments/*.fasta
+
+# Excepción: BAM y referencia RECORTADOS del pipeline nuclear reproducible (pocos MB, versionados a propósito)
+!nuclear_repro/slices/*.bam
+!nuclear_repro/slices/*.bam.bai
+!nuclear_repro/slices/regions.fa
