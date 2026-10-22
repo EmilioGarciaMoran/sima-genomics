@@ -24,10 +24,10 @@ echo "== 2. Genotipado directo";                  python3 scripts/02_direct_geno
 echo "== 3. Verosimilitudes genotípicas (CDS)";   python3 scripts/03_genotype_likelihoods.py "$SLICES" "$CATALOG" "$RESULTS"
 echo "== 3b. ANGSD (opcional)";                   bash scripts/03b_angsd.sh "$SLICES" "$CATALOG" "$RESULTS"
 echo "== 5. Distancias por pares"
-if [ -s "$PAIRWISE/panel.tsv.gz" ] && ls "$PAIRWISE"/vectors/*.vec.gz >/dev/null 2>&1; then
+if [ -s "$PAIRWISE/windows.bed" ] && ls "$PAIRWISE"/windows/*/panel.tsv.gz >/dev/null 2>&1; then
   python3 scripts/05_pairwise.py "$PAIRWISE" "$RESULTS/pairwise"
 else
-  echo "  aún no hay panel ni vectores en $PAIRWISE/ (se generan en la nube: cloud/run_vectors.sh)"
+  echo "  aún no hay ventanas procesadas en $PAIRWISE/ (se generan en la nube: cloud/run_vectors.sh)"
 fi
 echo "== 6. Informe";                             python3 scripts/06_report.py "$SLICES" "$RESULTS"
 echo

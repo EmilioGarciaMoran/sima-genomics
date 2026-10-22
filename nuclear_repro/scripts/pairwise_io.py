@@ -1,9 +1,9 @@
 """Formato del panel de sitios informativos y de los vectores por espécimen.
 
-Panel (pairwise/panel.tsv.gz): una fila por sitio, ordenadas por cromosoma y posición
+Panel (pairwise/windows/<id>/panel.tsv.gz, uno por ventana): una fila por sitio, ordenadas por cromosoma y posición
     chrom  pos(1-based)  ref  alt          solo SNV bialélicos de transversión
 
-Vector (pairwise/vectors/<espécimen>.vec.gz): el alelo del espécimen en cada sitio del
+Vector (pairwise/windows/<id>/vectors/<espécimen>.vec.gz): el alelo del espécimen en cada sitio del
 panel, en el mismo orden, un carácter por sitio y una línea por cromosoma:
     #specimen=...  #panel_md5=...  #mode=...  (cabeceras de procedencia)
     chr1<TAB>AC.NNA...
@@ -29,8 +29,12 @@ TRANSVERSION_PAIRS = {frozenset(p) for p in ("AC", "AT", "GC", "GT")}
 def write_gz_text(path: Path, text: str) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "wb") as raw, gzip.GzipFile(fileobj=raw, mode="wb", mtime=0, filename="") as gz:
+    # escritura atómica: un proceso cortado a medias no deja un fichero que parezca terminado
+    # (run_vectors.sh da por hecho todo lo que existe)
+    tmp = path.with_name(f".{path.name}.tmp")
+    with open(tmp, "wb") as raw, gzip.GzipFile(fileobj=raw, mode="wb", mtime=0, filename="") as gz:
         gz.write(text.encode())
+    tmp.replace(path)
 
 
 def read_gz_text(path: Path) -> str:

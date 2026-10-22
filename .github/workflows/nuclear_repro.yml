@@ -31,10 +31,10 @@ jobs:
           else
             echo "Aún no hay recortes reales en slices/: solo se ejecuta el caso sintético"
           fi
-      # Igual para las distancias por pares: si hay panel y vectores versionados, se recalculan y se comparan
+      # Igual para las distancias por pares: si hay ventanas versionadas, se recalculan y se comparan
       - name: Distancias por pares (si existen)
         run: |
-          if [ -s pairwise/panel.tsv.gz ] && ls pairwise/vectors/*.vec.gz >/dev/null 2>&1; then
+          if [ -s pairwise/windows.bed ] && ls pairwise/windows/*/panel.tsv.gz >/dev/null 2>&1; then
             python scripts/05_pairwise.py pairwise results/pairwise
             git diff --exit-code -- results/pairwise/
           else

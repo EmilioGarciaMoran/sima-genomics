@@ -11,7 +11,7 @@ errores de secuenciación no crean sitios, solo pueden caer sobre sitios ya eleg
         --vcf AltaiNea.vcf.gz Vindija.vcf.gz Denisova.vcf.gz ... \
         --outgroup-fasta panTro4_en_hg19.fa \
         [--chroms chr1 ... chr22] [--mask mapabilidad.bed] [--min-gq 20] \
-        --out pairwise/panel.tsv.gz
+        [--region chr1:100001-200000] --out pairwise/windows/<id>/panel.tsv.gz
 
 Los VCF tienen que estar comprimidos con bgzip e indexados (tabix).
 Para acelerar con VCF de todos los sitios: bcftools view -i 'GT="alt"' antes de pasarlos aquí.
@@ -32,12 +32,12 @@ from common import merge_regions, read_bed  # noqa: E402
 from pairwise_io import TRANSVERSION_PAIRS, Panel  # noqa: E402
 
 
-def vcf_alts(vcf: Path, chrom: str, min_gq: int, stats: dict) -> dict[int, set]:
+def vcf_alts(vcf: Path, chrom: str, start0: int, end0: int, min_gq: int, stats: dict) -> dict[int, set]:
     out = defaultdict(set)
     with pysam.VariantFile(str(vcf)) as vf:
         if chrom not in vf.header.contigs:
             return out
-        for rec in vf.fetch(chrom):
+        for rec in vf.fetch(chrom, start0, end0):
             if len(rec.ref) != 1 or not rec.alts:
                 continue
             for s in rec.samples.values():
@@ -62,26 +62,36 @@ def main() -> None:
     ap.add_argument("--vcf", nargs="*", default=[], type=Path)
     ap.add_argument("--outgroup-fasta", nargs="*", default=[], type=Path)
     ap.add_argument("--chroms", nargs="*")
+    ap.add_argument("--region", help="solo esta ventana, chrom:inicio-fin (1-based, inclusivo); lo usa run_vectors.sh")
     ap.add_argument("--mask", type=Path, help="BED de regiones permitidas (p. ej. mapabilidad alta)")
     ap.add_argument("--min-gq", type=int, default=20)
     ap.add_argument("--out", required=True, type=Path)
     a = ap.parse_args()
 
     ref = pysam.FastaFile(str(a.ref))
-    chroms = a.chroms or list(ref.references)
+    if a.region:
+        chrom, _, span = a.region.rpartition(":")
+        b, e = (int(x) for x in span.replace(",", "").split("-"))
+        regions = [(chrom, b - 1, e)]
+    else:
+        regions = [(c, 0, ref.get_reference_length(c)) for c in (a.chroms or ref.references)]
     mask = defaultdict(list)
     if a.mask:
         for r in merge_regions(read_bed(a.mask)):  # fusionar: la búsqueda binaria lo exige
             mask[r.chrom].append((r.start, r.end))
     stats = defaultdict(int)
     sites = []
-    for chrom in chroms:
-        refseq = np.frombuffer(ref.fetch(chrom).upper().encode(), dtype=np.uint8)
+    for chrom, start0, end0 in regions:
+        end0 = min(end0, ref.get_reference_length(chrom))
+        refseq = np.frombuffer(ref.fetch(chrom, start0, end0).upper().encode(), dtype=np.uint8)
+        stats["ref_N"] += int(np.sum(refseq == ord("N")))
         cand = defaultdict(set)
         for vcf in a.vcf:
-            for pos, alleles in vcf_alts(vcf, chrom, a.min_gq, stats).items():
+            for pos, alleles in vcf_alts(vcf, chrom, start0, end0, a.min_gq, stats).items():
+                if not start0 < pos <= end0:
+                    continue
                 vref = next((x[4:] for x in alleles if x.startswith("REF=")), None)
-                if vref and vref != chr(refseq[pos - 1]):
+                if vref and vref != chr(refseq[pos - 1 - start0]):
                     stats["vcf_ref_mismatch"] += 1   # el VCF no está en el ensamblaje de --ref
                     continue
                 cand[pos] |= {x for x in alleles if not x.startswith("REF=")}
@@ -89,11 +99,11 @@ def main() -> None:
             with pysam.FastaFile(str(fa)) as og:
                 if chrom not in og.references:
                     continue
-                o = np.frombuffer(og.fetch(chrom).upper().encode(), dtype=np.uint8)
+                o = np.frombuffer(og.fetch(chrom, start0, end0).upper().encode(), dtype=np.uint8)
                 n = min(len(o), len(refseq))
                 valid = np.isin(o[:n], np.frombuffer(b"ACGT", np.uint8)) & (o[:n] != refseq[:n])
                 for i in np.nonzero(valid)[0]:
-                    cand[int(i) + 1].add(chr(o[i]))
+                    cand[start0 + int(i) + 1].add(chr(o[i]))
         ivs = sorted(mask.get(chrom, []))
         starts = [s for s, _ in ivs]
 
@@ -101,7 +111,7 @@ def main() -> None:
             i = bisect.bisect_left(starts, pos) - 1
             return i >= 0 and pos <= ivs[i][1]
         for pos in sorted(cand):
-            r = chr(refseq[pos - 1])
+            r = chr(refseq[pos - 1 - start0])
             alts = cand[pos] - {r}
             if r not in "ACGT" or len(alts) != 1:
                 stats["not_biallelic"] += 1
@@ -117,7 +127,7 @@ def main() -> None:
         print(f"  {chrom}: {sum(1 for s in sites if s[0] == chrom):,} sitios", file=sys.stderr)
     md5 = Panel.write(a.out, sites)
     print(f"Panel: {len(sites):,} transversiones bialélicas -> {a.out} (md5 {md5})")
-    print("Descartados: " + ", ".join(f"{k}={v:,}" for k, v in sorted(stats.items())))
+    print("Descartados (ref_N = bases N de la referencia en la región): " + ", ".join(f"{k}={v:,}" for k, v in sorted(stats.items())))
     if stats["vcf_ref_mismatch"]:
         print("AVISO: hay sitios cuyo REF del VCF no coincide con --ref; revisa el ensamblaje", file=sys.stderr)
 

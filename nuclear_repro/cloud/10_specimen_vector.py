@@ -10,8 +10,8 @@ para que las distancias sean comparables entre sí:
 Un alelo que no es ni REF ni ALT del panel (error, daño, tercer alelo) se guarda como N.
 El azar es reproducible: depende de SEED, del espécimen y del sitio.
 
-    python3 cloud/10_specimen_vector.py --panel pairwise/panel.tsv.gz --name Sima_FemurXIII \
-        --bam Sima_FemurXIII.hg19.bam --out pairwise/vectors
+    python3 cloud/10_specimen_vector.py --panel pairwise/windows/<id>/panel.tsv.gz --name Sima_FemurXIII \
+        --bam Sima_FemurXIII.hg19.bam --out pairwise/windows/<id>/vectors
     python3 cloud/10_specimen_vector.py --panel ... --name Vindija33.19 --vcf Vindija.vcf.gz [--sample X]
     python3 cloud/10_specimen_vector.py --panel ... --name Chimp --fasta panTro4_en_hg19.fa
 """
@@ -36,8 +36,9 @@ def from_bam(path, panel, name, cfg):
     with pysam.AlignmentFile(str(path)) as bam:
         for chrom, pos in panel.chroms.items():
             bases = [[] for _ in range(len(pos))]
-            if chrom in bam.references:
-                for r in bam.fetch(chrom):
+            if chrom in bam.references and len(pos):
+                # solo el tramo del panel (una ventana): no se recorre el cromosoma entero
+                for r in bam.fetch(chrom, int(pos[0]) - 1, int(pos[-1])):
                     if (r.is_unmapped or r.is_secondary or r.is_supplementary or r.is_duplicate
                             or r.is_qcfail or r.mapping_quality < mq):
                         continue
@@ -107,9 +108,10 @@ def from_fasta(path, panel):
             if chrom not in fa.references:
                 out[chrom] = ["N"] * len(pos)
                 continue
-            seq = fa.fetch(chrom).upper()
-            alle = [encode_allele(seq[p - 1] if p <= len(seq) else None, panel.ref[chrom][i], panel.alt[chrom][i])
-                    for i, p in enumerate(pos)]
+            lo = int(pos[0]) - 1 if len(pos) else 0
+            seq = fa.fetch(chrom, lo, int(pos[-1])).upper() if len(pos) else ""
+            alle = [encode_allele(seq[p - 1 - lo] if p - 1 - lo < len(seq) else None,
+                                  panel.ref[chrom][i], panel.alt[chrom][i]) for i, p in enumerate(pos)]
             stats["sites_called"] += sum(x != "N" for x in alle)
             out[chrom] = alle
     return out, stats

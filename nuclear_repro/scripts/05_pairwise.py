@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
-"""Paso 5: compone la matriz sitios × especímenes a partir de los vectores y calcula
-distancias por pares y estadísticos de alelos derivados.
+"""Paso 5: compone la matriz sitios × especímenes a partir de los vectores de todas las
+ventanas procesadas y calcula distancias por pares y estadísticos de alelos derivados.
 
 Entradas (versionadas, generadas en la nube por cloud/run_vectors.sh):
-    pairwise/panel.tsv.gz, pairwise/vectors/<espécimen>.vec.gz, pairwise/specimens.tsv
+    pairwise/windows.bed, pairwise/specimens.tsv,
+    pairwise/windows/<id>/panel.tsv.gz, pairwise/windows/<id>/vectors/<espécimen>.vec.gz
+
+La matriz es la concatenación de las ventanas ya procesadas, en el orden de windows.bed; cada
+ventana es un bloque del jackknife. Las ventanas aún sin procesar se listan y se ignoran, y un
+espécimen sin vector en una ventana cuenta como sin dato (N) en ella: así los resultados se
+pueden recalcular en cualquier momento mientras se acumulan ventanas y especímenes.
 
 Salidas en results/pairwise/:
+  windows_summary.tsv    sitios del panel y sitios con alelo de cada espécimen, por ventana
   specimens_summary.tsv  sitios con alelo por espécimen
   distances.tsv          distancia p por pares (diferencias / sitios con alelo en ambos), EE por jackknife
   distance_matrix.tsv    la misma, en matriz cuadrada
@@ -34,7 +41,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import die, load_config  # noqa: E402
+from common import die  # noqa: E402
 from pairwise_io import Panel, read_vector  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -45,13 +52,10 @@ def read_specimens(path: Path):
     return list(csv.DictReader(lines, delimiter="\t"))
 
 
-def block_ids(panel: Panel, size: int) -> np.ndarray:
-    ids, off = [], 0
-    for pos in panel.chroms.values():
-        b = (pos // size).astype(np.int64)
-        ids.append(b + off)
-        off += int(b.max()) + 1 if len(b) else 0
-    return np.unique(np.concatenate(ids), return_inverse=True)[1] if ids else np.zeros(0, np.int64)
+def read_windows(path: Path) -> list[str]:
+    if not path.exists():
+        die(f"falta {path} (se crea con cloud/make_windows.py)")
+    return [l.split("\t")[3] for l in path.read_text().splitlines() if l.strip() and not l.startswith("#")]
 
 
 def per_block(mask: np.ndarray, blocks: np.ndarray, nb: int) -> np.ndarray:
@@ -80,38 +84,66 @@ def dstat(a, b):
 
 
 def main(pw: Path, out: Path) -> None:
-    cfg = load_config(ROOT / "config.env")
-    size = int(cfg["BLOCK_SIZE"])
-    panel = Panel.read(pw / "panel.tsv.gz")
     specs = read_specimens(pw / "specimens.tsv")
-    names, groups, roles, cols = [], {}, {}, []
-    for s in specs:
-        vec = pw / "vectors" / f"{s['name']}.vec.gz"
-        if not vec.exists():
-            print(f"  aviso: falta el vector de {s['name']}; se omite")
+    groups = {s["name"]: s["group"] for s in specs}
+    roles = {s["name"]: s["role"] for s in specs}
+    all_names = [s["name"] for s in specs]
+    windows = read_windows(pw / "windows.bed")
+
+    done, pending, blocks_list, per_window = [], [], [], []
+    columns = {n: [] for n in all_names}
+    for b, wid in enumerate(windows):
+        wdir = pw / "windows" / wid
+        if not (wdir / "panel.tsv.gz").exists():
+            pending.append(wid)
             continue
-        try:
-            _, v = read_vector(vec, panel)
-        except ValueError as e:
-            die(str(e))
-        names.append(s["name"])
-        groups[s["name"]], roles[s["name"]] = s["group"], s["role"]
-        cols.append(v)
+        panel = Panel.read(wdir / "panel.tsv.gz")
+        counts = {}
+        for n in all_names:
+            vec = wdir / "vectors" / f"{n}.vec.gz"
+            if vec.exists():
+                try:
+                    _, v = read_vector(vec, panel)
+                except ValueError as e:
+                    die(str(e))
+            else:
+                v = np.zeros(panel.n, np.uint8)
+                counts[n] = None
+            columns[n].append(v)
+            counts.setdefault(n, int((v > 0).sum()))
+        blocks_list.append(np.full(panel.n, len(done), np.int64))
+        per_window.append((wid, panel.n, counts))
+        done.append(wid)
+    if not done:
+        die("ninguna ventana procesada todavía (cloud/run_vectors.sh)")
+    if pending:
+        print(f"  {len(pending)} ventanas de windows.bed sin procesar aún: se ignoran")
+    names = [n for n in all_names if any(cs[n] is not None for _, _, cs in per_window)]
+    missing = {n: [w for w, _, cs in per_window if cs[n] is None] for n in names}
+    for n, ws in missing.items():
+        if ws:
+            print(f"  aviso: {n} sin vector en {len(ws)} de {len(done)} ventanas (cuentan como N)")
     if len(names) < 2:
-        die("hacen falta al menos dos vectores")
-    M = np.stack(cols, axis=1)           # sitios × especímenes; 0 = N, 1 = REF, 2 = ALT
+        die("hacen falta al menos dos especímenes con vectores")
+    M = np.stack([np.concatenate(columns[n]) for n in names], axis=1)  # sitios × especímenes; 0=N 1=REF 2=ALT
     called = M > 0
-    blocks = block_ids(panel, size)
-    nb = int(blocks.max()) + 1
+    blocks = np.concatenate(blocks_list)
+    nb = len(done)
+    n_sites = M.shape[0]
     idx = {n: i for i, n in enumerate(names)}
     out.mkdir(parents=True, exist_ok=True)
-    print(f"Matriz: {panel.n:,} sitios × {len(names)} especímenes, {nb} bloques de {size:,} pb")
+    print(f"Matriz: {n_sites:,} sitios × {len(names)} especímenes, {nb} ventanas (bloques del jackknife)")
+
+    with open(out / "windows_summary.tsv", "w") as fh:
+        fh.write("window\tpanel_sites\t" + "\t".join(names) + "\n")
+        for wid, n, cs in per_window:
+            fh.write(f"{wid}\t{n}\t" + "\t".join("NA" if cs[x] is None else str(cs[x]) for x in names) + "\n")
 
     with open(out / "specimens_summary.tsv", "w") as fh:
         fh.write("specimen\tgroup\trole\tsites_called\tfrac_called\n")
         for n in names:
             c = int(called[:, idx[n]].sum())
-            fh.write(f"{n}\t{groups[n]}\t{roles[n]}\t{c}\t{c / panel.n:.4f}\n")
+            fh.write(f"{n}\t{groups[n]}\t{roles[n]}\t{c}\t{c / max(n_sites, 1):.4f}\n")
 
     D = np.full((len(names), len(names)), np.nan)
     with open(out / "distances.tsv", "w") as fh:
