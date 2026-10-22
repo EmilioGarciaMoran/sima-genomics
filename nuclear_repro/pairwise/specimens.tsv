@@ -1,0 +1,20 @@
+## Especímenes de las distancias por pares. role: target (baja cobertura, la pregunta),
+## comparator, outgroup (polariza ancestral/derivado; el primero listado es el que se usa).
+## mode/path/sample solo los usa la nube (cloud/run_vectors.sh); path relativo a DATA_DIR;
+## sample "-" = la primera muestra del VCF. Sima_pool = los 4 BAM fusionados (samtools merge).
+name	group	role	mode	path	sample
+Sima_FemurXIII	Sima de los Huesos	target	bam	Sima_FemurXIII.hg19.bam	-
+Sima_pool	Sima de los Huesos	target	bam	Sima_pool.hg19.bam	-
+AltaiNea	Neandertal	comparator	vcf	AltaiNea.vcf.gz	-
+Vindija33.19	Neandertal	comparator	vcf	Vindija33.19.vcf.gz	-
+Chagyrskaya8	Neandertal	comparator	vcf	Chagyrskaya8.vcf.gz	-
+Denisova3	Denisova	comparator	vcf	Denisova3.vcf.gz	-
+UstIshim	Humano antiguo	comparator	vcf	UstIshim.vcf.gz	-
+Mbuti	Humano actual	comparator	vcf	SGDP_Mbuti.vcf.gz	-
+Yoruba	Humano actual	comparator	vcf	SGDP_Yoruba.vcf.gz	-
+French	Humano actual	comparator	vcf	SGDP_French.vcf.gz	-
+Han	Humano actual	comparator	vcf	SGDP_Han.vcf.gz	-
+Papuan	Humano actual	comparator	vcf	SGDP_Papuan.vcf.gz	-
+Chimp	Simio	outgroup	fasta	panTro_en_hg19.fa	-
+Gorilla	Simio	comparator	fasta	gorGor_en_hg19.fa	-
+Orangutan	Simio	comparator	fasta	ponAbe_en_hg19.fa	-

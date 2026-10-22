@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install "pysam>=0.22" "pytest>=8"
+      - run: pip install "pysam>=0.22" "numpy>=1.24" "pytest>=8"
       # Flujo completo sobre el caso sintético (resultados conocidos de antemano)
       - run: python -m pytest -v tests
       # Si ya hay recortes reales versionados, el pipeline tiene que reproducir los resultados del repositorio
@@ -30,4 +30,13 @@ jobs:
             git diff --exit-code -- results/ ':!results/REPORT.md' ':!results/angsd'
           else
             echo "Aún no hay recortes reales en slices/: solo se ejecuta el caso sintético"
+          fi
+      # Igual para las distancias por pares: si hay panel y vectores versionados, se recalculan y se comparan
+      - name: Distancias por pares (si existen)
+        run: |
+          if [ -s pairwise/panel.tsv.gz ] && ls pairwise/vectors/*.vec.gz >/dev/null 2>&1; then
+            python scripts/05_pairwise.py pairwise results/pairwise
+            git diff --exit-code -- results/pairwise/
+          else
+            echo "Aún no hay vectores en pairwise/: solo se ejecuta el caso sintético"
           fi
