@@ -70,3 +70,33 @@ cd nuclear_repro/power_sim
 micromamba create -f environment.yml && micromamba activate powersim
 bash run_power.sh 2        # 2 = hilos
 ```
+
+## Resultados (25 oct 2026)
+
+Ejecución completa: `bash run_power.sh 2` (89 min, 2 núcleos). Unos 6 millones de sitios segregantes por escenario, 589 bloques de jackknife y 100 réplicas por condición. Tabla completa en [`results/SUMMARY.tsv`](results/SUMMARY.tsv); réplicas individuales en `results/TND*/D_REPLICATES.tsv`.
+
+### Escenario principal (T_ND = 470 ka): veredicto según el criterio fijado de antemano
+| Volumen (bases de X) | Sitios informativos (mediana) | D de Sima (mediana) | EE | Sima Z > 3 | Mbuti \|Z\| < 3 | Veredicto |
+|---|---|---|---|---|---|---|
+| Fémur XIII (225.329) | 37 | 0,24 | 0,16 | 13% | 99% | **No apropiadas** |
+| AT-5431 (1.186.442) | 194 | 0,25 | 0,07 | 72% | 100% | **No apropiadas** (por debajo del 90%) |
+| AT-5482 (2.015.167) | 330 | 0,26 | 0,05 | 97% | 100% | **Apropiadas** |
+| Genoma completo | 475.437 | 0,26 | 0,004 | 100% | 100% | Apropiadas |
+
+### Sensibilidad a la fecha de separación neandertal–denisovano (Sima Z > 3, % de réplicas)
+| Volumen | T_ND = 440 ka | **470 ka** | 550 ka |
+|---|---|---|---|
+| Fémur XIII | 3% | **13%** | 92% |
+| AT-5431 | 0% | **72%** | 100% |
+| AT-5482 | 4% | **97%** | 100% |
+| D de Sima con genoma completo | 0,07 | **0,26** | 0,62 |
+
+El control negativo (Mbuti) no dio falsos positivos en ninguna condición (\|Z\| < 3 en ≥ 97%). El control positivo fácil (Chagyrskaya) se detectó en ≥ 87% de las réplicas incluso con el volumen del Fémur XIII, y en el 100% con más datos.
+
+### Interpretación
+1. **La conclusión depende de la escena principal y cambia con T_ND, como exige el criterio señalar.** Si neandertales y denisovanos se separaron mucho antes de los 430 ka (550 ka), Sima comparte mucha deriva con los neandertales y hasta el Fémur XIII bastaría. Si se separaron justo antes (440 ka), ningún espécimen tiene potencia. Con el valor central (470 ka), solo AT-5482 la tiene.
+2. **Con el volumen del Fémur XIII, las D-statistics no son fiables** en el escenario principal ni en el más conservador.
+3. **El Z = 30,6 del preprint es incompatible con los datos de Sima.** El Z máximo observado en 100 réplicas fue de 4,8 (Fémur XIII), 6,9 (AT-5431) y 7,8 (AT-5482). Incluso con D = 0,74, alcanzar Z ≈ 30 requeriría unos 800 sitios informativos, y el Fémur XIII da unos 37. Esto confirma que aquellas cifras no podían proceder de los datos de Sima.
+4. **Siguiente paso natural:** calcular en estas mismas simulaciones el estadístico de Meyer 2016 (fracción de alelos derivados compartidos por rama) y ver qué valor de T_ND reproduce los porcentajes observados (43% / 9% en AT-5431). Eso acotaría el escenario realista sin usar datos nuevos.
+
+Recordatorio de límites: esto mide solo la potencia estadística. El daño, la contaminación y el sesgo de mapeo reducirían aún más la potencia real.

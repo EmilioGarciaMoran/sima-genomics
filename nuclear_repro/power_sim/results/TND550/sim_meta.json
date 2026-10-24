@@ -1,0 +1,10 @@
+{
+ "T_ND_ka": 550.0,
+ "seed": 550001,
+ "genome_length": 2881033286,
+ "segregating_sites": 6097315,
+ "msprime": "1.3.4",
+ "mu": 1.25e-08,
+ "rec": 1e-08,
+ "gen_time": 29.0
+}
