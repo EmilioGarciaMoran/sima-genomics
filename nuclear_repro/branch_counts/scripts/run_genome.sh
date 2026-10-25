@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Recorrido genómico: para cada cromosoma, descarga los cinco VCF, extrae los sitios
-# informativos y borra los VCF antes de pasar al siguiente. Pico de disco ~6 GB.
+# informativos y borra los VCF antes de pasar al siguiente.
+#
+# PICO DE DISCO: ~21 GB en los cromosomas 1 y 2 (cada VCF ronda los 4 GB), bajando a
+# ~3 GB en los pequeños. NO usar /tmp, que suele ser una partición pequeña.
 #
 #   bash scripts/run_genome.sh [dir_trabajo] [primer_cr] [ultimo_cr]
 #   nohup bash scripts/run_genome.sh > results/genoma.log 2>&1 &
@@ -14,7 +17,8 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
-WORK=${1:-/tmp/sima_vcf}
+WORK=${1:-$HOME/sima/public_vcfs/_tmp}
+MIN_GB=${MIN_GB:-28}        # margen sobre los ~21 GB que necesita el cromosoma 1
 FIRST=${2:-1}
 LAST=${3:-22}
 OUT=results/genome
@@ -24,6 +28,7 @@ echo "=================================================================="
 echo "Recorrido genómico  |  inicio: $(date '+%F %T')"
 echo "  cromosomas $FIRST a $LAST"
 echo "  VCF temporales en: $WORK (se borran tras cada cromosoma)"
+echo "  espacio mínimo exigido: ${MIN_GB} GB  |  libre ahora: $(df -BG --output=avail "$WORK" 2>/dev/null | tail -1 | tr -d ' ')"
 echo "  salidas en: $OUT"
 echo "=================================================================="
 
@@ -38,8 +43,10 @@ for C in $(seq "$FIRST" "$LAST"); do
   fi
 
   L=$(libre)
-  if [ -n "$L" ] && [ "$L" -lt 12 ]; then
-    echo "[cr$C] ABORTA: solo ${L} GB libres en $WORK" >&2
+  if [ -n "$L" ] && [ "$L" -lt "$MIN_GB" ]; then
+    echo "[cr$C] ABORTA: solo ${L} GB libres en $WORK (hacen falta ${MIN_GB})" >&2
+    echo "       Elige otro directorio: bash scripts/run_genome.sh /ruta/con/sitio" >&2
+    echo "       o baja el umbral si sabes lo que haces: MIN_GB=15 bash scripts/run_genome.sh" >&2
     fallos="$fallos $C"; break
   fi
 
