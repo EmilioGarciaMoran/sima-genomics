@@ -156,19 +156,25 @@ def main():
     ap.add_argument("--exclude-rm", action="store_true")
     ap.add_argument("--min-dp", type=int, default=0)
     ap.add_argument("--max-lines", type=int, default=0)
+    ap.add_argument("--chrom", default="21", help="cromosoma; decide el nombre de fichero")
+    ap.add_argument("--only-informative", action="store_true",
+                    help="guarda solo posiciones con Mbuti ancestral y al menos un arcaico "
+                         "derivado. Imprescindible para el recorrido genómico: reduce el "
+                         "volumen unas 100 veces sin perder ningún sitio de los conjuntos.")
     ap.add_argument("--progress", type=int, default=2_000_000)
     a = ap.parse_args()
 
     d = Path(a.dir).expanduser()
+    C = a.chrom
     for n in SAMPLES + ["Mbuti"]:
-        if not (d / f"{n}_chr21.vcf.gz").exists():
-            sys.exit(f"ERROR: falta {d}/{n}_chr21.vcf.gz")
+        if not (d / f"{n}_chr{C}.vcf.gz").exists():
+            sys.exit(f"ERROR: falta {d}/{n}_chr{C}.vcf.gz")
 
     rng = np.random.default_rng(a.seed)
-    arch = [ArchaicReader(d / f"{n}_chr21.vcf.gz", n) for n in SAMPLES]
-    mproc, mfh = opener(d / "Mbuti_chr21.vcf.gz")
+    arch = [ArchaicReader(d / f"{n}_chr{C}.vcf.gz", n) for n in SAMPLES]
+    mproc, mfh = opener(d / f"Mbuti_chr{C}.vcf.gz")
 
-    pos_l, map20_l, rm_l = [], [], []
+    pos_l, map20_l, rm_l, canc_l, der_l = [], [], [], [], []
     code_l = {n: [] for n in SAMPLES + ["Mbuti"]}
     stats = dict(mbuti_lines=0, with_canc=0, canc_bad=0, rm_skipped=0,
                  mbuti_unusable=0, emitted=0, ref_mismatch=0)
@@ -248,6 +254,22 @@ def main():
         if not ok_ref:
             stats["ref_mismatch"] += 1
 
+        if a.only_informative and not (mb == 0 and any(c == 1 for c in codes)):
+            continue
+
+        # base derivada observada: la primera distinta de CAnc entre los arcaicos y Mbuti.
+        der = 0
+        for r, c in zip(arch, codes):
+            if c == 1:
+                pr = r.alleles()
+                if pr:
+                    der = (pr[0] if pr[0] != canc else pr[1])[0]
+                    break
+        if der == 0 and mb == 1 and mb_pair:
+            der = (mb_pair[0] if mb_pair[0] != canc else mb_pair[1])[0]
+        canc_l.append(canc[0])
+        der_l.append(der)
+
         # anotaciones que se guardan para poder filtrar después sin releer los VCF.
         # Map20 solo aparece en una parte de las posiciones: se guarda -1 cuando falta,
         # de modo que el análisis pueda distinguir "ausente" de "valor bajo".
@@ -275,7 +297,10 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     arrays = {"pos": np.array(pos_l, dtype=np.int64),
               "map20": np.array(map20_l, dtype=np.float32),
-              "rm": np.array(rm_l, dtype=bool)}
+              "rm": np.array(rm_l, dtype=bool),
+              "canc": np.array(canc_l, dtype=np.uint8),
+              "der": np.array(der_l, dtype=np.uint8),
+              "chrom": np.array([a.chrom])}
     for n in SAMPLES + ["Mbuti"]:
         arrays[n] = np.array(code_l[n], dtype=np.int8)
     arrays["meta_mode"] = np.array([a.mode])

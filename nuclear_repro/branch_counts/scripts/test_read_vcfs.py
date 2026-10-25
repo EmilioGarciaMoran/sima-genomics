@@ -182,6 +182,16 @@ with tempfile.TemporaryDirectory() as td:
     check("conjunto AB tiene 1 sitio", r["AB"]["n"], 1)
     check("Chag8 es ancestral ahí, f_AB = 0", r["AB"]["f"], 0.0)
 
+    print("\nI. Filtro --only-informative")
+    zi = run(d, d / "inf.npz", "--only-informative")
+    pi = [int(x) for x in zi["pos"]]
+    # se emiten solo las posiciones con Mbuti ancestral y algun arcaico derivado: 200 y 800*
+    # (800 es heterocigoto en D5 y en modo homozygous queda sin dato, asi que no cuenta)
+    check("solo quedan posiciones informativas", pi, [200])
+    check("la base ancestral se guarda", chr(int(zi["canc"][0])), "A")
+    check("la base derivada se guarda", chr(int(zi["der"][0])), "G")
+    check("el cromosoma se guarda", str(zi["chrom"][0]), "21")
+
 print()
 if fails:
     print(f"RESULTADO: {len(fails)} prueba(s) fallidas: {', '.join(fails)}")
