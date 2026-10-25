@@ -94,7 +94,50 @@ Lo que sí valida el código es el control: con X = Chagyrskaya 8 los conjuntos 
 invierten (f_A = 0,141 frente a f_B = 0,453), como exige la topología. Un error que
 intercambiara los dos conjuntos se habría delatado ahí.
 
-### 3. Reproducción de Massilani con datos reales — PENDIENTE
+### 3. Validación con datos reales (cromosoma 21) — PASA
+
+Ejecutado el 25 de octubre de 2026 sobre los VCF de hg19 de MPI-EVA (ver
+`DATOS_NECESARIOS.md`). 32.022.404 posiciones con estado ancestral; 22,3 M con dato en los
+cuatro arcaicos. Jackknife de 35 bloques de 1 Mb.
+
+Prueba principal: **X = Chagyrskaya 8, A = Denisova 5, B = Vindija 33.19**. La topología
+establecida exige f_B > f_A.
+
+| Modo | Conjunto AB | f_A (exclusivos de D5) | f_B (exclusivos de Vindija) | Z(f_A − f_B) |
+|---|---|---|---|---|
+| pseudohaploide | 0,944 (n=15.019) | 0,259 (n=3.222) | 0,391 (n=3.820) | **−4,3** |
+| pseudohaploide, Map20=1 | 0,944 (n=13.895) | 0,259 (n=2.956) | 0,390 (n=3.524) | −4,2 |
+| homocigoto | 0,977 (n=10.951) | 0,150 (n=1.298) | 0,507 (n=1.326) | **−6,8** |
+
+Control **X = Denisova 3** (denisovano, grupo externo a los dos neandertales): no se inclina
+hacia ninguno. f_A = 0,140 y f_B = 0,120 (Z = 1,0) en pseudohaploide; 0,104 y 0,126
+(Z = −0,7) en homocigoto.
+
+Las tres condiciones preregistradas pasan en los tres modos: f_B > f_A, f_AB es el mayor de
+los tres, y el control denisovano no se inclina.
+
+**Lo que se aprende:**
+
+- **El filtro de mapabilidad es irrelevante aquí.** Restringir a Map20 = 1 (24 de 32 M de
+  posiciones) deja las fracciones prácticamente idénticas. La señal no depende de regiones de
+  mapeo dudoso, así que el filtro se deja fuera y queda justificado.
+- **El modo homocigoto da una señal más limpia**, con un contraste 3,4 veces mayor frente a
+  1,5. El muestreo pseudohaploide introduce ruido al definir los conjuntos de referencia.
+  **Consecuencia para el análisis de Sima: los conjuntos se definen con los genotipos de los
+  genomas de alta cobertura, y el muestreo pseudohaploide se aplica solo al individuo de
+  prueba**, donde es obligatorio por tener una sola lectura por posición.
+- **El jackknife importa.** Su error típico es unas 2,7 veces el binomial (0,021 frente a
+  0,008), porque los sitios cercanos están ligados. El Z honesto es −4,3, no el −12 que daría
+  el binomial. Cualquier resultado futuro debe usar el jackknife.
+- Un primer ensayo sobre 1,5 Mb pericentroméricos dio f_A = 0,35 en el control denisovano,
+  valor imposible. Era artefacto de la región: con el cromosoma completo baja a 0,14, que sí
+  se explica por clasificación incompleta de linajes y el flujo génico denisovano conocido en
+  el neandertal del Altái. **No se interpreta ningún resultado sobre una franja pequeña.**
+
+Esto valida el software para el recuento por rama. **No** reproduce las cifras 91/45/20, que
+exigen Denisova 17 (ver apartado 4).
+
+### 4. Reproducción de las cifras de Massilani — NO VIABLE POR AHORA
 
 Requiere los genomas de alta cobertura (Denisova 5, Denisova 17, Vindija 33.19, Denisova 3,
 Mbuti) y los alineamientos de primates de UCSC. **No se pueden descargar desde el entorno en

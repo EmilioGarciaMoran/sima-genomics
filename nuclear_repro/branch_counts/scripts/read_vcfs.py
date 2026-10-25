@@ -150,7 +150,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
     ap.add_argument("--out", required=True)
-    ap.add_argument("--mode", choices=["pseudohaploid", "homozygous"], default="pseudohaploid")
+    ap.add_argument("--mode", choices=["pseudohaploid", "homozygous", "carrier"],
+                    default="pseudohaploid")
     ap.add_argument("--seed", type=int, default=20261025)
     ap.add_argument("--exclude-rm", action="store_true")
     ap.add_argument("--min-dp", type=int, default=0)
@@ -172,11 +173,22 @@ def main():
     stats = dict(mbuti_lines=0, with_canc=0, canc_bad=0, rm_skipped=0,
                  mbuti_unusable=0, emitted=0, ref_mismatch=0)
 
-    def pick(pair):
-        """Alelo único según el modo. Devuelve None si no es utilizable."""
+    def code(pair, canc):
+        """Codifica un genotipo como -1 (sin dato), 0 (ancestral) o 1 (derivado).
+
+        pseudohaploid: un alelo al azar de los dos.
+        homozygous:    solo homocigotos; los heterocigotos cuentan como sin dato.
+        carrier:       derivado si PORTA al menos un alelo derivado (lectura literal de
+                       "carries the derived allele" en Massilani et al. 2026).
+        """
+        if pair is None:
+            return -1
+        d0, d1 = pair[0] != canc, pair[1] != canc
+        if a.mode == "carrier":
+            return 1 if (d0 or d1) else 0
         if a.mode == "homozygous":
-            return pair[0] if pair[0] == pair[1] else None
-        return pair[0] if rng.random() < 0.5 else pair[1]
+            return -1 if d0 != d1 else (1 if d0 else 0)
+        return 1 if (d0 if rng.random() < 0.5 else d1) else 0
 
     for line in mfh:
         if line.startswith(b"#"):
@@ -210,13 +222,14 @@ def main():
         s = f[9]
         c = s.find(b":")
         gt = s[:c] if c > 0 else s
-        mb = None
+        mb_pair = None
         if len(gt) == 3 and gt[1:2] in (b"/", b"|") and gt[0:1].isdigit() and gt[2:3].isdigit():
             ia, ib = int(gt[0:1]), int(gt[2:3])
             if ia <= 1 and ib <= 1 and len(ref) == 1 and (
                     (ia == 0 and ib == 0) or (alt != b"." and b"," not in alt and len(alt) == 1)):
-                mb = pick((ref if ia == 0 else alt, ref if ib == 0 else alt))
-        if mb is None:
+                mb_pair = (ref if ia == 0 else alt, ref if ib == 0 else alt)
+        mb = code(mb_pair, canc)
+        if mb < 0:
             stats["mbuti_unusable"] += 1
             continue
 
@@ -231,12 +244,7 @@ def main():
             if a.min_dp and r.dp < a.min_dp:
                 codes.append(-1)
                 continue
-            pair = r.alleles()
-            if pair is None:
-                codes.append(-1)
-                continue
-            al = pick(pair)
-            codes.append(-1 if al is None else (0 if al == canc else 1))
+            codes.append(code(r.alleles(), canc))
         if not ok_ref:
             stats["ref_mismatch"] += 1
 
@@ -251,7 +259,7 @@ def main():
         rm_l.append(info_flag(info, b"RM"))
 
         pos_l.append(pos)
-        code_l["Mbuti"].append(0 if mb == canc else 1)
+        code_l["Mbuti"].append(mb)
         for n, cd in zip(SAMPLES, codes):
             code_l[n].append(cd)
         stats["emitted"] += 1

@@ -162,6 +162,18 @@ with tempfile.TemporaryDirectory() as td:
     check("el heterocigoto de pos 800 ahora sí tiene dato",
           int(p1["D5"][list(p1["pos"]).index(800)]) in (0, 1), True)
 
+    print("\nH. Modo carrier: el heterocigoto cuenta como derivado")
+    zc = run(d, d / "carrier.npz", "--mode", "carrier")
+    ic = {int(p): i for i, p in enumerate(zc["pos"])}
+    check("pos 800, D5 heterocigoto (0/1) -> derivado",
+          int(zc["D5"][ic[800]]), 1)
+    check("pos 100, D5 homocigoto ancestral -> ancestral",
+          int(zc["D5"][ic[100]]), 0)
+    check("pos 200, D5 homocigoto derivado -> derivado",
+          int(zc["D5"][ic[200]]), 1)
+    check("pos 500, D3 ausente sigue siendo sin dato",
+          int(zc["D3"][ic[500]]), -1)
+
     print("\nG. Encadenado con branch_counts")
     sys.path.insert(0, str(HERE))
     from branch_counts import branch_counts  # noqa: E402
