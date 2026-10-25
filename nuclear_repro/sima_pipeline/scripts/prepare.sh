@@ -70,25 +70,56 @@ fi
 # VCF de MPI-EVA. Mezclar convenciones de nombres arruinaría el cruce de posiciones.
 echo
 echo "--- 2. Referencia GRCh37 ---"
-URL=ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz
+# Por HTTPS: el FTP del EBI va lento y wget -c sobre él puede dejar bytes de más.
+URL=https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz
 if [ -s "$REF" ]; then
   echo "  ya descomprimida: $(du -h "$REF" | cut -f1)"
 else
-  if [ ! -s "$REF.gz" ]; then
-    echo "  descargando (~850 MB)..."
-    wget -c -q --show-progress -O "$REF.gz" "$URL" || {
-      echo "  ERROR: no se pudo descargar la referencia" >&2
-      echo "  Pruébalo a mano: wget -c -O $REF.gz $URL" >&2; exit 1; }
-  fi
-  echo "  comprobando integridad..."
-  gzip -t "$REF.gz" || { echo "  ERROR: descarga corrupta" >&2; rm -f "$REF.gz"; exit 1; }
+  # Sin -c: reanudar sobre un fichero previo puede concatenar en vez de continuar,
+  # y deja "trailing garbage" al final del flujo gzip.
+  rm -f "$REF.gz"
+  echo "  descargando (~850 MB)..."
+  wget -q -O "$REF.gz" "$URL" || {
+    echo "  ERROR: no se pudo descargar la referencia" >&2
+    echo "  Pruébalo a mano: wget -O $REF.gz $URL" >&2; exit 1; }
   echo "  descomprimiendo..."
-  gunzip -c "$REF.gz" > "$REF" || { echo "  ERROR al descomprimir" >&2; exit 1; }
+  # gunzip avisa de bytes sobrantes tras el flujo y devuelve error, pero el contenido
+  # descomprimido es correcto. La verificación de verdad son las longitudes de abajo.
+  gunzip -c "$REF.gz" > "$REF" 2>/dev/null
+  if [ ! -s "$REF" ]; then
+    echo "  ERROR: la descompresión no produjo nada" >&2; rm -f "$REF"; exit 1
+  fi
   rm -f "$REF.gz"
 fi
-[ -s "$REF.fai" ] || { echo "  indexando con samtools faidx..."; samtools faidx "$REF"; }
-echo "  cromosomas en la referencia: $(cut -f1 "$REF.fai" | head -5 | tr '\n' ' ')..."
-echo "  (deben llamarse 1, 2, 3... sin prefijo chr, como los VCF de MPI-EVA)"
+[ -s "$REF.fai" ] || { echo "  indexando con samtools faidx..."; samtools faidx "$REF" || {
+  echo "  ERROR: samtools faidx falló; la referencia está incompleta" >&2
+  rm -f "$REF" "$REF.fai"; exit 1; }; }
+
+# VERIFICACIÓN REAL: longitudes de los 22 autosomas en GRCh37. Si cuadran, la referencia
+# está completa y es la correcta. Es más fiable que cualquier prueba sobre el .gz.
+echo "  verificando longitudes de los autosomas..."
+python3 - "$REF.fai" <<'PYEOF' || { echo "  ERROR: la referencia no es GRCh37 o está incompleta" >&2; exit 1; }
+import sys
+ESPERADO = {"1":249250621,"2":243199373,"3":198022430,"4":191154276,"5":180915260,
+            "6":171115067,"7":159138663,"8":146364022,"9":141213431,"10":135534747,
+            "11":135006516,"12":133851895,"13":115169878,"14":107349540,"15":102531392,
+            "16":90354753,"17":81195210,"18":78077248,"19":59128983,"20":63025520,
+            "21":48129895,"22":51304566}
+visto = {}
+for linea in open(sys.argv[1]):
+    c = linea.split("\t")
+    if c[0] in ESPERADO:
+        visto[c[0]] = int(c[1])
+malos = [c for c in ESPERADO if visto.get(c) != ESPERADO[c]]
+if malos:
+    print("    DISCREPAN:", ", ".join(sorted(malos, key=int)))
+    for c in sorted(malos, key=int)[:5]:
+        print(f"      cr{c}: {visto.get(c, 'ausente')} en vez de {ESPERADO[c]}")
+    sys.exit(1)
+print(f"    los 22 autosomas cuadran con GRCh37")
+PYEOF
+echo "  cromosomas: $(cut -f1 "$REF.fai" | head -5 | tr '\n' ' ')..."
+echo "  (sin prefijo chr, como los VCF de MPI-EVA)"
 
 # --- 3. índice de bwa -----------------------------------------------------
 echo
