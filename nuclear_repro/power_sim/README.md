@@ -116,3 +116,16 @@ Para X se calcula la fracción de sitios cubiertos de cada rama en que lleva el 
 - Criterio: **apropiado** si Sima da Z > 3 en ≥ 90% de las réplicas y Mbuti da |Z| < 3 en ≥ 95%. Es el mismo umbral que para la D.
 
 **C. Calibración del escenario con los datos de Meyer.** Para cada fecha de separación (440, 470 y 550 ka) se calcula el cociente f_N / f_D de Sima con genoma completo y se compara con el observado por Meyer (AT-5431: 43/9 ≈ 4,8; AT-5482: 39/7 ≈ 5,6). Se usa el cociente y no los porcentajes absolutos, porque la contaminación residual de los datos reales reduce todas las fracciones por igual. El escenario más compatible es aquel cuyo cociente simulado queda más cerca del observado. Esto es orientativo: la demografía simulada es simple y Meyer usó el neandertal de Altai, no el de Vindija.
+
+### Resultados de la ampliación (25 oct 2026)
+Tabla completa en [`results/EXT_SUMMARY.tsv`](results/EXT_SUMMARY.tsv); réplicas en `results/TND*/EXT_REPLICATES.tsv`.
+
+**A. Especímenes combinados (AT-5431 + AT-5482, unos 526 sitios informativos para la D).** En el escenario de 470 ka, la D detecta la afinidad neandertal en el **100%** de las réplicas (frente al 77% de AT-5431 solo y el 99% de AT-5482 solo), sin falsos positivos. Con 440 ka sigue sin potencia (10%).
+
+**B. Estadístico de Meyer.** No tiene más potencia que la D; tiene algo menos (AT-5482 a 470 ka: 90% frente a 99%; combinados: 99% frente a 100%). Usa más sitios cubiertos, pero la diferencia entre f_N y f_D es una señal más débil que el contraste ABBA/BABA. Con el genoma completo en el escenario de 470 ka, el control negativo (Mbuti) da |Z| > 3 en el 19% de las réplicas. Con unos 1,9 millones de sitios, la prueba detecta diferencias minúsculas debidas a la deriva en las muestras de referencia. Esto no afecta a los volúmenes de Sima, en los que Mbuti queda dentro del criterio en todos los casos.
+
+**C. Calibración.** Cociente f_N/f_D de Sima con genoma completo: **1,15 (440 ka), 1,76 (470 ka), 5,03 (550 ka)**. Meyer observó **4,8 (AT-5431) y 5,6 (AT-5482)**. Los datos reales son compatibles con el escenario de **550 ka** y no con los de 440 o 470 ka.
+
+Interpretación con cautela: en esta demografía simplificada, "550 ka" no es una estimación de la fecha real de separación. Es la cantidad de deriva compartida entre Sima y los neandertales que hace falta para reproducir lo que Meyer observó; también podría deberse, por ejemplo, a un tamaño poblacional neandertal temprano más pequeño. Además, Meyer definió las ramas con el neandertal de Altai, no con el de Vindija, y su cociente tiene un margen de error amplio por el bajo número de sitios.
+
+**Conclusión de la ampliación.** Si la señal real de Sima es tan fuerte como indica el cociente de Meyer, las D-statistics tienen potencia con **todos** los especímenes, incluido el Fémur XIII (94%), y con amplio margen con AT-5431, AT-5482 o ambos combinados. En el escenario más desfavorable (470 ka), la combinación de AT-5431 y AT-5482 sigue bastando. La recomendación es analizar AT-5431 y AT-5482 por separado y combinados, y tratar el Fémur XIII solo como confirmación.
