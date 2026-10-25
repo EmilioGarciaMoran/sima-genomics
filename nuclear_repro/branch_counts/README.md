@@ -144,6 +144,42 @@ porque con Sima no hay otra opción.
 Esto valida el software para el recuento por rama. **No** reproduce las cifras 91/45/20, que
 exigen Denisova 17 (ver apartado 4).
 
+### 3 bis. Recorrido genómico — COMPLETADO (25 oct 2026, 22:41)
+
+Los 22 autosomas, modo homocigoto, solo sitios informativos (Mbuti ancestral y al menos un
+arcaico derivado). 7 h 39 min, pico de disco 21 GB, VCF borrados tras cada cromosoma.
+Auditado con `check_genome.py`: los 22 cubren más del 99,8% de su longitud en hg19.
+
+**1.822.345 sitios informativos** (563 bloques de jackknife de 5 Mb). Salida:
+`results/genome/chrN_inf.npz` y `results/genoma_inf.npz`.
+
+| Conjunto de referencia | Sitios |
+|---|---|
+| AB, rama profunda (D5 y Vi33.19 derivados) | 745.823 |
+| A, exclusivos de Denisova 5 | 79.894 |
+| B, exclusivos de Vindija 33.19 | 101.248 |
+
+**Proyección para Sima**, aplicando las bases alineadas de Meyer 2016 (Tabla 1) sobre el total
+de posiciones consultables. El denominador está estimado a partir del cromosoma 21, así que
+las cifras llevan un margen del orden del 10%; el valor exacto saldrá al mapear Sima.
+
+| Espécimen | Bases alineadas | Rama profunda | Exclusivos D5 | Exclusivos Vi |
+|---|---|---|---|---|
+| Fémur XIII | 225.329 | ~126 | ~14 | ~17 |
+| AT-5431 | 1.186.442 | ~664 | ~71 | ~90 |
+| AT-5482 | 2.015.167 | ~1.128 | ~121 | ~153 |
+| AT-5431 + AT-5482 | 3.201.609 | ~1.797 | ~192 | ~244 |
+
+Concuerda con el estudio de potencia (`../power_sim/`), que predecía unos 330 sitios
+informativos para AT-5482 y 526 para los dos combinados; la proyección sobre datos reales da
+274 y 436. El mismo orden de magnitud confirma que la simulación estaba bien calibrada y que
+el análisis preregistrado es viable con los datos disponibles.
+
+Confirma también la decisión ya tomada: **AT-5431 y AT-5482 combinados como análisis
+principal, Fémur XIII solo como confirmación.** Los conjuntos específicos de cada neandertal
+quedan justos, de modo que las particiones finas de la rama neandertal tendrán poca
+resolución con Sima.
+
 ### 4. Reproducción de las cifras de Massilani — NO VIABLE POR AHORA
 
 Requiere los genomas de alta cobertura (Denisova 5, Denisova 17, Vindija 33.19, Denisova 3,
