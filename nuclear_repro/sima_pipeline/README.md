@@ -10,7 +10,7 @@ interpretación quedaron fijados antes de tocar estos datos.
 
 | Paso | Estado |
 |---|---|
-| 1. Metadatos de ENA: qué espécimen es cada corrida | `prepare.sh` |
+| 1. Metadatos de ENA: qué espécimen es cada corrida | **hecho** (`ESPECIMENES.tsv`) |
 | 2. Referencia GRCh37 e índice de bwa | `prepare.sh` |
 | 3. Descarga de los FASTQ | `prepare.sh` |
 | 4. Mapeo con `bwa aln` sin siembra | pendiente |
@@ -31,6 +31,31 @@ cada paso cuyo resultado ya exista. Requiere `bwa`, `samtools`, `wget` y `curl`.
 **No contiene ninguna decisión analítica**, solo descargas e indexado, por lo que puede
 dejarse corriendo sin supervisión. Los pasos 4 a 7 son otra cosa y se escriben con sus
 pruebas de respuesta conocida, como el resto del proyecto.
+
+## Especímenes (resuelto el 25 oct 2026)
+
+Del filereport de ENA para PRJEB10597. Nueve corridas agrupadas en cinco muestras:
+
+| Espécimen | Muestra | Corridas | Lecturas | Bases útiles | Papel |
+|---|---|---|---|---|---|
+| Incisivo AT-5482 | SAMEA3518421 | ERR995358, ERR995362 | 727.796 | 2.015.167 | principal |
+| Fémur AT-5431 | SAMEA3518420 | ERR995361, ERR995364 | 237.745 | 1.186.442 | principal |
+| Fémur XIII | SAMEA3518423 | ERR995357 | 155.538 | 225.329 | confirmación |
+| Molar AT-5444 | SAMEA3518424 | ERR995360, ERR995365 | 72.445 | 188.974 | descriptivo |
+| Escápula AT-6672 | SAMEA3518422 | ERR995359, ERR995363 | 101.217 | 37.524 | **excluida** |
+
+Bases útiles según Meyer et al. 2016, Tabla 1 (alineadas tras el filtro de daño).
+
+**Las corridas de una misma muestra sí se fusionan**: son librerías del mismo hueso. Las
+muestras distintas no se fusionan nunca. Confundir las dos cosas fue uno de los errores de
+2026, y en el BAM fusionado de entonces entró la escápula.
+
+La escápula confirma de paso que los metadatos son coherentes con el artículo: 101.217
+lecturas y solo 37.524 bases útiles, justo lo que cabe esperar de una muestra contaminada al
+98%. El incisivo es el caso opuesto.
+
+El fémur XIII es el del mtDNA, y es el de menos datos nucleares de los tres utilizables: de
+ahí que quede como confirmación y con prueba binomial exacta.
 
 ## Decisiones ya fijadas
 
