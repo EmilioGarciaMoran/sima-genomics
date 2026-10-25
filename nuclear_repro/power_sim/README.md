@@ -100,3 +100,19 @@ El control negativo (Mbuti) no dio falsos positivos en ninguna condición (\|Z\|
 4. **Siguiente paso natural:** calcular en estas mismas simulaciones el estadístico de Meyer 2016 (fracción de alelos derivados compartidos por rama) y ver qué valor de T_ND reproduce los porcentajes observados (43% / 9% en AT-5431). Eso acotaría el escenario realista sin usar datos nuevos.
 
 Recordatorio de límites: esto mide solo la potencia estadística. El daño, la contaminación y el sesgo de mapeo reducirían aún más la potencia real.
+
+## Ampliación (25 oct 2026): tres pruebas para ganar potencia — diseño fijado antes de calcular
+
+Sobre las mismas simulaciones (no se vuelve a simular), con 100 réplicas por condición:
+
+**A. Especímenes combinados.** Nuevo volumen `AT5431+AT5482` = 3.201.609 bases (1.186.442 + 2.015.167), con la misma D y el mismo criterio. Combinar dos individuos de la misma población es válido para una pregunta sobre la población. En la simulación se aproxima como un único individuo con más bases; la diferencia es despreciable para este estadístico.
+
+**B. Estadístico de Meyer 2016 (alelos derivados por rama).** Con un alelo al azar de Denisova 3, Vindija y Mbuti, y el estado ancestral conocido, se clasifican los sitios en tres ramas:
+- **N+D:** derivado en Vindija y en Denisova 3, ancestral en Mbuti.
+- **N:** derivado solo en Vindija.
+- **D:** derivado solo en Denisova 3.
+
+Para X se calcula la fracción de sitios cubiertos de cada rama en que lleva el alelo derivado (f_N+D, f_N, f_D). La afinidad neandertal se contrasta con una prueba de dos proporciones, f_N frente a f_D (Z unilateral).
+- Criterio: **apropiado** si Sima da Z > 3 en ≥ 90% de las réplicas y Mbuti da |Z| < 3 en ≥ 95%. Es el mismo umbral que para la D.
+
+**C. Calibración del escenario con los datos de Meyer.** Para cada fecha de separación (440, 470 y 550 ka) se calcula el cociente f_N / f_D de Sima con genoma completo y se compara con el observado por Meyer (AT-5431: 43/9 ≈ 4,8; AT-5482: 39/7 ≈ 5,6). Se usa el cociente y no los porcentajes absolutos, porque la contaminación residual de los datos reales reduce todas las fracciones por igual. El escenario más compatible es aquel cuyo cociente simulado queda más cerca del observado. Esto es orientativo: la demografía simulada es simple y Meyer usó el neandertal de Altai, no el de Vindija.
