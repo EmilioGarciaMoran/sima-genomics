@@ -3,7 +3,7 @@
 #   bash scripts/status.sh            una vez
 #   watch -n 30 bash scripts/status.sh   refrescando
 cd "$(dirname "$0")/.."
-WORK=${1:-/tmp/sima_vcf}
+WORK=${1:-$HOME/sima/public_vcfs/_tmp}
 N=$(ls results/genome/chr*_inf.npz 2>/dev/null | wc -l)
 echo "== $(date '+%F %T') =="
 if pgrep -f run_genome.sh >/dev/null; then
@@ -12,6 +12,9 @@ else
   echo "estado:      PARADO"
 fi
 echo "cromosomas:  $N de 22 terminados"
+if [ "$(pgrep -cf run_genome.sh)" -gt 1 ] 2>/dev/null; then
+  echo "AVISO:       hay MÁS DE UN proceso en marcha. Pára todos con: pkill -f run_genome.sh"
+fi
 if [ "$N" -gt 0 ]; then
   echo -n "             hechos: "
   ls results/genome/chr*_inf.npz 2>/dev/null | sed 's/.*chr//; s/_inf.npz//' | sort -n | tr '\n' ' '
