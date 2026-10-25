@@ -161,6 +161,24 @@ a Denisova 17 (91% de alelos derivados compartidos por ambos neandertales; 45% d
 exclusivos de D5; 20% de los de Vindija). Reproducir esas cifras valida el método sin tocar
 los datos de Sima, y es un control previo más barato.
 
+## 10 bis. Validación del software — CERRADA (25 oct 2026)
+
+Ejecutada sobre el cromosoma 21 con los VCF de hg19 de MPI-EVA. Detalle y cifras en
+`branch_counts/README.md`. Las tres condiciones preregistradas pasan en los cuatro análisis
+(pseudohaploide, pseudohaploide con Map20 = 1, homocigoto y portador).
+
+Decisiones que quedan fijadas para el análisis de Sima:
+
+1. **Conjuntos de referencia en modo homocigoto**, usando los genotipos de los genomas de alta
+   cobertura. Muestreo pseudohaploide **solo** para el individuo de prueba, donde es
+   obligatorio por haber una sola lectura por posición.
+2. **Sin filtro de mapabilidad.** Restringir a Map20 = 1 deja las fracciones idénticas, de
+   modo que el filtro no aporta y se documenta su omisión.
+3. **Error típico por jackknife, nunca binomial.** El jackknife da 2,7 veces más por el
+   ligamiento entre sitios cercanos. Usar el binomial triplicaría el Z artificialmente.
+4. **Ninguna interpretación sobre franjas pequeñas.** Un ensayo sobre 1,5 Mb pericentroméricos
+   dio un valor imposible en el control que desapareció con el cromosoma completo.
+
 ## 11. Qué NO responde este análisis
 
 La D ubica a Sima en el árbol. **No** mide una distancia que por sí sola justifique una especie

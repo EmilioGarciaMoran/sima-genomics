@@ -108,13 +108,20 @@ establecida exige f_B > f_A.
 | pseudohaploide | 0,944 (n=15.019) | 0,259 (n=3.222) | 0,391 (n=3.820) | **−4,3** |
 | pseudohaploide, Map20=1 | 0,944 (n=13.895) | 0,259 (n=2.956) | 0,390 (n=3.524) | −4,2 |
 | homocigoto | 0,977 (n=10.951) | 0,150 (n=1.298) | 0,507 (n=1.326) | **−6,8** |
+| portador (carrier) | 0,926 (n=13.233) | 0,226 (n=3.286) | 0,380 (n=4.758) | −5,1 |
 
 Control **X = Denisova 3** (denisovano, grupo externo a los dos neandertales): no se inclina
-hacia ninguno. f_A = 0,140 y f_B = 0,120 (Z = 1,0) en pseudohaploide; 0,104 y 0,126
-(Z = −0,7) en homocigoto.
+hacia ninguno. Z(f_A − f_B) = 1,0 en pseudohaploide, −0,7 en homocigoto y 2,0 en portador.
 
-Las tres condiciones preregistradas pasan en los tres modos: f_B > f_A, f_AB es el mayor de
-los tres, y el control denisovano no se inclina.
+Las tres condiciones preregistradas pasan en los cuatro análisis: f_B > f_A, f_AB es el mayor
+de los tres, y el control denisovano no se inclina. **La validación del software queda
+cerrada.**
+
+**Modo elegido para el análisis de Sima: homocigoto para los conjuntos de referencia.** Da la
+señal más fuerte (Z = −6,8 frente a −5,1 y −4,3) y el control más limpio (Z = −0,7 frente a
+2,0 y 1,0). El modo portador incluye heterocigotos en los conjuntos y es el que más acerca el
+control al umbral, señal de que mete ruido. El individuo de prueba va aparte: pseudohaploide,
+porque con Sima no hay otra opción.
 
 **Lo que se aprende:**
 
