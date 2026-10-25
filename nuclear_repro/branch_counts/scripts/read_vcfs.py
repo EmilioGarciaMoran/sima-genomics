@@ -167,7 +167,7 @@ def main():
     arch = [ArchaicReader(d / f"{n}_chr21.vcf.gz", n) for n in SAMPLES]
     mproc, mfh = opener(d / "Mbuti_chr21.vcf.gz")
 
-    pos_l = []
+    pos_l, map20_l, rm_l = [], [], []
     code_l = {n: [] for n in SAMPLES + ["Mbuti"]}
     stats = dict(mbuti_lines=0, with_canc=0, canc_bad=0, rm_skipped=0,
                  mbuti_unusable=0, emitted=0, ref_mismatch=0)
@@ -240,6 +240,16 @@ def main():
         if not ok_ref:
             stats["ref_mismatch"] += 1
 
+        # anotaciones que se guardan para poder filtrar después sin releer los VCF.
+        # Map20 solo aparece en una parte de las posiciones: se guarda -1 cuando falta,
+        # de modo que el análisis pueda distinguir "ausente" de "valor bajo".
+        m20 = info_get(info, b"Map20=")
+        try:
+            map20_l.append(float(m20) if m20 is not None else -1.0)
+        except ValueError:
+            map20_l.append(-1.0)
+        rm_l.append(info_flag(info, b"RM"))
+
         pos_l.append(pos)
         code_l["Mbuti"].append(0 if mb == canc else 1)
         for n, cd in zip(SAMPLES, codes):
@@ -255,7 +265,9 @@ def main():
 
     out = Path(a.out).expanduser()
     out.parent.mkdir(parents=True, exist_ok=True)
-    arrays = {"pos": np.array(pos_l, dtype=np.int64)}
+    arrays = {"pos": np.array(pos_l, dtype=np.int64),
+              "map20": np.array(map20_l, dtype=np.float32),
+              "rm": np.array(rm_l, dtype=bool)}
     for n in SAMPLES + ["Mbuti"]:
         arrays[n] = np.array(code_l[n], dtype=np.int8)
     arrays["meta_mode"] = np.array([a.mode])
@@ -276,6 +288,13 @@ def main():
     print(f"  POSICIONES EMITIDAS:        {stats['emitted']:,}")
     if stats["ref_mismatch"]:
         print(f"  AVISO: REF discrepante entre ficheros en {stats['ref_mismatch']:,} posiciones")
+    print()
+    m20 = arrays["map20"]
+    print(f"  Map20 presente en {int((m20 >= 0).sum()):,} posiciones "
+          f"({100.0*(m20 >= 0).mean():.1f}%); de ellas, con valor 1: "
+          f"{int((m20 >= 1).sum()):,}")
+    print(f"  marcadas RM: {int(arrays['rm'].sum()):,} "
+          f"({100.0*arrays['rm'].mean():.1f}%)")
     print()
     print("  cobertura por individuo (posiciones con dato):")
     for n in SAMPLES + ["Mbuti"]:
