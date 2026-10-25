@@ -15,7 +15,8 @@ Los VCF de cdna.eva.mpg.de ya están procesados y, salvo Denisova 17, todos sobr
 
 ## 1. Ficheros a descargar (cromosoma 21, hg19)
 
-Base: `https://cdna.eva.mpg.de/neandertal/`
+Base: `https://ftp.eva.mpg.de/neandertal/`
+(`https://cdna.eva.mpg.de/neandertal/` es el mismo servidor; el script prueba las dos.)
 
 | Genoma | Ruta relativa a la base | Tamaño |
 |---|---|---|
@@ -29,6 +30,22 @@ De cada uno, **también el `.tbi`** del mismo nombre. Y el `md5sums.txt` de cada
 para comprobar las descargas.
 
 Total aproximado: **2,5 GB**.
+
+### Descarga
+
+```bash
+bash scripts/fetch_chr21.sh            # a data/chr21/
+bash scripts/fetch_chr21.sh /ruta/que/sea
+```
+
+El script comprueba primero que las 10 URL existen, y si alguna falla no descarga nada: así un
+cambio en el servidor se detecta antes de bajar gigabytes. Es reanudable (`wget -c`), elige
+host automáticamente y renombra los ficheros al espécimen, porque todos los directorios usan
+el mismo nombre `chr21_mq25_mapab100.vcf.gz`.
+
+El directorio `Vindija/VCF/` contiene además `LBK/`, `Loschbour/`, `Mez1/`, `Ust_Ishim/` e
+`indels/`, que no hacen falta. Ust'-Ishim en concreto **no** se usa: fue el grupo externo
+equivocado del preprint retirado.
 
 El identificador de Mbuti está confirmado en `altai/ModernHumans/vcf/README_Bteam`:
 SS6004471 = Mbuti = HGDP00982, que es exactamente el individuo que cita Massilani.
