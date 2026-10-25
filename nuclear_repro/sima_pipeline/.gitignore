@@ -1,0 +1,7 @@
+# datos descargados: no se versionan
+data/
+*.fastq.gz
+*.fasta
+*.fasta.*
+*.bam
+*.bai
