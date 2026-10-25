@@ -1,0 +1,5 @@
+# Datos descargados: no se versionan (2,5 GB solo el cromosoma 21)
+data/
+*.vcf.gz
+*.vcf.gz.tbi
+md5_*.txt
