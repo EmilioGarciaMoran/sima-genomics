@@ -13,8 +13,8 @@ interpretación quedaron fijados antes de tocar estos datos.
 | 1. Metadatos de ENA: qué espécimen es cada corrida | **hecho** (`ESPECIMENES.tsv`) |
 | 2. Referencia GRCh37 e índice de bwa | `prepare.sh` |
 | 3. Descarga de los FASTQ | `prepare.sh` |
-| 4. Mapeo con `bwa aln` sin siembra | **escrito y probado** (`map_sima.sh`) |
-| 5. Filtro de daño (C→T terminal, enmascarado de 3+3) | **escrito y probado** (`damage_sima.sh`) |
+| 4. Mapeo con `bwa aln` sin siembra | **EJECUTADO** |
+| 5. Filtro de daño (C→T terminal, enmascarado de 3+3) | **EJECUTADO** |
 | 6. Extracción de alelos en los sitios de referencia | pendiente |
 | 7. Recuento por rama y D-statistics | pendiente |
 
@@ -144,7 +144,20 @@ de sensibilidad preregistrados.
 **Control de validación:** las bases útiles resultantes deben acercarse a las de Meyer 2016
 (Tabla 1). Si difieren mucho, el filtro está mal implementado.
 
-## Resultado de la pieza 2 (26 oct 2026)
+## Resultado de la pieza 2 (26 oct 2026, ejecución final con MAPQ 30)
+
+| Espécimen | Lecturas con daño | Tasa | Bases útiles | Meyer | Cociente |
+|---|---|---|---|---|---|
+| AT-5482 incisivo | 33.409 | 4,6% | 1.290.935 | 2.015.167 | 0,64 |
+| AT-5431 fémur | 18.132 | 7,8% | 696.912 | 1.186.442 | 0,59 |
+| Fémur XIII | 3.396 | 2,2% | 136.780 | 225.329 | 0,61 |
+| Molar AT-5444 | 2.925 | 4,2% | 114.055 | 188.974 | 0,60 |
+| Escápula AT-6672 | 652 | 0,7% | 40.799 | 37.524 | 1,09 |
+
+**1.987.847 bases útiles entre los dos especímenes principales**, el 60% de los 3.201.609 de
+Meyer.
+
+### Comparación de criterios (ejecución anterior con MAPQ 25, cocientes prácticamente iguales)
 
 Criterio de Meyer (C→T o G→A en la primera o última posición alineada), enmascarado de todas
 las timinas en 3+3. Cociente entre nuestras bases útiles y las de Meyer 2016, Tabla 1:
