@@ -85,7 +85,7 @@ with tempfile.TemporaryDirectory() as td:
            + rec("sana", 0, 1, "40M", SANA)
            + rec("dano_izq", 0, 1, "40M", dañada_izq)
            + rec("ga_derecha", 0, 1, "40M", dañada_der))
-    seqs, err = run(fa, sam, "--mask", "0")
+    seqs, err = run(fa, sam, "--mask", "0", "--library", "ss")
     check("la sana se descarta", "sana" in seqs, False)
     check("la dañada se conserva", "dano_izq" in seqs, True)
     check("G->A no cuenta en hebra directa", "ga_derecha" in seqs, False)
@@ -95,7 +95,7 @@ with tempfile.TemporaryDirectory() as td:
            + rec("inv_sana", 16, 1, "40M", SANA)
            + rec("inv_ga", 16, 1, "40M", dañada_der)
            + rec("inv_ct", 16, 1, "40M", dañada_izq))
-    seqs, _ = run(fa, sam, "--mask", "0")
+    seqs, _ = run(fa, sam, "--mask", "0", "--library", "ss")
     check("G->A se conserva en hebra inversa", "inv_ga" in seqs, True)
     check("C->T no cuenta en hebra inversa", "inv_ct" in seqs, False)
     check("la sana se descarta", "inv_sana" in seqs, False)
@@ -113,7 +113,7 @@ with tempfile.TemporaryDirectory() as td:
     print("\n5. Enmascarado: T a N en los 3 primeros lugares (hebra directa)")
     # SANA = C A T G C A T G ...  la T esta en el indice 2, dentro de los 3 primeros
     sam = HDR + rec("r", 0, 1, "40M", dañada_izq)
-    seqs, _ = run(fa, sam, "--mask", "3")
+    seqs, _ = run(fa, sam, "--mask", "3", "--mask-mode", "hebra", "--library", "ss")
     s = seqs["r"]
     check("posicion 0 (T de daño) enmascarada", s[0], "N")
     check("posicion 1 (A) intacta", s[1], "A")
@@ -129,7 +129,7 @@ with tempfile.TemporaryDirectory() as td:
 
     print("\n7. Hebra inversa: se enmascaran las A, no las T")
     sam = HDR + rec("r", 16, 1, "40M", dañada_der)
-    seqs, _ = run(fa, sam, "--mask", "3")
+    seqs, _ = run(fa, sam, "--mask", "3", "--mask-mode", "hebra", "--library", "ss")
     s = seqs["r"]
     check("posicion 1 (A) enmascarada", s[1], "N")
     check("posicion 2 (T) intacta", s[2], "T")
@@ -140,7 +140,7 @@ with tempfile.TemporaryDirectory() as td:
     # posicion 1 de la referencia, asi que la base alineada 0 corresponde a REF[0]=C.
     seq = "GGGGG" + "T" + SANA[1:35]
     sam = HDR + rec("recortada", 0, 1, "5S35M", seq)
-    seqs, _ = run(fa, sam, "--mask", "3")
+    seqs, _ = run(fa, sam, "--mask", "3", "--mask-mode", "hebra", "--library", "ss")
     check("se conserva (el daño está en la primera base alineada)", "recortada" in seqs, True)
     s = seqs["recortada"]
     check("el recorte no se enmascara", s[:5], "GGGGG")
@@ -150,21 +150,22 @@ with tempfile.TemporaryDirectory() as td:
     # SANA = C A T G C A T G...  el indice 4 es una C: ponerla a T es daño en la posicion 5
     dano_pos5 = SANA[:4] + "T" + SANA[5:]
     sam = HDR + rec("w", 0, 1, "40M", dano_pos5)
-    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "1")
+    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "1", "--library", "ss")
     check("con ventana 1 no se detecta", "w" in seqs, False)
-    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "5")
+    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "5", "--library", "ss")
     check("con ventana 5 si se detecta", "w" in seqs, True)
     # y en el extremo derecho: indice 36 es C (36%4=0)
     dano_der5 = SANA[:36] + "T" + SANA[37:]
     sam = HDR + rec("w2", 0, 1, "40M", dano_der5)
-    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "1")
+    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "1", "--library", "ss")
     check("extremo derecho, ventana 1: no", "w2" in seqs, False)
-    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "4")
+    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "4", "--library", "ss")
     check("extremo derecho, ventana 4: si", "w2" in seqs, True)
 
     print("\n9. --no-filter conserva todo y sigue enmascarando")
     sam = HDR + rec("sana", 0, 1, "40M", SANA) + rec("dano", 0, 1, "40M", dañada_izq)
-    seqs, _ = run(fa, sam, "--no-filter", "--mask", "3")
+    seqs, _ = run(fa, sam, "--no-filter", "--mask", "3", "--mask-mode", "hebra",
+                  "--library", "ss")
     check("se conservan las dos", sorted(seqs), ["dano", "sana"])
     check("la sana también se enmascara", seqs["sana"][2], "N")
 
@@ -173,7 +174,7 @@ with tempfile.TemporaryDirectory() as td:
            + rec("a", 0, 1, "40M", dañada_izq)
            + rec("b", 0, 1, "40M", SANA)
            + rec("c", 0, 1, "40M", dañada_izq))
-    _, err = run(fa, sam, "--mask", "3")
+    _, err = run(fa, sam, "--mask", "3", "--library", "ss")
     def val(etq):
         for l in err.splitlines():
             if etq in l:
@@ -183,6 +184,28 @@ with tempfile.TemporaryDirectory() as td:
     check("sin daño", val("sin daño terminal"), 1)
     check("conservadas", val("CONSERVADAS"), 2)
     check("bases alineadas", val("bases alineadas"), 80)
+
+    print("\n11. Valores por defecto: criterio 'any' (literal de Meyer)")
+    sam = (HDR
+           + rec("ct_izq", 0, 1, "40M", dañada_izq)
+           + rec("ga_der", 0, 1, "40M", dañada_der)
+           + rec("inv_ct", 16, 1, "40M", dañada_izq)
+           + rec("inv_ga", 16, 1, "40M", dañada_der)
+           + rec("sana", 0, 1, "40M", SANA))
+    seqs, _ = run(fa, sam, "--mask", "0")
+    check("acepta las cuatro combinaciones", sorted(seqs),
+          ["ct_izq", "ga_der", "inv_ct", "inv_ga"])
+    check("la sana sigue descartandose", "sana" in seqs, False)
+
+    print("\n12. Enmascarado por defecto: TODAS las timinas, sin mirar la hebra")
+    sam = HDR + rec("f", 0, 1, "40M", dañada_izq) + rec("i", 16, 1, "40M", dañada_izq)
+    seqs, _ = run(fa, sam, "--mask", "3")
+    for nom in ("f", "i"):
+        s = seqs[nom]
+        check(f"{nom}: posicion 0 (T) enmascarada", s[0], "N")
+        check(f"{nom}: posicion 2 (T) enmascarada", s[2], "N")
+        check(f"{nom}: posicion 1 (A) intacta", s[1], "A")
+        check(f"{nom}: posicion 38 (T) enmascarada", s[38], "N")
 
 print()
 if fails:

@@ -77,7 +77,15 @@ def aligned_pairs(cigar, pos0):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ref", required=True)
-    ap.add_argument("--library", choices=["ss", "ds"], default="ss")
+    ap.add_argument("--library", choices=["ss", "ds", "any"], default="any",
+                    help="any: C->T o G->A en cualquiera de los dos extremos, que es la "
+                         "lectura de Meyer 2016 ('a C to T substitution to the reference "
+                         "genome in the first or last position', aplicada a la lectura en "
+                         "su orientación de secuenciación). ss y ds son variantes.")
+    ap.add_argument("--mask-mode", choices=["T", "hebra"], default="T",
+                    help="T: enmascara todas las timinas (literal de Meyer: 'all thymines "
+                         "within the first and last three positions'). hebra: enmascara la "
+                         "base resultante del daño según la hebra.")
     ap.add_argument("--damage-window", type=int, default=1,
                     help="en cuántas posiciones terminales se busca el daño. El artículo "
                          "dice 'C->T terminal' sin precisar; 1 es la lectura estricta y 3 la "
@@ -121,15 +129,22 @@ def main():
         inversa = bool(flag & 0x10)
         # Qué sustitución delata daño en cada extremo, según la librería y la hebra.
         if a.library == "ss":
-            # cadena sencilla: C->T en ambos extremos de la cadena original
-            izq = der = ("G", "A") if inversa else ("C", "T")
-        else:
+            # cadena sencilla, orientación del SAM: C->T directa, G->A inversa
+            cand_izq = cand_der = [("G", "A")] if inversa else [("C", "T")]
+        elif a.library == "ds":
             # doble cadena: C->T en el 5' y G->A en el 3', en orientación de referencia
-            izq, der = ("C", "T"), ("G", "A")
+            cand_izq, cand_der = [("C", "T")], [("G", "A")]
+        else:
+            # any: cualquiera de las dos sustituciones en cualquiera de los dos extremos.
+            # Es lo que resulta de aplicar el criterio de Meyer a la lectura en su
+            # orientación de secuenciación, sin saber en qué hebra acabó alineada.
+            cand_izq = cand_der = [("C", "T"), ("G", "A")]
 
         w = max(1, a.damage_window)
-        d5 = any(base_ref(r) == izq[0] and seq[q].upper() == izq[1] for q, r in pares[:w])
-        d3 = any(base_ref(r) == der[0] and seq[q].upper() == der[1] for q, r in pares[-w:])
+        d5 = any(base_ref(r) == x and seq[q].upper() == y
+                 for q, r in pares[:w] for x, y in cand_izq)
+        d3 = any(base_ref(r) == x and seq[q].upper() == y
+                 for q, r in pares[-w:] for x, y in cand_der)
 
         if not (d5 or d3):
             if not a.no_filter:
@@ -145,13 +160,17 @@ def main():
         if a.mask > 0:
             s = list(seq)
             m = a.mask
-            sospechosa_izq = izq[1]     # la base RESULTANTE del daño (T o A)
-            sospechosa_der = der[1]
+            if a.mask_mode == "T":
+                # literal de Meyer: todas las timinas, sin mirar la hebra
+                sosp_izq = sosp_der = {"T"}
+            else:
+                sosp_izq = {y for _, y in cand_izq}
+                sosp_der = {y for _, y in cand_der}
             for q, _ in pares[:m]:
-                if s[q].upper() == sospechosa_izq:
+                if s[q].upper() in sosp_izq:
                     s[q] = "N"; n["enmascaradas"] += 1
             for q, _ in pares[-m:]:
-                if s[q].upper() == sospechosa_der:
+                if s[q].upper() in sosp_der:
                     s[q] = "N"; n["enmascaradas"] += 1
             c[9] = "".join(s)
 
@@ -161,8 +180,8 @@ def main():
 
     e = sys.stderr
     etq = f" [{a.etiqueta}]" if a.etiqueta else ""
-    print(f"damage_filter{etq}: librería {a.library}, ventana de daño {a.damage_window}, "
-          f"enmascarado {a.mask}+{a.mask}"
+    print(f"damage_filter{etq}: criterio {a.library}, ventana {a.damage_window}, "
+          f"enmascarado {a.mask}+{a.mask} ({a.mask_mode})"
           f"{', SIN filtrar por daño' if a.no_filter else ''}", file=e)
     print(f"  lecturas leídas:    {n['total']:>10,}", file=e)
     print(f"  sin alineación útil:{n['sin_alinear']:>10,}", file=e)

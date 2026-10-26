@@ -18,7 +18,8 @@ mkdir -p "$OUT" results
 
 echo "=================================================================="
 echo "Filtro de daño  |  inicio: $(date '+%F %T')"
-echo "  librería: cadena sencilla (Gansauge y Meyer), enmascarado 3+3"
+echo "  criterio: C->T o G->A en la primera o ultima posicion alineada (Meyer 2016)"
+echo "  enmascarado: todas las timinas en las 3 primeras y 3 ultimas posiciones"
 echo "  salida: $OUT"
 echo "=================================================================="
 
@@ -45,9 +46,10 @@ while IFS=$'\t' read -r esp muestra corridas lecturas bases papel; do
   echo
   echo "------------------------------------------------------------------"
   echo "[$esp] $(date '+%T')  ($papel)  Meyer declara $bases bases útiles"
-  corre "$esp" ""        --library ss --mask 3
-  corre "$esp" ".nofilt" --library ss --mask 3 --no-filter
-  corre "$esp" ".ds"     --library ds --mask 3
+  corre "$esp" ""        --library any --mask 3 --mask-mode T
+  corre "$esp" ".nofilt" --library any --mask 3 --mask-mode T --no-filter
+  corre "$esp" ".ss"     --library ss  --mask 3 --mask-mode hebra
+  corre "$esp" ".ds"     --library ds  --mask 3 --mask-mode hebra
 done < ESPECIMENES.tsv
 
 echo

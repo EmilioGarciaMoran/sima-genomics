@@ -6,7 +6,8 @@ van a la salida de error, para no mezclarlas con los datos.
 
 Criterios, fijados en ../PREREGISTRO_D_statistics.md, apartado 10 ter:
   - se descartan las no mapeadas, las secundarias y las suplementarias
-  - calidad de mapeo >= 25 (mismo umbral que el mq25 de los VCF de referencia)
+  - calidad de mapeo >= 30 (literal de Meyer 2016: 'a map quality score of 30
+    or greater'; el preregistro decia 25, tomado por error del mq25 de los VCF)
   - longitud de la lectura >= 35 pb
   - duplicados: se conserva UNA lectura por (cromosoma, inicio, fin, hebra)
 
@@ -40,7 +41,7 @@ def ref_len(cigar):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--min-mapq", type=int, default=25)
+    ap.add_argument("--min-mapq", type=int, default=30)
     ap.add_argument("--min-len", type=int, default=35)
     ap.add_argument("--no-dedup", action="store_true",
                     help="solo para diagnóstico: no elimina duplicados")

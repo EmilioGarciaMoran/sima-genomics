@@ -257,6 +257,36 @@ principal, salga lo que salga:
 Un resultado que solo aparezca con un ajuste concreto y desaparezca en los tres análisis de
 sensibilidad **no se reporta como hallazgo**.
 
+## 10 quater. Correcciones tras leer el artículo (26 oct 2026, 18:50)
+
+El PDF de Meyer et al. 2016 llegó después de fijar los parámetros. Especifica tres cosas que
+yo había supuesto mal, **antes de haber calculado ninguna D**. Se corrigen aquí, con la cita
+literal, y los valores anteriores quedan registrados.
+
+| Parámetro | Fijado el 26/10 a las 14:08 | Corregido | Cita del artículo |
+|---|---|---|---|
+| Calidad de mapeo | ≥ 25 | **≥ 30** | «requiring a map quality score of 30 or greater» (Métodos) |
+| Criterio de daño | C→T directa / G→A inversa | **C→T o G→A en cualquier extremo** | «a C to T substitution to the reference genome in the first or last position», aplicado a la lectura en su orientación de secuenciación |
+| Enmascarado | T en directa, A en inversa | **todas las timinas** | «all thymines within the first and last three positions of each sequence were masked out» |
+
+Lo que el artículo **confirma** de lo ya fijado:
+
+- **Librería de cadena sencilla**: «Between 30% and 60% of the extracts were converted to DNA
+  libraries using single-stranded DNA library preparation». La corrección de esta tarde era
+  correcta.
+- **Ventana de detección = 1**: «in the first or last position», no en las tres primeras. La
+  hipótesis de ampliar la ventana queda **descartada** y el script de calibración se conserva
+  solo como registro del descarte.
+- **Longitud mínima 35 pb**: «using sequences of at least 35 bp for mapping».
+- **Duplicados por coordenadas de inicio y fin**: «Duplicate sequences were removed by calling
+  a consensus from sequences with identical alignment start and end coordinates (bam-rmdup)».
+  Nosotros conservamos una lectura en lugar de construir un consenso: diferencia menor, que
+  queda documentada.
+
+Las variantes `ss` y `ds` del criterio de daño, y el enmascarado por hebra, se conservan como
+opciones y se ejecutan como análisis de sensibilidad. Ninguna D se había calculado cuando se
+hicieron estas correcciones.
+
 ## 11. Qué NO responde este análisis
 
 La D ubica a Sima en el árbol. **No** mide una distancia que por sí sola justifique una especie
