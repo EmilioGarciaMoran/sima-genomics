@@ -179,6 +179,48 @@ Decisiones que quedan fijadas para el análisis de Sima:
 4. **Ninguna interpretación sobre franjas pequeñas.** Un ensayo sobre 1,5 Mb pericentroméricos
    dio un valor imposible en el control que desapareció con el cromosoma completo.
 
+## 9 bis. Prueba de equivalencia: cuándo se puede sostener H2
+
+Fijado el 26 de octubre de 2026, antes de cualquier dato de Sima.
+
+Una D no significativa **no** es prueba de que D = 0. Para sostener H2 (Sima como linaje
+hermano de neandertales y denisovanos) hace falta una prueba de equivalencia: el intervalo de
+confianza del 90% debe caber entero dentro de −δ a +δ (procedimiento TOST, α = 0,05).
+
+**Margen fijado: δ = 0,10.** La justificación es biológica, no estadística: la introgresión
+neandertal en humanos modernos produce D de 0,02 a 0,08. Un δ de 0,10 equivale a afirmar que
+la afinidad de Sima con los neandertales no supera la ascendencia neandertal de cualquier
+euroasiático actual. Por debajo de ese margen el ruido técnico (daño, contaminación, sesgo
+hacia la referencia) domina la señal.
+
+**Margen mínimo alcanzable y potencia** (`branch_counts/scripts/07_equivalence.py`):
+
+| Espécimen | Sitios informativos | δ mínimo | P(establecer equivalencia si D = 0) |
+|---|---|---|---|
+| Fémur XIII | 31 | 0,295 | 0% |
+| AT-5431 | 161 | 0,130 | 0% |
+| AT-5482 | 274 | 0,099 | 1% |
+| AT-5431 + AT-5482 | 436 | 0,079 | **34%** |
+
+**La prueba es asimétrica y hay que decirlo antes de ejecutarla.** Si la predicción derivada
+de Meyer es correcta (D ≈ 0,68), se rechaza D = 0 con probabilidad del 100% y Z ≈ 19. Pero si
+H2 fuera cierta, solo se demostraría en una de cada tres ejecuciones. **Un resultado no
+significativo no se presentará como apoyo a H2**: se reportará como falta de potencia, salvo
+que supere la prueba de equivalencia con δ = 0,10.
+
+**Datos necesarios para márgenes más estrictos** (con D observada = 0):
+
+| δ | Sitios informativos | Bases útiles equivalentes |
+|---|---|---|
+| 0,15 | 121 | ~0,9 M |
+| 0,10 | 271 | ~2,0 M |
+| 0,08 | 423 | ~3,1 M (lo que hay) |
+| 0,05 | 1.083 | ~8,0 M |
+| 0,03 | 3.007 | ~22 M |
+
+Esta tabla es la petición concreta que llevar a Leipzig: para distinguir con un margen de
+0,05 harían falta unos 8 millones de bases útiles, dos veces y media las disponibles.
+
 ## 11. Qué NO responde este análisis
 
 La D ubica a Sima en el árbol. **No** mide una distancia que por sí sola justifique una especie
