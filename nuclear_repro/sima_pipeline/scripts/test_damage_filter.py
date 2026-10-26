@@ -146,6 +146,22 @@ with tempfile.TemporaryDirectory() as td:
     check("el recorte no se enmascara", s[:5], "GGGGG")
     check("la primera alineada sí", s[5], "N")
 
+    print("\n8 bis. Ventana de deteccion del daño")
+    # SANA = C A T G C A T G...  el indice 4 es una C: ponerla a T es daño en la posicion 5
+    dano_pos5 = SANA[:4] + "T" + SANA[5:]
+    sam = HDR + rec("w", 0, 1, "40M", dano_pos5)
+    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "1")
+    check("con ventana 1 no se detecta", "w" in seqs, False)
+    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "5")
+    check("con ventana 5 si se detecta", "w" in seqs, True)
+    # y en el extremo derecho: indice 36 es C (36%4=0)
+    dano_der5 = SANA[:36] + "T" + SANA[37:]
+    sam = HDR + rec("w2", 0, 1, "40M", dano_der5)
+    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "1")
+    check("extremo derecho, ventana 1: no", "w2" in seqs, False)
+    seqs, _ = run(fa, sam, "--mask", "0", "--damage-window", "4")
+    check("extremo derecho, ventana 4: si", "w2" in seqs, True)
+
     print("\n9. --no-filter conserva todo y sigue enmascarando")
     sam = HDR + rec("sana", 0, 1, "40M", SANA) + rec("dano", 0, 1, "40M", dañada_izq)
     seqs, _ = run(fa, sam, "--no-filter", "--mask", "3")

@@ -78,6 +78,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ref", required=True)
     ap.add_argument("--library", choices=["ss", "ds"], default="ss")
+    ap.add_argument("--damage-window", type=int, default=1,
+                    help="en cuántas posiciones terminales se busca el daño. El artículo "
+                         "dice 'C->T terminal' sin precisar; 1 es la lectura estricta y 3 la "
+                         "convención habitual del MPI.")
     ap.add_argument("--mask", type=int, default=3,
                     help="cuántas posiciones enmascarar en cada extremo (0 = ninguna)")
     ap.add_argument("--no-filter", action="store_true",
@@ -123,10 +127,9 @@ def main():
             # doble cadena: C->T en el 5' y G->A en el 3', en orientación de referencia
             izq, der = ("C", "T"), ("G", "A")
 
-        q_izq, r_izq = pares[0]
-        q_der, r_der = pares[-1]
-        d5 = base_ref(r_izq) == izq[0] and seq[q_izq].upper() == izq[1]
-        d3 = base_ref(r_der) == der[0] and seq[q_der].upper() == der[1]
+        w = max(1, a.damage_window)
+        d5 = any(base_ref(r) == izq[0] and seq[q].upper() == izq[1] for q, r in pares[:w])
+        d3 = any(base_ref(r) == der[0] and seq[q].upper() == der[1] for q, r in pares[-w:])
 
         if not (d5 or d3):
             if not a.no_filter:
@@ -158,7 +161,8 @@ def main():
 
     e = sys.stderr
     etq = f" [{a.etiqueta}]" if a.etiqueta else ""
-    print(f"damage_filter{etq}: librería {a.library}, enmascarado {a.mask}+{a.mask}"
+    print(f"damage_filter{etq}: librería {a.library}, ventana de daño {a.damage_window}, "
+          f"enmascarado {a.mask}+{a.mask}"
           f"{', SIN filtrar por daño' if a.no_filter else ''}", file=e)
     print(f"  lecturas leídas:    {n['total']:>10,}", file=e)
     print(f"  sin alineación útil:{n['sin_alinear']:>10,}", file=e)
