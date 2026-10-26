@@ -14,7 +14,7 @@ interpretación quedaron fijados antes de tocar estos datos.
 | 2. Referencia GRCh37 e índice de bwa | `prepare.sh` |
 | 3. Descarga de los FASTQ | `prepare.sh` |
 | 4. Mapeo con `bwa aln` sin siembra | **escrito y probado** (`map_sima.sh`) |
-| 5. Filtro de daño (C→T terminal, enmascarado de 3+3) | pendiente |
+| 5. Filtro de daño (C→T terminal, enmascarado de 3+3) | **escrito y probado** (`damage_sima.sh`) |
 | 6. Extracción de alelos en los sitios de referencia | pendiente |
 | 7. Recuento por rama y D-statistics | pendiente |
 
@@ -108,6 +108,41 @@ inexacto.
 
 Una reproducción completa exigiría los datos crudos, que no están depositados. Esa es otra
 petición concreta que se puede hacer a Leipzig.
+
+## Pieza 2: filtro de daño y enmascarado
+
+```bash
+python3 scripts/test_damage_filter.py      # 30 pruebas de respuesta conocida
+bash scripts/damage_sima.sh 2>&1 | tee results/dano.log
+```
+
+**Corrección al preregistro (26 oct 2026).** Meyer 2016 usó librerías de **cadena sencilla**
+(protocolo de Gansauge y Meyer), que es lo que permitió recuperar ADN tan degradado. En esas
+librerías la desaminación aparece como C→T en **ambos** extremos de la cadena original, no
+como C→T en el 5' y G→A en el 3' como ocurre en las de doble cadena. Al alinear, una lectura
+en hebra inversa muestra ese mismo daño como G→A, porque el SAM guarda el complemento
+inverso.
+
+Esto explica la frase del artículo «T enmascaradas en las 3 primeras y 3 últimas posiciones»,
+que está escrita en la orientación de la cadena original. El preregistro decía «A en las 3
+últimas», que es la convención de doble cadena y es incorrecta para estos datos.
+
+La implementación es por tanto **dependiente de la hebra**, leída del FLAG. Se conserva la
+convención de doble cadena como variante (`--library ds`) y se ejecuta siempre, de modo que
+la desviación queda documentada con su comparación. **Pendiente de verificar en el artículo.**
+
+Otras decisiones de implementación, tomadas aquí y probadas:
+
+- Las posiciones se cuentan sobre la porción **alineada**, descartando el recorte blando: las
+  bases recortadas no se alinean y no contribuyen a ninguna llamada de alelo.
+- Se enmascara la base **resultante** del daño (T en hebra directa, A en inversa), no
+  cualquier base, para no perder información sin motivo.
+
+Salidas en `~/sima/sima_data/bam_dmg/`: el principal, más `.nofilt` y `.ds` de los análisis
+de sensibilidad preregistrados.
+
+**Control de validación:** las bases útiles resultantes deben acercarse a las de Meyer 2016
+(Tabla 1). Si difieren mucho, el filtro está mal implementado.
 
 ## Decisiones ya fijadas
 
