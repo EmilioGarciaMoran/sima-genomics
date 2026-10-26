@@ -144,6 +144,42 @@ de sensibilidad preregistrados.
 **Control de validación:** las bases útiles resultantes deben acercarse a las de Meyer 2016
 (Tabla 1). Si difieren mucho, el filtro está mal implementado.
 
+## Resultado de la pieza 2 (26 oct 2026)
+
+Criterio de Meyer (C→T o G→A en la primera o última posición alineada), enmascarado de todas
+las timinas en 3+3. Cociente entre nuestras bases útiles y las de Meyer 2016, Tabla 1:
+
+| Criterio | AT-5482 | AT-5431 | Fémur XIII | Molar | Escápula | Media endógenos |
+|---|---|---|---|---|---|---|
+| **any (principal)** | 0,64 | 0,59 | 0,61 | 0,60 | 1,09 | **0,61 ± 0,02** |
+| ss (sensibilidad) | 0,58 | 0,54 | 0,48 | 0,52 | 0,42 | 0,53 ± 0,04 |
+| ds (sensibilidad) | 0,36 | 0,34 | 0,34 | 0,35 | 0,74 | 0,35 ± 0,01 |
+
+**Interpretación.** El criterio principal da un cociente de 0,61 con desviación de 0,02 en
+los cuatro especímenes endógenos. Esa constancia descarta un error de implementación, que
+produciría dispersión entre especímenes, y apunta a un factor común: **ENA contiene en torno
+al 60% de las lecturas que Meyer analizó**, coherente con que el depósito esté premapeado.
+
+El artículo respalda este criterio para el análisis nuclear: dice que para el mitocondrial
+usaron el filtro dependiente de hebra, pero que aquí usaron el enmascarado de timinas porque
+«this filter is less strict than that based on alignment orientation described above and thus
+retains more data».
+
+La escápula se desvía (1,09) porque con un 98% de contaminación el criterio permisivo recoge
+falsos positivos de daño en ADN moderno. Refuerza su exclusión, ya decidida.
+
+**Consecuencia para el análisis.** Una pérdida uniforme y no selectiva del 40% reduce el
+número de sitios, y con él la potencia, pero **no desplaza el valor esperado de la D**, que es
+un cociente. Los sitios informativos esperados bajan de los 436 proyectados a unos 260
+combinando AT-5431 y AT-5482. Sigue bastando para rechazar D = 0 si la D real ronda 0,68,
+pero **la prueba de equivalencia del apartado 9 bis del preregistro queda más débil**: con 260
+sitios el margen mínimo alcanzable sube de 0,079 a unos 0,10, de modo que solo se podría
+sostener H2 con una D observada prácticamente nula.
+
+**Control de contaminación (criterio principal).** Tasa de daño: escápula 0,7%, fémur XIII
+2,2%, molar 4,2%, incisivo 4,6%, AT-5431 7,8%. La escápula tiene once veces menos daño que
+AT-5431, como predice su contaminación.
+
 ## Decisiones ya fijadas
 
 - **Referencia `human_g1k_v37`**, cuyos cromosomas se llaman `1`, `2`, `21`, sin prefijo

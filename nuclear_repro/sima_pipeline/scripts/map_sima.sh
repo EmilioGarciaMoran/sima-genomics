@@ -28,7 +28,7 @@ mkdir -p "$OUT" "$TMP" results
 ALN_L=16500      # siembra desactivada: la siembra penaliza el daño del extremo 5'
 ALN_N=0.01       # desajustes permitidos
 ALN_O=2          # huecos permitidos
-MIN_MAPQ=25      # igual que el mq25 de los VCF de referencia
+MIN_MAPQ=30      # literal de Meyer 2016: "a map quality score of 30 or greater"
 MIN_LEN=35       # por debajo, el mapeo único no es fiable
 
 echo "=================================================================="
