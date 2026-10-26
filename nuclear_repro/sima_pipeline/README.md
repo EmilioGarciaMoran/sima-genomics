@@ -193,6 +193,27 @@ sostener H2 con una D observada prácticamente nula.
 2,2%, molar 4,2%, incisivo 4,6%, AT-5431 7,8%. La escápula tiene once veces menos daño que
 AT-5431, como predice su contaminación.
 
+## Reproducibilidad del muestreo pseudohaploide
+
+La semilla está fijada (`--seed 20261025`), se pasa por argumento y se guarda dentro del
+`npz`. Una prueba comprueba que dos ejecuciones con la misma semilla coinciden.
+
+**Pero fijar la semilla da reproducibilidad, no estabilidad.** Garantiza que otro obtenga el
+mismo número, no que ese número sea robusto. Si con una semilla saliera D = 0,68 y con otra
+0,61, el resultado sería reproducible y frágil a la vez, que es peor que irreproducible
+porque aparenta solidez.
+
+Por eso el extractor guarda además **20 muestreos independientes** (`--repeticiones`), de una
+sola pasada por el BAM. La repetición 0 es la principal; las demás permiten medir cuánto se
+mueve la D por el azar del muestreo, que es una fuente de variación **distinta** de la que
+mide el jackknife (variación entre regiones del genoma).
+
+El muestreo solo interviene en los sitios cubiertos por más de una lectura. Con cobertura muy
+por debajo de 1x se espera que sean pocos, y el extractor informa de cuántos son y de cuántos
+cambian de valor entre repeticiones. **Si la dispersión entre muestreos resultara comparable
+al error típico del jackknife, el muestreo estaría mandando sobre los datos y habría que
+decirlo en cualquier resultado.**
+
 ## Decisiones ya fijadas
 
 - **Referencia `human_g1k_v37`**, cuyos cromosomas se llaman `1`, `2`, `21`, sin prefijo

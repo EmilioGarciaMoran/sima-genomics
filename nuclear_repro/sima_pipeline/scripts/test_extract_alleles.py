@@ -169,6 +169,30 @@ with tempfile.TemporaryDirectory() as td:
     check("sitios con dato", val("SITIOS CON DATO"), 2)
     check("derivados", val("derivados"), 1)
 
+    print("\n10. Repeticiones del muestreo")
+    sam = "".join(rec(f"r{i}", 100, "10M", "A" + "C" * 9) for i in range(5)) \
+        + "".join(rec(f"s{i}", 100, "10M", "G" + "C" * 9) for i in range(5)) \
+        + rec("unico", 200, "10M", "G" + "C" * 9)
+    out = d / "o.npz"
+    subprocess.run([sys.executable, str(HERE / "extract_alleles.py"),
+                    "--sitios", str(d / "s.npz"), "--bam", str(d / "t.sam"), "--sam",
+                    "--out", str(out), "--repeticiones", "30"],
+                   input="", capture_output=True, text=True)
+    (d / "t.sam").write_text(sam)
+    r = subprocess.run([sys.executable, str(HERE / "extract_alleles.py"),
+                        "--sitios", str(d / "s.npz"), "--bam", str(d / "t.sam"), "--sam",
+                        "--out", str(out), "--repeticiones", "30"],
+                       capture_output=True, text=True)
+    z = np.load(out, allow_pickle=False)
+    cs = z["codigos"]
+    check("forma de la matriz", cs.shape, (30, len(POS)))
+    check("la repeticion 0 coincide con el codigo principal",
+          bool((cs[0] == z["codigo"]).all()), True)
+    check("el sitio de una sola lectura no varia",
+          len(set(cs[:, IDX[200]].tolist())), 1)
+    check("el sitio de diez lecturas si varia",
+          len(set(cs[:, IDX[100]].tolist())) > 1, True)
+
 print()
 if fails:
     print(f"RESULTADO: {len(fails)} prueba(s) fallidas: {', '.join(fails)}")

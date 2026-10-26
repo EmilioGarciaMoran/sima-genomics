@@ -49,6 +49,12 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--etiqueta", default="")
     ap.add_argument("--seed", type=int, default=20261025)
+    ap.add_argument("--repeticiones", type=int, default=20,
+                    help="cuántos muestreos pseudohaploides independientes se guardan. "
+                         "Fijar la semilla da reproducibilidad; repetir el muestreo mide "
+                         "cuánto se mueve el resultado por el propio azar, que es una "
+                         "fuente de variación distinta del jackknife. La repetición 0 es "
+                         "la principal; las demás sirven para cuantificar esa dispersión.")
     ap.add_argument("--sam", action="store_true",
                     help="la entrada es un SAM de texto en vez de un BAM (para pruebas)")
     a = ap.parse_args()
@@ -122,24 +128,33 @@ def main():
         fuente.close()
 
     # muestreo pseudohaploide y codificación
+    R = max(1, a.repeticiones)
     rng = np.random.default_rng(a.seed)
-    codigo = np.full(nsitios, -1, dtype=np.int8)
+    codigos = np.full((R, nsitios), -1, dtype=np.int8)
     cob = np.zeros(nsitios, dtype=np.int16)
     for fila, bases in obs.items():
         cob[fila] = min(len(bases), 32767)
-        b = bases[0] if len(bases) == 1 else bases[rng.integers(len(bases))]
-        bb = ord(b)
-        if bb == canc[fila]:
-            codigo[fila] = 0
-        elif bb == der[fila]:
-            codigo[fila] = 1
+        ca, de = canc[fila], der[fila]
+        if len(bases) == 1:
+            # un solo dato: el muestreo no interviene, el valor es el mismo en todas
+            bb = ord(bases[0])
+            v = 0 if bb == ca else (1 if bb == de else -1)
+            if v < 0:
+                n["tercer_alelo"] += 1
+            codigos[:, fila] = v
         else:
-            n["tercer_alelo"] += 1
+            elegidas = rng.integers(len(bases), size=R)
+            for r in range(R):
+                bb = ord(bases[elegidas[r]])
+                codigos[r, fila] = 0 if bb == ca else (1 if bb == de else -1)
+            if any(ord(b) not in (ca, de) for b in bases):
+                n["tercer_alelo"] += 1
+    codigo = codigos[0]
 
     out = Path(a.out); out.parent.mkdir(parents=True, exist_ok=True)
-    np.savez_compressed(out, codigo=codigo, cobertura=cob,
+    np.savez_compressed(out, codigo=codigo, codigos=codigos, cobertura=cob,
                         etiqueta=np.array([a.etiqueta]), seed=np.array([a.seed]),
-                        sitios=np.array([a.sitios]))
+                        repeticiones=np.array([R]), sitios=np.array([a.sitios]))
 
     cubiertos = int((codigo >= 0).sum())
     derivados = int((codigo == 1).sum())
@@ -162,6 +177,12 @@ def main():
         rep = int((cob > 1).sum())
         print(f"  sitios con mas de una lectura: {rep:,} "
               f"({100.0*rep/cubiertos:.1f}% de los cubiertos)", file=e)
+        print(f"    son los unicos donde el muestreo pseudohaploide interviene", file=e)
+        if R > 1:
+            d = codigos[:, codigos[0] >= 0]
+            var = int((d != d[0]).any(axis=0).sum())
+            print(f"  con {R} muestreos, sitios que cambian de valor: {var:,} "
+                  f"({100.0*var/cubiertos:.2f}% de los cubiertos)", file=e)
     print(f"  escrito: {out}", file=e)
 
 
