@@ -15,8 +15,8 @@ interpretación quedaron fijados antes de tocar estos datos.
 | 3. Descarga de los FASTQ | `prepare.sh` |
 | 4. Mapeo con `bwa aln` sin siembra | **EJECUTADO** |
 | 5. Filtro de daño (C→T terminal, enmascarado de 3+3) | **EJECUTADO** |
-| 6. Extracción de alelos en los sitios de referencia | **escrito y probado** (`extract_sima.sh`) |
-| 7. Recuento por rama y D-statistics | pendiente |
+| 6. Extracción de alelos en los sitios de referencia | **EJECUTADO** |
+| 7. Recuento por rama y D-statistics | **escrito y probado** (`analyze_sima.py`) |
 
 ## Preparación
 
