@@ -221,6 +221,42 @@ que supere la prueba de equivalencia con δ = 0,10.
 Esta tabla es la petición concreta que llevar a Leipzig: para distinguir con un margen de
 0,05 harían falta unos 8 millones de bases útiles, dos veces y media las disponibles.
 
+## 10 ter. Parámetros del preprocesado — FIJADOS ANTES DE ESCRIBIR EL PIPELINE
+
+Fijado el 26 de octubre de 2026. **Ninguna lectura de Sima se ha mapeado todavía.**
+
+Los umbrales estadísticos estaban fijados desde el día 25, pero los parámetros del mapeo y
+del filtro de daño seguían sueltos, y son ajustables a posteriori con la misma facilidad.
+Quedan aquí cerrados. Cualquier cambio posterior se documenta como desviación, con su motivo
+y su fecha, y se reportan los resultados con ambos ajustes.
+
+| Parámetro | Valor | Motivo |
+|---|---|---|
+| Alineador | `bwa aln` + `bwa samse` | Lo que usó Meyer 2016. `bwa mem` no es adecuado para fragmentos cortos y dañados, y fue uno de los errores de 2026. |
+| Siembra | desactivada: `-l 16500` | Estándar en ADN antiguo: la siembra penaliza las lecturas con daño en el extremo 5'. |
+| Desajustes | `-n 0.01 -o 2` | Parámetros habituales del MPI-EVA para ADN antiguo. |
+| Referencia | `human_g1k_v37` (GRCh37) | Mismo ensamblaje que hg19 y que los VCF de MPI-EVA, con la misma nomenclatura de cromosomas. |
+| Calidad de mapeo | MAPQ ≥ 25 | Coincide con el `mq25` de los VCF de referencia: mismo criterio a ambos lados de la comparación. |
+| Longitud mínima | 35 pb | Por debajo, el mapeo único deja de ser fiable. |
+| Duplicados | se eliminan por posición de inicio, fin y hebra | Las librerías de ADN antiguo están muy amplificadas; sin esto, un fragmento se contaría muchas veces. |
+| Filtro de daño | solo fragmentos con C→T en la primera posición del extremo 5' **o** G→A en la última del 3' | Literal de Meyer 2016. Enriquece en ADN endógeno frente a contaminación moderna. |
+| Enmascarado | T en las 3 primeras posiciones y A en las 3 últimas, puestas a N | Literal de Meyer 2016. Evita que el propio daño genere alelos falsos. |
+| Transiciones | **se incluyen** | Meyer no las excluye: el filtro de daño y el enmascarado ya tratan el problema. Excluirlas reduciría los sitios a un tercio, y no nos sobran. |
+| Fusión de corridas | sí dentro de una misma muestra, nunca entre muestras | Ver `sima_pipeline/ESPECIMENES.tsv`. |
+| Semilla del muestreo pseudohaploide | 20261025, fijada | Reproducibilidad byte a byte. |
+
+**Análisis de sensibilidad preregistrados.** Se ejecutan siempre y se reportan junto al
+principal, salga lo que salga:
+
+1. **Solo transversiones.** Inmune al daño por desaminación. Si la D cambia de signo o pierde
+   más de la mitad de su magnitud, el resultado principal no es fiable.
+2. **MAPQ ≥ 37** en lugar de 25. Mide la sensibilidad al sesgo de mapeo.
+3. **Sin filtro de daño.** La D debería ser menor (más contaminación moderna). Si fuera mayor,
+   hay algo mal entendido.
+
+Un resultado que solo aparezca con un ajuste concreto y desaparezca en los tres análisis de
+sensibilidad **no se reporta como hallazgo**.
+
 ## 11. Qué NO responde este análisis
 
 La D ubica a Sima en el árbol. **No** mide una distancia que por sí sola justifique una especie
