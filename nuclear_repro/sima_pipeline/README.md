@@ -1,5 +1,56 @@
 # Pipeline de Sima de los Huesos — ADN nuclear
 
+## RESULTADO (26 de octubre de 2026)
+
+**D(Denisova 3, Vindija 33.19; Sima, ancestral) = 0,586 ± 0,062 (jackknife), Z = 9,5**
+sobre 174 sitios informativos, combinando AT-5431 y AT-5482. Prueba binomial exacta:
+p = 2,8 × 10⁻¹⁵. IC 90%: [0,48, 0,69].
+
+Los dos especímenes principales, procesados por separado y sin sitios en común,
+coinciden: **0,582** (incisivo AT-5482, n = 91) y **0,590** (fémur AT-5431, n = 83).
+
+**Aplicando la regla preregistrada (D ≥ 0,50): confirma Meyer et al. 2016. Sima de los
+Huesos pertenece al linaje neandertal. La hipótesis de un linaje hermano de neandertales y
+denisovanos —la que haría defendible una taxonomía propia— queda descartada por la vía
+genética.**
+
+La D predicha a partir de los porcentajes publicados por Meyer era 0,68 con IC [0,63, 0,75];
+la observada es 0,586 con IC [0,48, 0,69]. Los intervalos se solapan.
+
+### Controles
+
+| Control | Resultado |
+|---|---|
+| Reproducción de Meyer, rama neandertal (f_N) | 0,46 y 0,33 frente a 0,43 y 0,39 publicados |
+| Reproducción de Meyer, rama denisovana (f_D) | 0,08 y 0,11 frente a 0,09 y 0,07 publicados |
+| Reproducción de Meyer, rama común (f_ND) | 0,70 y 0,64 frente a 0,87 y 0,68 publicados |
+| Sin filtro de daño | D baja a 0,36 y 0,40, **en la dirección predicha** (más contaminación moderna diluye la señal arcaica) |
+| Solo criterio de cadena sencilla | D sube a 0,69 y 0,64 |
+| Solo criterio de doble cadena | D sube a 0,68 y 0,79 |
+| Dispersión entre 20 muestreos pseudohaploides | 0,0000 y 0,0011, frente a un error típico de 0,087 y 0,089: despreciable |
+
+La D es positiva y significativa en **todas** las variantes de sensibilidad, con magnitudes
+entre 0,36 y 0,79. El resultado no depende del ajuste elegido.
+
+### Lo que no reproduce bien
+
+El único número que no cuadra dentro del error es **f_ND en AT-5431: 0,70 frente al 0,87
+publicado**, a unas tres desviaciones típicas con n = 71. Las otras cinco comparaciones con
+Meyer caen dentro del intervalo. Posibles causas: el subconjunto de lecturas depositado en
+ENA, o que Meyer definiera la rama común con criterios algo distintos. **Debe constar como
+discrepancia no resuelta.**
+
+### Limitaciones
+
+- ENA contiene en torno al 60% de las lecturas que Meyer analizó, y están premapeadas: el
+  remapeo no es independiente del suyo (ver más abajo).
+- 174 sitios informativos bastan para rechazar H2 con holgura, pero no para sostenerla: la
+  prueba de equivalencia con esta n solo habría podido confirmar H2 si la D hubiera salido
+  prácticamente nula.
+- Mide pertenencia al linaje, no distancia taxonómica.
+
+
+
 Reproducción del recuento por rama de Meyer et al. 2016 con los datos de ENA PRJEB10597,
 y D-statistics sobre los conjuntos de referencia construidos en `../branch_counts/`.
 
@@ -16,7 +67,7 @@ interpretación quedaron fijados antes de tocar estos datos.
 | 4. Mapeo con `bwa aln` sin siembra | **EJECUTADO** |
 | 5. Filtro de daño (C→T terminal, enmascarado de 3+3) | **EJECUTADO** |
 | 6. Extracción de alelos en los sitios de referencia | **EJECUTADO** |
-| 7. Recuento por rama y D-statistics | **escrito y probado** (`analyze_sima.py`) |
+| 7. Recuento por rama y D-statistics | **EJECUTADO** (`results/RESULTADO.txt`) |
 
 ## Preparación
 
