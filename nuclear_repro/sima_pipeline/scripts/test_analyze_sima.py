@@ -9,8 +9,9 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).parent
+# A proposito NO se inserta la ruta de branch_counts: asi la prueba comprueba que
+# analyze_sima.py la resuelve por si mismo. Insertarla aqui enmascaraba un fallo real.
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(HERE.parent.parent / "branch_counts" / "scripts"))
 import importlib.util
 spec = importlib.util.spec_from_file_location("an", HERE / "analyze_sima.py")
 an = importlib.util.module_from_spec(spec)

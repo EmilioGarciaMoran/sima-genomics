@@ -31,7 +31,19 @@ from pathlib import Path
 import numpy as np
 from scipy.stats import binomtest, norm
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "branch_counts" / "scripts"))
+# branch_counts.py vive en ../../branch_counts/scripts/ : scripts -> sima_pipeline ->
+# nuclear_repro -> branch_counts/scripts. Se prueban varias rutas por si el script se
+# invoca desde otro directorio.
+_aqui = Path(__file__).resolve().parent
+for _c in (_aqui.parent.parent / "branch_counts" / "scripts",
+           _aqui.parent / "branch_counts" / "scripts",
+           _aqui):
+    if (_c / "branch_counts.py").exists():
+        sys.path.insert(0, str(_c))
+        break
+else:
+    sys.exit("ERROR: no encuentro branch_counts.py; se esperaba en "
+             f"{_aqui.parent.parent / 'branch_counts' / 'scripts'}")
 from branch_counts import branch_counts  # noqa: E402
 
 DELTA = 0.10      # margen de equivalencia, preregistrado
