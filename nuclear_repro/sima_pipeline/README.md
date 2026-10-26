@@ -78,6 +78,37 @@ punto.
 La escápula AT-6672 se mapea igualmente, para poder documentar su contaminación, pero queda
 fuera del análisis.
 
+## Hallazgo del mapeo (26 oct 2026): los datos de ENA están premapeados
+
+Resultado de la pieza 1 (`results/mapeo.log`):
+
+| Espécimen | Lecturas ENA | Conservadas | % | Duplicadas |
+|---|---|---|---|---|
+| AT-5482 incisivo | 727.796 | 722.569 | 99,3% | 315 (0,04%) |
+| AT-5431 fémur | 237.745 | 233.793 | 98,3% | 219 (0,09%) |
+| Fémur XIII | 155.538 | 155.393 | 99,9% | 20 (0,01%) |
+| AT-5444 molar | 72.445 | 69.606 | 96,1% | 161 (0,22%) |
+| AT-6672 escápula | 101.217 | 98.605 | 97,4% | 65 (0,06%) |
+
+**Entre el 96 y el 99,9% de las lecturas mapean.** En ADN antiguo auténtico lo normal es
+entre el 1 y el 10%: la mayoría de lo secuenciado es ADN microbiano del sedimento. Y los
+duplicados son del orden del 0,05%, inverosímil en una librería amplificada.
+
+**Conclusión: los FASTQ depositados en ENA no son los datos crudos, sino el subconjunto de
+lecturas que ya mapeaban contra hg19, con los duplicados ya eliminados.** Encaja con el
+volumen: Meyer secuenció entre 600 y 2.600 millones de lecturas por espécimen, y aquí hay
+entre 70.000 y 730.000.
+
+**Limitación que debe constar en cualquier texto que salga de aquí.** El remapeo no es
+independiente: estamos realineando lecturas que el pipeline de Meyer ya había aceptado. Se
+puede reproducir el recuento de alelos derivados por rama y calcular D-statistics nuevas,
+pero **no** se puede verificar el mapeo original ni descartar un sesgo introducido en él. Es
+una reproducción del análisis, no del pipeline completo. Presentarla de otro modo sería
+inexacto.
+
+Una reproducción completa exigiría los datos crudos, que no están depositados. Esa es otra
+petición concreta que se puede hacer a Leipzig.
+
 ## Decisiones ya fijadas
 
 - **Referencia `human_g1k_v37`**, cuyos cromosomas se llaman `1`, `2`, `21`, sin prefijo
