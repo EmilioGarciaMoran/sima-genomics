@@ -13,7 +13,7 @@ interpretación quedaron fijados antes de tocar estos datos.
 | 1. Metadatos de ENA: qué espécimen es cada corrida | **hecho** (`ESPECIMENES.tsv`) |
 | 2. Referencia GRCh37 e índice de bwa | `prepare.sh` |
 | 3. Descarga de los FASTQ | `prepare.sh` |
-| 4. Mapeo con `bwa aln` sin siembra | pendiente |
+| 4. Mapeo con `bwa aln` sin siembra | **escrito y probado** (`map_sima.sh`) |
 | 5. Filtro de daño (C→T terminal, enmascarado de 3+3) | pendiente |
 | 6. Extracción de alelos en los sitios de referencia | pendiente |
 | 7. Recuento por rama y D-statistics | pendiente |
@@ -56,6 +56,27 @@ lecturas y solo 37.524 bases útiles, justo lo que cabe esperar de una muestra c
 
 El fémur XIII es el del mtDNA, y es el de menos datos nucleares de los tres utilizables: de
 ahí que quede como confirmación y con prueba binomial exacta.
+
+## Pieza 1: mapeo
+
+```bash
+bash scripts/test_filter_dedup.py          # 20 pruebas de respuesta conocida
+bash scripts/map_sima.sh                   # ~15 min
+nohup bash scripts/map_sima.sh > results/mapeo.log 2>&1 &
+```
+
+Un BAM por espécimen en `~/sima/sima_data/bam/`. Reanudable. Parámetros del apartado 10 ter
+del preregistro: `bwa aln -l 16500 -n 0.01 -o 2`, MAPQ ≥ 25, longitud ≥ 35 pb.
+
+`filter_dedup.py` hace el filtrado y la eliminación de duplicados en la propia tubería, sin
+BAM intermedios. Elimina duplicados por **(cromosoma, inicio, fin, hebra)**: el fin se calcula
+sobre la referencia a partir del CIGAR, no sumando la longitud de la secuencia, porque las
+inserciones y deleciones hacen que ambas cosas no coincidan. Agrupar solo por inicio, que es
+el error fácil, borraría fragmentos legítimos de distinta longitud que empiezan en el mismo
+punto.
+
+La escápula AT-6672 se mapea igualmente, para poder documentar su contaminación, pero queda
+fuera del análisis.
 
 ## Decisiones ya fijadas
 
