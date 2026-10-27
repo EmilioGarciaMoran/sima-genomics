@@ -265,8 +265,10 @@ def main():
                   f"{'despreciable' if np.std(Ds) < ee/5 else 'NO despreciable'}")
     L()
     L("=" * 70)
-    L(f"Escrito en {out}")
     fh.close()
+    # La ruta NO se escribe dentro del fichero: si lo hiciera, el propio nombre de salida
+    # cambiaría el contenido y la comparación byte a byte dejaría de ser posible.
+    print(f"Escrito en {out}")
 
 
 if __name__ == "__main__":
