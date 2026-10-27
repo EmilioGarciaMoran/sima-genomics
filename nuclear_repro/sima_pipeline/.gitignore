@@ -1,7 +1,11 @@
-# datos descargados: no se versionan
+# Datos descargados y derivados pesados: no se versionan.
+# Todo se regenera con scripts/prepare.sh, map_sima.sh y damage_sima.sh a partir de
+# ENA PRJEB10597, que es público.
 data/
+_tmp*/
 *.fastq.gz
 *.fasta
 *.fasta.*
 *.bam
 *.bai
+*.sai

@@ -24,6 +24,24 @@ discrepancy.
 
 Full output: [`sima_pipeline/results/RESULTADO.txt`](sima_pipeline/results/RESULTADO.txt).
 
+### Verifying the result without rerunning the pipeline
+
+Two derived files are versioned so the final analysis can be re-run in seconds:
+`branch_counts/results/genoma_inf.npz` (the 1,822,345 reference sites) and
+`sima_pipeline/results/alelos/` (Sima's alleles at those sites).
+
+```bash
+cd sima_pipeline
+python3 scripts/analyze_sima.py --sitios ../branch_counts/results/genoma_inf.npz \
+        --alelos results/alelos --out /tmp/check.txt
+diff /tmp/check.txt results/RESULTADO.txt    # no output = reproduced
+```
+
+`genoma_inf.npz` is derived data: per-site ancestral/derived codes computed from the
+high-coverage genomes published by the Max Planck Institute for Evolutionary Anthropology
+(see [`branch_counts/DATOS_NECESARIOS.md`](branch_counts/DATOS_NECESARIOS.md) for the
+sources). It is not a redistribution of those VCFs, which are not included here.
+
 ## Limitations / Limitaciones
 
 1. **The ENA deposit is pre-mapped.** Between 96% and 99.9% of the deposited reads align to

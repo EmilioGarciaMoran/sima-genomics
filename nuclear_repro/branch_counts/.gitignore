@@ -1,5 +1,14 @@
 # Datos descargados: no se versionan (2,5 GB solo el cromosoma 21)
 data/
+_tmp/
 *.vcf.gz
 *.vcf.gz.tbi
 md5_*.txt
+
+# Intermedios grandes y regenerables.
+# results/chr21_alleles*.npz son 53 MB cada uno y se rehacen en ~5 min con read_vcfs.py.
+# results/genome/ queda subsumido en results/genoma_inf.npz, que SÍ se versiona porque
+# es lo que permite reproducir el análisis de Sima sin repetir el recorrido de 8 horas.
+results/chr21_alleles*.npz
+results/chr21_prueba.npz
+results/genome/
