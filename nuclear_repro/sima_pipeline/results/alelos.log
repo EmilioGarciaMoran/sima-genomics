@@ -1,0 +1,236 @@
+==================================================================
+Extracción de alelos  |  inicio: 2026-10-26 23:07:38
+  sitios: ../branch_counts/results/genoma_inf.npz
+==================================================================
+
+------------------------------------------------------------------
+[AT-5482_incisivo] 23:07:38  (principal)
+extract_alleles [AT-5482_incisivo]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:        33,409
+  bases alineadas:         1,328,776
+  caen en un sitio:              719
+    de ellas enmascaradas:        63
+    tercer alelo:                  8
+  SITIOS CON DATO:               640
+    derivados:                   174
+    ancestrales:                 466
+  sitios con mas de una lectura: 4 (0.6% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 0 (0.00% de los cubiertos)
+  escrito: results/alelos/AT-5482_incisivo.npz
+extract_alleles [AT-5482_incisivo.nofilt]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:       722,239
+  bases alineadas:        35,484,831
+  caen en un sitio:           24,951
+    de ellas enmascaradas:       747
+    tercer alelo:                108
+  SITIOS CON DATO:            23,607
+    derivados:                 2,525
+    ancestrales:              21,082
+  sitios con mas de una lectura: 387 (1.6% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 18 (0.08% de los cubiertos)
+  escrito: results/alelos/AT-5482_incisivo.nofilt.npz
+extract_alleles [AT-5482_incisivo.ss]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:        30,837
+  bases alineadas:         1,207,277
+  caen en un sitio:              584
+    de ellas enmascaradas:        71
+    tercer alelo:                  3
+  SITIOS CON DATO:               509
+    derivados:                   148
+    ancestrales:                 361
+  sitios con mas de una lectura: 1 (0.2% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 0 (0.00% de los cubiertos)
+  escrito: results/alelos/AT-5482_incisivo.ss.npz
+extract_alleles [AT-5482_incisivo.ds]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:        18,852
+  bases alineadas:           756,201
+  caen en un sitio:              386
+    de ellas enmascaradas:        41
+    tercer alelo:                  1
+  SITIOS CON DATO:               342
+    derivados:                    75
+    ancestrales:                 267
+  sitios con mas de una lectura: 1 (0.3% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 0 (0.00% de los cubiertos)
+  escrito: results/alelos/AT-5482_incisivo.ds.npz
+
+------------------------------------------------------------------
+[AT-5431_femur] 23:07:48  (principal)
+extract_alleles [AT-5431_femur]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:        18,132
+  bases alineadas:           713,737
+  caen en un sitio:              613
+    de ellas enmascaradas:        66
+    tercer alelo:                  2
+  SITIOS CON DATO:               456
+    derivados:                   144
+    ancestrales:                 312
+  sitios con mas de una lectura: 7 (1.5% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 1 (0.22% de los cubiertos)
+  escrito: results/alelos/AT-5431_femur.npz
+extract_alleles [AT-5431_femur.nofilt]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:       233,618
+  bases alineadas:        10,601,521
+  caen en un sitio:            8,703
+    de ellas enmascaradas:       322
+    tercer alelo:                 31
+  SITIOS CON DATO:             7,159
+    derivados:                 1,074
+    ancestrales:               6,085
+  sitios con mas de una lectura: 120 (1.7% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 4 (0.06% de los cubiertos)
+  escrito: results/alelos/AT-5431_femur.nofilt.npz
+extract_alleles [AT-5431_femur.ss]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:        17,238
+  bases alineadas:           672,186
+  caen en un sitio:              513
+    de ellas enmascaradas:        62
+    tercer alelo:                  1
+  SITIOS CON DATO:               405
+    derivados:                   124
+    ancestrales:                 281
+  sitios con mas de una lectura: 5 (1.2% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 1 (0.25% de los cubiertos)
+  escrito: results/alelos/AT-5431_femur.ss.npz
+extract_alleles [AT-5431_femur.ds]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:        10,533
+  bases alineadas:           416,011
+  caen en un sitio:              361
+    de ellas enmascaradas:        38
+    tercer alelo:                  0
+  SITIOS CON DATO:               247
+    derivados:                    69
+    ancestrales:                 178
+  sitios con mas de una lectura: 3 (1.2% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 1 (0.40% de los cubiertos)
+  escrito: results/alelos/AT-5431_femur.ds.npz
+
+------------------------------------------------------------------
+[femurXIII] 23:07:54  (confirmacion)
+extract_alleles [femurXIII]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:         3,396
+  bases alineadas:           137,480
+  caen en un sitio:               99
+    de ellas enmascaradas:        13
+    tercer alelo:                  2
+  SITIOS CON DATO:                78
+    derivados:                    16
+    ancestrales:                  62
+  sitios con mas de una lectura: 3 (3.8% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 0 (0.00% de los cubiertos)
+  escrito: results/alelos/femurXIII.npz
+extract_alleles [femurXIII.nofilt]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:       155,339
+  bases alineadas:         7,477,989
+  caen en un sitio:            5,310
+    de ellas enmascaradas:       182
+    tercer alelo:                 25
+  SITIOS CON DATO:             4,984
+    derivados:                   475
+    ancestrales:               4,509
+  sitios con mas de una lectura: 41 (0.8% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 3 (0.06% de los cubiertos)
+  escrito: results/alelos/femurXIII.nofilt.npz
+extract_alleles [femurXIII.ss]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:         2,791
+  bases alineadas:           109,759
+  caen en un sitio:               68
+    de ellas enmascaradas:        12
+    tercer alelo:                  1
+  SITIOS CON DATO:                55
+    derivados:                    12
+    ancestrales:                  43
+  sitios con mas de una lectura: 0 (0.0% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 0 (0.00% de los cubiertos)
+  escrito: results/alelos/femurXIII.ss.npz
+extract_alleles [femurXIII.ds]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:         1,877
+  bases alineadas:            76,981
+  caen en un sitio:               56
+    de ellas enmascaradas:        10
+    tercer alelo:                  1
+  SITIOS CON DATO:                45
+    derivados:                     5
+    ancestrales:                  40
+  sitios con mas de una lectura: 0 (0.0% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 0 (0.00% de los cubiertos)
+  escrito: results/alelos/femurXIII.ds.npz
+
+------------------------------------------------------------------
+[AT-5444_molar] 23:07:58  (descriptivo)
+extract_alleles [AT-5444_molar]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:         2,925
+  bases alineadas:           116,380
+  caen en un sitio:               98
+    de ellas enmascaradas:        16
+    tercer alelo:                  2
+  SITIOS CON DATO:                73
+    derivados:                    16
+    ancestrales:                  57
+  sitios con mas de una lectura: 2 (2.7% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 0 (0.00% de los cubiertos)
+  escrito: results/alelos/AT-5444_molar.npz
+
+------------------------------------------------------------------
+[AT-6672_escapula] 23:07:59  (excluido)
+extract_alleles [AT-6672_escapula]
+  sitios de referencia:    1,822,345
+  lecturas procesadas:           652
+  bases alineadas:            40,079
+  caen en un sitio:               32
+    de ellas enmascaradas:         2
+    tercer alelo:                  0
+  SITIOS CON DATO:                30
+    derivados:                     6
+    ancestrales:                  24
+  sitios con mas de una lectura: 0 (0.0% de los cubiertos)
+    son los unicos donde el muestreo pseudohaploide interviene
+  con 20 muestreos, sitios que cambian de valor: 0 (0.00% de los cubiertos)
+  escrito: results/alelos/AT-6672_escapula.npz
+
+==================================================================
+Fin: 2026-10-26 23:08:00
+  fichero                          sitios    derivados
+  AT-5431_femur.ds                    247           69
+  AT-5431_femur.nofilt              7,159        1,074
+  AT-5431_femur                       456          144
+  AT-5431_femur.ss                    405          124
+  AT-5444_molar                        73           16
+  AT-5482_incisivo.ds                 342           75
+  AT-5482_incisivo.nofilt          23,607        2,525
+  AT-5482_incisivo                    640          174
+  AT-5482_incisivo.ss                 509          148
+  AT-6672_escapula                     30            6
+  femurXIII.ds                         45            5
+  femurXIII.nofilt                  4,984          475
+  femurXIII                            78           16
+  femurXIII.ss                         55           12
+
+Siguiente y última pieza: recuento por rama y D-statistics.
+==================================================================
