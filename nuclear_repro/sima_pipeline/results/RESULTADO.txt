@@ -72,4 +72,3 @@ Parámetros y criterios: ../PREREGISTRO_D_statistics.md, fijados antes de los da
                           frente al EE del jackknife 0.089: despreciable
 
 ======================================================================
-Escrito en results/RESULTADO.txt
