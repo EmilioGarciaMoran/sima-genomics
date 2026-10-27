@@ -1,0 +1,43 @@
+escenario	X	nivel	n_inf_mediana	D_mediana	D_p2.5	D_p97.5	EE_mediana	frac_Z>3	frac_|Z|<3	veredicto
+TND440	chag	femurXIII	64	0.9333	0.8081	1.0000	0.0460	0.92	0.08	control positivo OK
+TND440	chag	AT5431	333	0.9368	0.8918	0.9727	0.0189	1.00	0.00	control positivo OK
+TND440	chag	AT5482	561	0.9346	0.9077	0.9615	0.0147	1.00	0.00	control positivo OK
+TND440	chag	full	808824	0.9323	0.9319	0.9326	0.0008	1.00	0.00	control positivo OK
+TND440	mbuti	femurXIII	20	0.0403	-0.4150	0.3769	0.2221	0.01	0.97	sin falsos positivos
+TND440	mbuti	AT5431	115	-0.0089	-0.1386	0.1733	0.0937	0.00	1.00	sin falsos positivos
+TND440	mbuti	AT5482	195	0.0022	-0.1545	0.0980	0.0717	0.00	1.00	sin falsos positivos
+TND440	mbuti	full	277260	-0.0012	-0.0024	0.0003	0.0033	0.00	1.00	sin falsos positivos
+TND440	sima	femurXIII	33	0.0883	-0.1641	0.4549	0.1754	0.03	0.97	potencia INSUFICIENTE
+TND440	sima	AT5431	177	0.0607	-0.0489	0.1693	0.0749	0.00	1.00	potencia INSUFICIENTE
+TND440	sima	AT5482	302	0.0756	-0.0504	0.1744	0.0573	0.04	0.96	potencia INSUFICIENTE
+TND440	sima	full	433309	0.0742	0.0730	0.0755	0.0037	1.00	0.00	potencia suficiente
+TND470	chag	femurXIII	68	0.9416	0.8518	1.0000	0.0412	0.95	0.05	control positivo OK
+TND470	chag	AT5431	356	0.9481	0.9093	0.9728	0.0171	1.00	0.00	control positivo OK
+TND470	chag	AT5482	606	0.9466	0.9221	0.9708	0.0131	1.00	0.00	control positivo OK
+TND470	chag	full	865590	0.9458	0.9454	0.9461	0.0007	1.00	0.00	control positivo OK
+TND470	mbuti	femurXIII	24	-0.0346	-0.4253	0.3917	0.2032	0.00	0.99	sin falsos positivos
+TND470	mbuti	AT5431	127	-0.0153	-0.2084	0.1275	0.0887	0.00	1.00	sin falsos positivos
+TND470	mbuti	AT5482	213	-0.0021	-0.1636	0.1006	0.0685	0.00	1.00	sin falsos positivos
+TND470	mbuti	full	305536	-0.0007	-0.0019	0.0005	0.0032	0.00	1.00	sin falsos positivos
+TND470	sima	femurXIII	37	0.2438	0.0264	0.5417	0.1597	0.13	0.87	potencia INSUFICIENTE
+TND470	sima	AT5431	194	0.2513	0.1556	0.3817	0.0693	0.72	0.28	potencia INSUFICIENTE
+TND470	sima	AT5482	330	0.2615	0.1558	0.3788	0.0534	0.97	0.03	potencia suficiente
+TND470	sima	full	475437	0.2581	0.2566	0.2593	0.0037	1.00	0.00	potencia suficiente
+TND550	chag	femurXIII	80	0.9756	0.9245	1.0000	0.0246	0.87	0.13	control positivo FALLA
+TND550	chag	AT5431	426	0.9699	0.9353	0.9866	0.0116	1.00	0.00	control positivo OK
+TND550	chag	AT5482	724	0.9718	0.9505	0.9865	0.0091	1.00	0.00	control positivo OK
+TND550	chag	full	1034539	0.9699	0.9696	0.9701	0.0005	1.00	0.00	control positivo OK
+TND550	mbuti	femurXIII	32	-0.0463	-0.4097	0.3458	0.1782	0.00	0.99	sin falsos positivos
+TND550	mbuti	AT5431	166	0.0123	-0.1306	0.1527	0.0773	0.00	1.00	sin falsos positivos
+TND550	mbuti	AT5482	284	-0.0129	-0.1168	0.0912	0.0592	0.00	1.00	sin falsos positivos
+TND550	mbuti	full	403762	-0.0005	-0.0014	0.0008	0.0029	0.00	1.00	sin falsos positivos
+TND550	sima	femurXIII	47	0.6111	0.3717	0.8404	0.1162	0.92	0.08	potencia suficiente
+TND550	sima	AT5431	253	0.6068	0.5159	0.6927	0.0504	1.00	0.00	potencia suficiente
+TND550	sima	AT5482	427	0.6172	0.5393	0.6790	0.0384	1.00	0.00	potencia suficiente
+TND550	sima	full	610346	0.6156	0.6149	0.6167	0.0026	1.00	0.00	potencia suficiente
+
+# Decisión (escenario principal T_ND=470ka)
+# femurXIII: D-statistics NO apropiadas (Sima Z>3 en 13%; Mbuti |Z|<3 en 99%)
+# AT5431: D-statistics NO apropiadas (Sima Z>3 en 72%; Mbuti |Z|<3 en 100%)
+# AT5482: D-statistics APROPIADAS (Sima Z>3 en 97%; Mbuti |Z|<3 en 100%)
+# full: D-statistics APROPIADAS (Sima Z>3 en 100%; Mbuti |Z|<3 en 100%)

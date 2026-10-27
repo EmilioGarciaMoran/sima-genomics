@@ -1,0 +1,14 @@
+# Correspondencia entre corridas de ENA y especímenes de Sima de los Huesos.
+# Fuente: filereport de ENA para PRJEB10597, consultado el 25 de octubre de 2026.
+# bases_utiles: bases alineadas tras el filtro de daño, de Meyer et al. 2016, Tabla 1.
+#
+# Las corridas de una MISMA muestra se fusionan: son librerías del mismo hueso.
+# Las muestras distintas NUNCA se fusionan: son individuos u huesos distintos.
+# Esa confusión fue uno de los errores del trabajo de 2026.
+#
+especimen	muestra	corridas	lecturas	bases_utiles	papel
+AT-5482_incisivo	SAMEA3518421	ERR995358,ERR995362	727796	2015167	principal
+AT-5431_femur	SAMEA3518420	ERR995361,ERR995364	237745	1186442	principal
+femurXIII	SAMEA3518423	ERR995357	155538	225329	confirmacion
+AT-5444_molar	SAMEA3518424	ERR995360,ERR995365	72445	188974	descriptivo
+AT-6672_escapula	SAMEA3518422	ERR995359,ERR995363	101217	37524	excluido

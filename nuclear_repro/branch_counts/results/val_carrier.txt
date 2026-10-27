@@ -1,0 +1,35 @@
+Fichero: results/chr21_alleles_carrier.npz
+  modo: carrier   semilla: 20261025   exclude_rm(lectura): False   min_dp: 0
+  filtros de este análisis: map20=todo, exclude_rm=False
+  posiciones: 32,022,404 de 32,022,404   rango: 14,376,323 - 48,084,763
+  bloques de jackknife: 35 (de 1.0 Mb)
+
+PRUEBA PRINCIPAL  X = Chagyrskaya 8, A = Denisova 5, B = Vindija 33.19
+  conjunto                                  sitios  derivados        f  EE binom  EE jackk
+  AB  rama profunda (D5 y Vi derivados)     13,233     12,259   0.9264    0.0023    0.0076
+  A   exclusivos de D5                       3,286        744   0.2264    0.0073    0.0219
+  B   exclusivos de Vindija                  4,758      1,808   0.3800    0.0070    0.0208
+
+CONTROL           X = Denisova 3 (denisovano)
+  conjunto                                  sitios  derivados        f  EE binom  EE jackk
+  AB  rama profunda (D5 y Vi derivados)     13,263      5,220   0.3936    0.0042    0.0132
+  A   exclusivos de D5                       3,288        428   0.1302    0.0059    0.0164
+  B   exclusivos de Vindija                  4,784        432   0.0903    0.0041    0.0119
+
+================================================================
+VEREDICTO
+================================================================
+  1. Topología: f_B > f_A con Chagyrskaya 8
+     f_A = 0.2264   f_B = 0.3800   Z(f_A - f_B) = -5.1
+     -> PASA
+  2. f_AB es el mayor de los tres: PASA
+  3. Control denisovano sin inclinación: Z(f_A - f_B) = 2.0
+     -> PASA
+
+  Conjunto más pequeño: 3,286 sitios
+    con n=13,233, IC95 sobre una fracción de 91% es +/- 0.49 puntos
+    con n=3,286, IC95 sobre una fracción de 45% es +/- 1.70 puntos
+    con n=4,758, IC95 sobre una fracción de 20% es +/- 1.14 puntos
+    (la tolerancia preregistrada es +/- 3 puntos)
+
+TODAS LAS PRUEBAS PASAN

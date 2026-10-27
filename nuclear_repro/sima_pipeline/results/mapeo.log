@@ -1,0 +1,95 @@
+==================================================================
+Mapeo de Sima  |  inicio: 2026-10-26 19:33:03
+  referencia: /home/egarmo/sima/sima_data/ref/human_g1k_v37.fasta
+  parámetros: bwa aln -l 16500 -n 0.01 -o 2 | mapq>=30 | len>=35
+  salida: /home/egarmo/sima/sima_data/bam
+==================================================================
+
+------------------------------------------------------------------
+[AT-5482_incisivo] 19:33:03  muestra SAMEA3518421, papel: principal
+[AT-5482_incisivo] corridas juntadas: ERR995358,ERR995362  (30M)
+filter_dedup [AT-5482_incisivo]: mapq>=30, longitud>=35
+  lecturas leídas:         727,796
+  sin mapear:                2,775
+  secundarias:                   0
+  calidad insuficiente:      2,377
+  demasiado cortas:             90
+  duplicadas:                  315
+  CONSERVADAS:             722,239
+  conservadas / leídas:      99.2%
+[AT-5482_incisivo] BAM: 32M, 722239 lecturas conservadas
+[AT-5482_incisivo] lecturas de partida según ENA: 727796  -> conservadas: 722239
+
+------------------------------------------------------------------
+[AT-5431_femur] 19:37:22  muestra SAMEA3518420, papel: principal
+[AT-5431_femur] corridas juntadas: ERR995361,ERR995364  (9,0M)
+filter_dedup [AT-5431_femur]: mapq>=30, longitud>=35
+  lecturas leídas:         237,745
+  sin mapear:                1,011
+  secundarias:                   0
+  calidad insuficiente:      2,608
+  demasiado cortas:            289
+  duplicadas:                  219
+  CONSERVADAS:             233,618
+  conservadas / leídas:      98.3%
+[AT-5431_femur] BAM: 9,7M, 233618 lecturas conservadas
+[AT-5431_femur] lecturas de partida según ENA: 237745  -> conservadas: 233618
+
+------------------------------------------------------------------
+[femurXIII] 19:38:54  muestra SAMEA3518423, papel: confirmacion
+[femurXIII] corridas juntadas: ERR995357  (7,7M)
+filter_dedup [femurXIII]: mapq>=30, longitud>=35
+  lecturas leídas:         155,538
+  sin mapear:                   81
+  secundarias:                   0
+  calidad insuficiente:         99
+  demasiado cortas:              0
+  duplicadas:                   19
+  CONSERVADAS:             155,339
+  conservadas / leídas:      99.9%
+[femurXIII] BAM: 8,4M, 155339 lecturas conservadas
+[femurXIII] lecturas de partida según ENA: 155538  -> conservadas: 155339
+
+------------------------------------------------------------------
+[AT-5444_molar] 19:41:51  muestra SAMEA3518424, papel: descriptivo
+[AT-5444_molar] corridas juntadas: ERR995360,ERR995365  (3,0M)
+filter_dedup [AT-5444_molar]: mapq>=30, longitud>=35
+  lecturas leídas:          72,445
+  sin mapear:                  317
+  secundarias:                   0
+  calidad insuficiente:      1,945
+  demasiado cortas:            473
+  duplicadas:                  160
+  CONSERVADAS:              69,550
+  conservadas / leídas:      96.0%
+[AT-5444_molar] BAM: 3,3M, 69550 lecturas conservadas
+[AT-5444_molar] lecturas de partida según ENA: 72445  -> conservadas: 69550
+
+------------------------------------------------------------------
+[AT-6672_escapula] 19:42:35  muestra SAMEA3518422, papel: excluido
+[AT-6672_escapula] corridas juntadas: ERR995359,ERR995363  (5,4M)
+filter_dedup [AT-6672_escapula]: mapq>=30, longitud>=35
+  lecturas leídas:         101,217
+  sin mapear:                  653
+  secundarias:                   0
+  calidad insuficiente:      1,844
+  demasiado cortas:             88
+  duplicadas:                   65
+  CONSERVADAS:              98,567
+  conservadas / leídas:      97.4%
+[AT-6672_escapula] BAM: 5,9M, 98567 lecturas conservadas
+[AT-6672_escapula] lecturas de partida según ENA: 101217  -> conservadas: 98567
+
+==================================================================
+Fin: 2026-10-26 19:43:35   especímenes mapeados: 5
+
+Resumen:
+  especimen               conservadas          ENA      pct
+  AT-5431_femur                233618       237745    98.3%
+  AT-5444_molar                 69550        72445    96.0%
+  AT-5482_incisivo             722239       727796    99.2%
+  AT-6672_escapula              98567       101217    97.4%
+  femurXIII                    155339       155538    99.9%
+
+Siguiente pieza: filtro de daño (C->T terminal) y enmascarado 3+3.
+==================================================================

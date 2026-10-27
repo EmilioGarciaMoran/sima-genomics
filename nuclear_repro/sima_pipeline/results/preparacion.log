@@ -1,0 +1,139 @@
+==================================================================
+Preparación del análisis de Sima  |  inicio: 2026-10-26 00:49:33
+  datos en: /home/egarmo/sima/sima_data
+==================================================================
+  ok     bwa        /usr/bin/bwa
+  ok     samtools   /usr/bin/samtools
+  ok     wget       /usr/bin/wget
+  ok     curl       /usr/bin/curl
+  disco libre: 77 GB (hacen falta ~9)
+
+--- 1. Metadatos de ENA (PRJEB10597) ---
+  ya descargado
+  corridas encontradas: 9
+  --- contenido (columnas clave) ---
+   ERR995362      SAMEA3518421   nuclear and mitochondrial se         1419 lecturas
+   ERR995357      SAMEA3518423   nuclear sequences SH femur X       155538 lecturas
+   ERR995361      SAMEA3518420   nuclear and mitochondrial se       234557 lecturas
+   ERR995360      SAMEA3518424   nuclear and mitochondrial se        69404 lecturas
+   ERR995365      SAMEA3518424   nuclear and mitochondrial se         3041 lecturas
+   ERR995364      SAMEA3518420   nuclear and mitochondrial se         3188 lecturas
+   ERR995358      SAMEA3518421   nuclear and mitochondrial se       726377 lecturas
+   ERR995359      SAMEA3518422   nuclear and mitochondrial se        97475 lecturas
+   ERR995363      SAMEA3518422   nuclear and mitochondrial se         3742 lecturas
+
+--- 2. Referencia GRCh37 ---
+  descargando (~850 MB)...
+  descomprimiendo...
+  indexando con samtools faidx...
+  verificando longitudes de los autosomas...
+    los 22 autosomas cuadran con GRCh37
+  cromosomas: 1 2 3 4 5 ...
+  (sin prefijo chr, como los VCF de MPI-EVA)
+
+--- 3. Índice de bwa (el paso largo, ~90 min) ---
+  empezando a las 00:59:48...
+    [bwa_index] Pack FASTA... 13.12 sec
+    [bwa_index] Construct BWT for the packed sequence...
+    [BWTIncCreate] textLength=6203609478, availableWord=448508744
+    [BWTIncConstructFromPacked] 10 iterations done. 99999990 characters processed.
+    [BWTIncConstructFromPacked] 20 iterations done. 199999990 characters processed.
+    [BWTIncConstructFromPacked] 30 iterations done. 299999990 characters processed.
+    [BWTIncConstructFromPacked] 40 iterations done. 399999990 characters processed.
+    [BWTIncConstructFromPacked] 50 iterations done. 499999990 characters processed.
+    [BWTIncConstructFromPacked] 60 iterations done. 599999990 characters processed.
+    [BWTIncConstructFromPacked] 70 iterations done. 699999990 characters processed.
+    [BWTIncConstructFromPacked] 80 iterations done. 799999990 characters processed.
+    [BWTIncConstructFromPacked] 90 iterations done. 899999990 characters processed.
+    [BWTIncConstructFromPacked] 100 iterations done. 999999990 characters processed.
+    [BWTIncConstructFromPacked] 110 iterations done. 1099999990 characters processed.
+    [BWTIncConstructFromPacked] 120 iterations done. 1199999990 characters processed.
+    [BWTIncConstructFromPacked] 130 iterations done. 1299999990 characters processed.
+    [BWTIncConstructFromPacked] 140 iterations done. 1399999990 characters processed.
+    [BWTIncConstructFromPacked] 150 iterations done. 1499999990 characters processed.
+    [BWTIncConstructFromPacked] 160 iterations done. 1599999990 characters processed.
+    [BWTIncConstructFromPacked] 170 iterations done. 1699999990 characters processed.
+    [BWTIncConstructFromPacked] 180 iterations done. 1799999990 characters processed.
+    [BWTIncConstructFromPacked] 190 iterations done. 1899999990 characters processed.
+    [BWTIncConstructFromPacked] 200 iterations done. 1999999990 characters processed.
+    [BWTIncConstructFromPacked] 210 iterations done. 2099999990 characters processed.
+    [BWTIncConstructFromPacked] 220 iterations done. 2199999990 characters processed.
+    [BWTIncConstructFromPacked] 230 iterations done. 2299999990 characters processed.
+    [BWTIncConstructFromPacked] 240 iterations done. 2399999990 characters processed.
+    [BWTIncConstructFromPacked] 250 iterations done. 2499999990 characters processed.
+    [BWTIncConstructFromPacked] 260 iterations done. 2599999990 characters processed.
+    [BWTIncConstructFromPacked] 270 iterations done. 2699999990 characters processed.
+    [BWTIncConstructFromPacked] 280 iterations done. 2799999990 characters processed.
+    [BWTIncConstructFromPacked] 290 iterations done. 2899999990 characters processed.
+    [BWTIncConstructFromPacked] 300 iterations done. 2999999990 characters processed.
+    [BWTIncConstructFromPacked] 310 iterations done. 3099999990 characters processed.
+    [BWTIncConstructFromPacked] 320 iterations done. 3199999990 characters processed.
+    [BWTIncConstructFromPacked] 330 iterations done. 3299999990 characters processed.
+    [BWTIncConstructFromPacked] 340 iterations done. 3399999990 characters processed.
+    [BWTIncConstructFromPacked] 350 iterations done. 3499999990 characters processed.
+    [BWTIncConstructFromPacked] 360 iterations done. 3599999990 characters processed.
+    [BWTIncConstructFromPacked] 370 iterations done. 3699999990 characters processed.
+    [BWTIncConstructFromPacked] 380 iterations done. 3799999990 characters processed.
+    [BWTIncConstructFromPacked] 390 iterations done. 3899999990 characters processed.
+    [BWTIncConstructFromPacked] 400 iterations done. 3999999990 characters processed.
+    [BWTIncConstructFromPacked] 410 iterations done. 4099999990 characters processed.
+    [BWTIncConstructFromPacked] 420 iterations done. 4199999990 characters processed.
+    [BWTIncConstructFromPacked] 430 iterations done. 4299999990 characters processed.
+    [BWTIncConstructFromPacked] 440 iterations done. 4399999990 characters processed.
+    [BWTIncConstructFromPacked] 450 iterations done. 4499999990 characters processed.
+    [BWTIncConstructFromPacked] 460 iterations done. 4599999990 characters processed.
+    [BWTIncConstructFromPacked] 470 iterations done. 4699999990 characters processed.
+    [BWTIncConstructFromPacked] 480 iterations done. 4799999990 characters processed.
+    [BWTIncConstructFromPacked] 490 iterations done. 4899999990 characters processed.
+    [BWTIncConstructFromPacked] 500 iterations done. 4999999990 characters processed.
+    [BWTIncConstructFromPacked] 510 iterations done. 5099999990 characters processed.
+    [BWTIncConstructFromPacked] 520 iterations done. 5199999990 characters processed.
+    [BWTIncConstructFromPacked] 530 iterations done. 5299999990 characters processed.
+    [BWTIncConstructFromPacked] 540 iterations done. 5399999990 characters processed.
+    [BWTIncConstructFromPacked] 550 iterations done. 5499999990 characters processed.
+    [BWTIncConstructFromPacked] 560 iterations done. 5597066646 characters processed.
+    [BWTIncConstructFromPacked] 570 iterations done. 5683763718 characters processed.
+    [BWTIncConstructFromPacked] 580 iterations done. 5760816294 characters processed.
+    [BWTIncConstructFromPacked] 590 iterations done. 5829296822 characters processed.
+    [BWTIncConstructFromPacked] 600 iterations done. 5890158470 characters processed.
+    [BWTIncConstructFromPacked] 610 iterations done. 5944248422 characters processed.
+    [BWTIncConstructFromPacked] 620 iterations done. 5992319702 characters processed.
+    [BWTIncConstructFromPacked] 630 iterations done. 6035041542 characters processed.
+    [BWTIncConstructFromPacked] 640 iterations done. 6073008822 characters processed.
+    [BWTIncConstructFromPacked] 650 iterations done. 6106750214 characters processed.
+    [BWTIncConstructFromPacked] 660 iterations done. 6136735590 characters processed.
+    [BWTIncConstructFromPacked] 670 iterations done. 6163382646 characters processed.
+    [BWTIncConstructFromPacked] 680 iterations done. 6187062566 characters processed.
+    [bwt_gen] Finished constructing BWT in 688 iterations.
+    [bwa_index] 1541.80 seconds elapse.
+    [bwa_index] Update BWT... 12.67 sec
+    [bwa_index] Pack forward-only FASTA... 8.99 sec
+    [bwa_index] Construct SA from BWT and Occ... 664.85 sec
+    [main] Version: 0.7.19-r1273
+    [main] CMD: bwa index /home/egarmo/sima/sima_data/ref/human_g1k_v37.fasta
+    [main] Real time: 2249.589 sec; CPU: 2241.431 sec
+  terminado a las 01:37:18
+
+--- 4. FASTQ de Sima desde ENA ---
+  ok: ERR995362.fastq.gz (36K)
+  ok: ERR995357.fastq.gz (7,7M)
+  ok: ERR995361.fastq.gz (8,9M)
+  ok: ERR995360.fastq.gz (2,9M)
+  ok: ERR995365.fastq.gz (68K)
+  ok: ERR995364.fastq.gz (80K)
+  ok: ERR995358.fastq.gz (30M)
+  ok: ERR995359.fastq.gz (5,3M)
+  ok: ERR995363.fastq.gz (92K)
+  corridas procesadas: 9
+  total descargado: 54M
+
+==================================================================
+Preparación terminada: 2026-10-26 01:38:00
+  referencia: /home/egarmo/sima/sima_data/ref/human_g1k_v37.fasta
+  índice:     listo
+  FASTQ:      9 ficheros en /home/egarmo/sima/sima_data/fastq
+  metadatos:  /home/egarmo/sima/sima_data/meta/PRJEB10597.tsv
+
+Siguiente paso (mañana): mapeo con bwa aln sin siembra, filtro de daño
+y extracción de alelos. Ese código se escribe con sus pruebas, no deprisa.
+==================================================================

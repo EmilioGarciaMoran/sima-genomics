@@ -1,0 +1,31 @@
+Calibración de la ventana de detección del daño
+Criterio: acercarse a las bases útiles de Meyer 2016, Tabla 1
+
+especimen               ventana bases útiles        Meyer  cociente
+AT-5482_incisivo              1      1163379      2015167      0.58
+AT-5482_incisivo              2      1631814      2015167      0.81
+AT-5482_incisivo              3      1863106      2015167      0.92
+AT-5482_incisivo              4      2025912      2015167      1.01
+
+AT-5431_femur                 1       640600      1186442      0.54
+AT-5431_femur                 2       944279      1186442      0.80
+AT-5431_femur                 3      1082649      1186442      0.91
+AT-5431_femur                 4      1169942      1186442      0.99
+
+femurXIII                     1       107395       225329      0.48
+femurXIII                     2       171458       225329      0.76
+femurXIII                     3       208435       225329      0.93
+femurXIII                     4       240994       225329      1.07
+
+AT-5444_molar                 1        98040       188974      0.52
+AT-5444_molar                 2       147562       188974      0.78
+AT-5444_molar                 3       172876       188974      0.91
+AT-5444_molar                 4       190214       188974      1.01
+
+AT-6672_escapula              1        15766        37524      0.42
+AT-6672_escapula              2        26290        37524      0.70
+AT-6672_escapula              3        35704        37524      0.95
+AT-6672_escapula              4        44501        37524      1.19
+
+Se elige la ventana cuyo cociente quede más cerca de 1,00 de forma consistente
+en los cinco especímenes.

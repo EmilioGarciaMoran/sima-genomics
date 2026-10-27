@@ -1,0 +1,270 @@
+==================================================================
+Filtro de daño  |  inicio: 2026-10-26 19:43:36
+  criterio: C->T o G->A en la primera o ultima posicion alineada (Meyer 2016)
+  enmascarado: todas las timinas en las 3 primeras y 3 ultimas posiciones
+  salida: /home/egarmo/sima/sima_data/bam_dmg
+==================================================================
+
+------------------------------------------------------------------
+[AT-5482_incisivo] 19:43:36  (principal)  Meyer declara 2015167 bases útiles
+damage_filter [AT-5482_incisivo]: criterio any, ventana 1, enmascarado 3+3 (T)
+  lecturas leídas:       722,239
+  sin alineación útil:         0
+  sin daño terminal:     688,830
+  CONSERVADAS:            33,409
+  tasa de daño:             4.6%
+    solo extremo izq:     16,117
+    solo extremo der:     16,140
+    ambos extremos:        1,152
+  bases alineadas:     1,375,684
+  bases enmascaradas:     84,749
+  BASES ÚTILES:        1,290,935
+damage_filter [AT-5482_incisivo.nofilt]: criterio any, ventana 1, enmascarado 3+3 (T), SIN filtrar por daño
+  lecturas leídas:       722,239
+  sin alineación útil:         0
+  CONSERVADAS:           722,239
+  tasa de daño:           100.0%
+    solo extremo izq:     16,117
+    solo extremo der:     16,140
+    ambos extremos:        1,152
+  bases alineadas:    36,981,797
+  bases enmascaradas:  1,471,652
+  BASES ÚTILES:       35,510,145
+damage_filter [AT-5482_incisivo.ss]: criterio ss, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:       722,239
+  sin alineación útil:         0
+  sin daño terminal:     691,402
+  CONSERVADAS:            30,837
+  tasa de daño:             4.3%
+    solo extremo izq:     14,838
+    solo extremo der:     14,900
+    ambos extremos:        1,099
+  bases alineadas:     1,247,491
+  bases enmascaradas:     85,532
+  BASES ÚTILES:        1,161,959
+damage_filter [AT-5482_incisivo.ds]: criterio ds, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:       722,239
+  sin alineación útil:         0
+  sin daño terminal:     703,387
+  CONSERVADAS:            18,852
+  tasa de daño:             2.6%
+    solo extremo izq:      9,296
+    solo extremo der:      9,512
+    ambos extremos:           44
+  bases alineadas:       783,739
+  bases enmascaradas:     55,873
+  BASES ÚTILES:          727,866
+
+------------------------------------------------------------------
+[AT-5431_femur] 19:44:01  (principal)  Meyer declara 1186442 bases útiles
+damage_filter [AT-5431_femur]: criterio any, ventana 1, enmascarado 3+3 (T)
+  lecturas leídas:       233,618
+  sin alineación útil:         0
+  sin daño terminal:     215,486
+  CONSERVADAS:            18,132
+  tasa de daño:             7.8%
+    solo extremo izq:      8,734
+    solo extremo der:      8,615
+    ambos extremos:          783
+  bases alineadas:       741,688
+  bases enmascaradas:     44,776
+  BASES ÚTILES:          696,912
+damage_filter [AT-5431_femur.nofilt]: criterio any, ventana 1, enmascarado 3+3 (T), SIN filtrar por daño
+  lecturas leídas:       233,618
+  sin alineación útil:         0
+  CONSERVADAS:           233,618
+  tasa de daño:           100.0%
+    solo extremo izq:      8,734
+    solo extremo der:      8,615
+    ambos extremos:          783
+  bases alineadas:    11,138,997
+  bases enmascaradas:    472,677
+  BASES ÚTILES:       10,666,320
+damage_filter [AT-5431_femur.ss]: criterio ss, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:       233,618
+  sin alineación útil:         0
+  sin daño terminal:     216,380
+  CONSERVADAS:            17,238
+  tasa de daño:             7.4%
+    solo extremo izq:      8,302
+    solo extremo der:      8,171
+    ambos extremos:          765
+  bases alineadas:       698,036
+  bases enmascaradas:     58,059
+  BASES ÚTILES:          639,977
+damage_filter [AT-5431_femur.ds]: criterio ds, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:       233,618
+  sin alineación útil:         0
+  sin daño terminal:     223,085
+  CONSERVADAS:            10,533
+  tasa de daño:             4.5%
+    solo extremo izq:      5,355
+    solo extremo der:      5,162
+    ambos extremos:           16
+  bases alineadas:       432,877
+  bases enmascaradas:     29,129
+  BASES ÚTILES:          403,748
+
+------------------------------------------------------------------
+[femurXIII] 19:44:09  (confirmacion)  Meyer declara 225329 bases útiles
+damage_filter [femurXIII]: criterio any, ventana 1, enmascarado 3+3 (T)
+  lecturas leídas:       155,339
+  sin alineación útil:         0
+  sin daño terminal:     151,943
+  CONSERVADAS:             3,396
+  tasa de daño:             2.2%
+    solo extremo izq:      1,708
+    solo extremo der:      1,622
+    ambos extremos:           66
+  bases alineadas:       145,110
+  bases enmascaradas:      8,330
+  BASES ÚTILES:          136,780
+damage_filter [femurXIII.nofilt]: criterio any, ventana 1, enmascarado 3+3 (T), SIN filtrar por daño
+  lecturas leídas:       155,339
+  sin alineación útil:         0
+  CONSERVADAS:           155,339
+  tasa de daño:           100.0%
+    solo extremo izq:      1,708
+    solo extremo der:      1,622
+    ambos extremos:           66
+  bases alineadas:     7,796,795
+  bases enmascaradas:    329,409
+  BASES ÚTILES:        7,467,386
+damage_filter [femurXIII.ss]: criterio ss, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:       155,339
+  sin alineación útil:         0
+  sin daño terminal:     152,548
+  CONSERVADAS:             2,791
+  tasa de daño:             1.8%
+    solo extremo izq:      1,402
+    solo extremo der:      1,327
+    ambos extremos:           62
+  bases alineadas:       116,064
+  bases enmascaradas:      8,669
+  BASES ÚTILES:          107,395
+damage_filter [femurXIII.ds]: criterio ds, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:       155,339
+  sin alineación útil:         0
+  sin daño terminal:     153,462
+  CONSERVADAS:             1,877
+  tasa de daño:             1.2%
+    solo extremo izq:        966
+    solo extremo der:        907
+    ambos extremos:            4
+  bases alineadas:        81,027
+  bases enmascaradas:      5,219
+  BASES ÚTILES:           75,808
+
+------------------------------------------------------------------
+[AT-5444_molar] 19:44:15  (descriptivo)  Meyer declara 188974 bases útiles
+damage_filter [AT-5444_molar]: criterio any, ventana 1, enmascarado 3+3 (T)
+  lecturas leídas:        69,550
+  sin alineación útil:         0
+  sin daño terminal:      66,625
+  CONSERVADAS:             2,925
+  tasa de daño:             4.2%
+    solo extremo izq:      1,416
+    solo extremo der:      1,394
+    ambos extremos:          115
+  bases alineadas:       120,982
+  bases enmascaradas:      6,927
+  BASES ÚTILES:          114,055
+damage_filter [AT-5444_molar.nofilt]: criterio any, ventana 1, enmascarado 3+3 (T), SIN filtrar por daño
+  lecturas leídas:        69,550
+  sin alineación útil:         0
+  CONSERVADAS:            69,550
+  tasa de daño:           100.0%
+    solo extremo izq:      1,416
+    solo extremo der:      1,394
+    ambos extremos:          115
+  bases alineadas:     3,450,986
+  bases enmascaradas:    132,553
+  BASES ÚTILES:        3,318,433
+damage_filter [AT-5444_molar.ss]: criterio ss, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:        69,550
+  sin alineación útil:         0
+  sin daño terminal:      66,914
+  CONSERVADAS:             2,636
+  tasa de daño:             3.8%
+    solo extremo izq:      1,278
+    solo extremo der:      1,246
+    ambos extremos:          112
+  bases alineadas:       106,663
+  bases enmascaradas:      8,623
+  BASES ÚTILES:           98,040
+damage_filter [AT-5444_molar.ds]: criterio ds, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:        69,550
+  sin alineación útil:         0
+  sin daño terminal:      67,858
+  CONSERVADAS:             1,692
+  tasa de daño:             2.4%
+    solo extremo izq:        829
+    solo extremo der:        861
+    ambos extremos:            2
+  bases alineadas:        70,549
+  bases enmascaradas:      4,518
+  BASES ÚTILES:           66,031
+
+------------------------------------------------------------------
+[AT-6672_escapula] 19:44:18  (excluido)  Meyer declara 37524 bases útiles
+damage_filter [AT-6672_escapula]: criterio any, ventana 1, enmascarado 3+3 (T)
+  lecturas leídas:        98,567
+  sin alineación útil:         0
+  sin daño terminal:      97,915
+  CONSERVADAS:               652
+  tasa de daño:             0.7%
+    solo extremo izq:        334
+    solo extremo der:        317
+    ambos extremos:            1
+  bases alineadas:        42,091
+  bases enmascaradas:      1,292
+  BASES ÚTILES:           40,799
+damage_filter [AT-6672_escapula.nofilt]: criterio any, ventana 1, enmascarado 3+3 (T), SIN filtrar por daño
+  lecturas leídas:        98,567
+  sin alineación útil:         0
+  CONSERVADAS:            98,567
+  tasa de daño:           100.0%
+    solo extremo izq:        334
+    solo extremo der:        317
+    ambos extremos:            1
+  bases alineadas:     6,983,766
+  bases enmascaradas:    177,135
+  BASES ÚTILES:        6,806,631
+damage_filter [AT-6672_escapula.ss]: criterio ss, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:        98,567
+  sin alineación útil:         0
+  sin daño terminal:      98,289
+  CONSERVADAS:               278
+  tasa de daño:             0.3%
+    solo extremo izq:        147
+    solo extremo der:        130
+    ambos extremos:            1
+  bases alineadas:        16,470
+  bases enmascaradas:        704
+  BASES ÚTILES:           15,766
+damage_filter [AT-6672_escapula.ds]: criterio ds, ventana 1, enmascarado 3+3 (hebra)
+  lecturas leídas:        98,567
+  sin alineación útil:         0
+  sin daño terminal:      98,125
+  CONSERVADAS:               442
+  tasa de daño:             0.4%
+    solo extremo izq:        231
+    solo extremo der:        211
+    ambos extremos:            0
+  bases alineadas:        28,831
+  bases enmascaradas:        986
+  BASES ÚTILES:           27,845
+
+==================================================================
+Fin: 2026-10-26 19:44:23
+
+  especimen             conservadas   tasa daño      Meyer   cociente
+  AT-5482_incisivo            33409         4.6%    2015167          -
+  AT-5431_femur               18132         7.8%    1186442          -
+  femurXIII                    3396         2.2%     225329          -
+  AT-5444_molar                2925         4.2%     188974          -
+  AT-6672_escapula              652         0.7%      37524          -
+
+La tasa de daño debe ser ALTA en los especímenes endógenos y BAJA en la escápula,
+contaminada al 98%: el ADN moderno no lleva desaminación terminal.
+==================================================================

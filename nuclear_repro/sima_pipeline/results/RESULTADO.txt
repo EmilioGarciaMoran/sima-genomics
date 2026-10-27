@@ -1,0 +1,74 @@
+======================================================================
+RESULTADO DEL ANÁLISIS NUCLEAR DE SIMA DE LOS HUESOS
+======================================================================
+Sitios de referencia: 1,822,345   bloques de jackknife: 563
+Parámetros y criterios: ../PREREGISTRO_D_statistics.md, fijados antes de los datos.
+
+----------------------------------------------------------------------
+1. REPRODUCCIÓN DE MEYER 2016 (control de validación)
+----------------------------------------------------------------------
+   Ramas definidas con Denisova 5 (Altai) y Denisova 3, como en el artículo.
+
+   espécimen               n_ND    f_ND  Meyer |    n_N    f_N  Meyer |    n_D    f_D  Meyer
+   AT-5431_femur            71   0.70   0.87 |    134   0.46   0.43 |    169   0.08   0.09
+   AT-5482_incisivo         95   0.64   0.68 |    209   0.33   0.39 |    214   0.11   0.07
+   femurXIII                10   0.40      - |     26   0.27      - |     25   0.12      -
+   AT-5444_molar             9   0.56      - |     23   0.26      - |     26   0.08      -
+   AT-6672_escapula          3   0.67      - |     12   0.08      - |     11   0.09      -
+
+   f_ND alto y f_D bajo indica pertenencia al linaje neandertal.
+   Nota: ENA contiene ~60% de las lecturas de Meyer, de modo que las n son menores;
+   las fracciones sí son comparables.
+
+----------------------------------------------------------------------
+2. D-STATISTIC PREREGISTRADA: D(Denisova 3, Vindija 33.19; Sima, ancestral)
+----------------------------------------------------------------------
+   D > 0: Sima comparte más con Vindija (H1, linaje neandertal)
+   D ≈ 0: Sima equidistante (H2, linaje aparte / Homo atapuercae)
+
+   espécimen                ABBA   BABA      n        D      EE       Z             IC90  decisión
+   AT-5482_incisivo           72     19     91    0.582   0.087     6.7 [  0.44,  0.73]  H2 DESCARTADA
+   AT-5431_femur              66     17     83    0.590   0.089     6.7 [  0.44,  0.74]  H2 DESCARTADA
+   femurXIII                   7      2      9    0.556   0.314     1.8 [  0.04,  1.07]  no concluyente
+   AT-5444_molar               8      2     10    0.600   0.283     2.1 [  0.14,  1.06]  no concluyente
+   AT-6672_escapula            3      1      4    0.500   0.629     0.8 [ -0.53,  1.53]  no concluyente
+   >> COMBINADO (principal)    138     36    174    0.586   0.062     9.5 [  0.48,  0.69]  H2 DESCARTADA
+
+   Prueba binomial exacta del combinado: p = 2.8e-15
+   (se incluye porque con pocos sitios la aproximación normal no es fiable)
+
+----------------------------------------------------------------------
+3. REGLAS DE INTERPRETACIÓN PREREGISTRADAS (apartado 9 del preregistro)
+----------------------------------------------------------------------
+   D >= 0,50: CONFIRMA MEYER 2016. Sima dentro del linaje neandertal.
+   H2 (Homo atapuercae) descartada por la vía genética.
+
+----------------------------------------------------------------------
+4. ANÁLISIS DE SENSIBILIDAD PREREGISTRADOS
+----------------------------------------------------------------------
+   variante                            n        D      EE       Z
+   AT-5482 principal                  91    0.582   0.087     6.7
+   AT-5482 sin filtro de daño      1,284    0.358   0.028    12.7
+   AT-5482 criterio cadena sencilla     78    0.692   0.082     8.5
+   AT-5482 criterio doble cadena      38    0.684   0.125     5.5
+   AT-5431 principal                  83    0.590   0.089     6.7
+   AT-5431 sin filtro de daño        563    0.403   0.039    10.4
+   AT-5431 criterio cadena sencilla     72    0.639   0.090     7.1
+   AT-5431 criterio doble cadena      38    0.789   0.102     7.7
+   femurXIII principal                 9    0.556   0.314     1.8
+   femurXIII sin filtro de daño      257    0.300   0.061     4.9
+   femurXIII criterio cadena sencilla      7    0.714   0.311     2.3
+   femurXIII criterio doble cadena      1    1.000     nan     nan
+
+   Un resultado que solo aparezca en la variante principal y se desvanezca en las
+   tres sensibilidades NO se reporta como hallazgo (preregistro, apartado 10 ter).
+
+----------------------------------------------------------------------
+5. DISPERSIÓN POR EL MUESTREO PSEUDOHAPLOIDE
+----------------------------------------------------------------------
+   AT-5482_incisivo       D entre 0.582 y 0.582, desviación 0.0000
+                          frente al EE del jackknife 0.087: despreciable
+   AT-5431_femur          D entre 0.590 y 0.595, desviación 0.0011
+                          frente al EE del jackknife 0.089: despreciable
+
+======================================================================

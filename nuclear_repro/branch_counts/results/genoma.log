@@ -1,0 +1,538 @@
+==================================================================
+Recorrido genómico  |  inicio: 2026-10-25 16:02:48
+  cromosomas 1 a 22
+  VCF temporales en: /home/egarmo/sima/public_vcfs/_tmp (se borran tras cada cromosoma)
+  espacio mínimo exigido: 28 GB  |  libre ahora: 77G
+  salidas en: results/genome
+==================================================================
+[cr1] ya hecho, se salta
+
+------------------------------------------------------------------
+[cr2] 16:02:48  descargando...
+  cr2: descargado 23G (tamaños e integridad verificados)
+[cr2] 16:19:19  procesando...
+
+Escrito: results/genome/chr2_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 238,019,481
+  con CAnc declarado:         228,370,505
+  CAnc no utilizable:         2,676,311
+  genotipo de Mbuti no usable:1,066,322
+  POSICIONES EMITIDAS:        162,486
+
+  Map20 presente en 160,147 posiciones (98.6%); de ellas, con valor 1: 150,781
+  marcadas RM: 57,371 (35.3%)
+
+  cobertura por individuo (posiciones con dato):
+    D5          153,293 ( 94.3%)   derivados: 81,123
+    Vi3319      154,159 ( 94.9%)   derivados: 85,578
+    D3          159,577 ( 98.2%)   derivados: 84,057
+    Chag8       154,673 ( 95.2%)   derivados: 86,031
+    Mbuti       162,486 (100.0%)   derivados: 0
+  cr2: 669K en results/genome/chr2_inf.npz
+[cr2] 16:42:35  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr3] 16:42:35  descargando...
+  cr3: descargado 19G (tamaños e integridad verificados)
+[cr3] 16:59:52  procesando...
+
+Escrito: results/genome/chr3_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 194,554,737
+  con CAnc declarado:         191,118,126
+  CAnc no utilizable:         1,960,831
+  genotipo de Mbuti no usable:437,991
+  POSICIONES EMITIDAS:        135,926
+
+  Map20 presente en 134,479 posiciones (98.9%); de ellas, con valor 1: 126,276
+  marcadas RM: 50,391 (37.1%)
+
+  cobertura por individuo (posiciones con dato):
+    D5          127,096 ( 93.5%)   derivados: 67,253
+    Vi3319      128,916 ( 94.8%)   derivados: 71,928
+    D3          133,629 ( 98.3%)   derivados: 71,201
+    Chag8       129,023 ( 94.9%)   derivados: 71,593
+    Mbuti       135,926 (100.0%)   derivados: 0
+  cr3: 561K en results/genome/chr3_inf.npz
+[cr3] 17:17:08  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr4] 17:17:08  descargando...
+  cr4: descargado 18G (tamaños e integridad verificados)
+[cr4] 17:30:14  procesando...
+
+Escrito: results/genome/chr4_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 187,550,479
+  con CAnc declarado:         182,455,093
+  CAnc no utilizable:         2,538,827
+  genotipo de Mbuti no usable:502,009
+  POSICIONES EMITIDAS:        138,192
+
+  Map20 presente en 136,257 posiciones (98.6%); de ellas, con valor 1: 127,577
+  marcadas RM: 52,443 (37.9%)
+
+  cobertura por individuo (posiciones con dato):
+    D5          130,518 ( 94.4%)   derivados: 69,298
+    Vi3319      128,224 ( 92.8%)   derivados: 69,646
+    D3          135,731 ( 98.2%)   derivados: 72,431
+    Chag8       129,242 ( 93.5%)   derivados: 70,046
+    Mbuti       138,192 (100.0%)   derivados: 0
+  cr4: 569K en results/genome/chr4_inf.npz
+[cr4] 17:48:35  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr5] 17:48:35  descargando...
+  cr5: descargado 17G (tamaños e integridad verificados)
+[cr5] 18:00:59  procesando...
+
+Escrito: results/genome/chr5_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 177,563,412
+  con CAnc declarado:         172,328,868
+  CAnc no utilizable:         1,830,911
+  genotipo de Mbuti no usable:1,242,427
+  POSICIONES EMITIDAS:        120,314
+
+  Map20 presente en 118,643 posiciones (98.6%); de ellas, con valor 1: 111,389
+  marcadas RM: 43,598 (36.2%)
+
+  cobertura por individuo (posiciones con dato):
+    D5          113,250 ( 94.1%)   derivados: 59,433
+    Vi3319      114,128 ( 94.9%)   derivados: 63,127
+    D3          117,942 ( 98.0%)   derivados: 61,680
+    Chag8       114,489 ( 95.2%)   derivados: 63,256
+    Mbuti       120,314 (100.0%)   derivados: 0
+  cr5: 497K en results/genome/chr5_inf.npz
+[cr5] 18:17:43  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr6] 18:17:43  descargando...
+  cr6: descargado 16G (tamaños e integridad verificados)
+[cr6] 18:30:01  procesando...
+
+Escrito: results/genome/chr6_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 167,276,236
+  con CAnc declarado:         163,121,422
+  CAnc no utilizable:         1,692,696
+  genotipo de Mbuti no usable:497,323
+  POSICIONES EMITIDAS:        114,312
+
+  Map20 presente en 111,747 posiciones (97.8%); de ellas, con valor 1: 105,023
+  marcadas RM: 40,072 (35.1%)
+
+  cobertura por individuo (posiciones con dato):
+    D5          104,584 ( 91.5%)   derivados: 55,119
+    Vi3319      108,077 ( 94.5%)   derivados: 61,617
+    D3          109,883 ( 96.1%)   derivados: 58,306
+    Chag8       107,462 ( 94.0%)   derivados: 60,909
+    Mbuti       114,312 (100.0%)   derivados: 0
+  cr6: 471K en results/genome/chr6_inf.npz
+[cr6] 18:46:18  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr7] 18:46:18  descargando...
+  cr7: descargado 14G (tamaños e integridad verificados)
+[cr7] 18:57:41  procesando...
+
+Escrito: results/genome/chr7_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 155,216,471
+  con CAnc declarado:         145,031,460
+  CAnc no utilizable:         1,982,608
+  genotipo de Mbuti no usable:743,169
+  POSICIONES EMITIDAS:        100,812
+
+  Map20 presente en 98,966 posiciones (98.2%); de ellas, con valor 1: 92,986
+  marcadas RM: 35,182 (34.9%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           93,488 ( 92.7%)   derivados: 50,144
+    Vi3319       95,735 ( 95.0%)   derivados: 54,067
+    D3           99,207 ( 98.4%)   derivados: 52,982
+    Chag8        96,396 ( 95.6%)   derivados: 54,595
+    Mbuti       100,812 (100.0%)   derivados: 0
+  cr7: 417K en results/genome/chr7_inf.npz
+[cr7] 19:12:03  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr8] 19:12:03  descargando...
+  cr8: descargado 14G (tamaños e integridad verificados)
+[cr8] 19:22:28  procesando...
+
+Escrito: results/genome/chr8_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 142,769,566
+  con CAnc declarado:         138,012,453
+  CAnc no utilizable:         1,672,086
+  genotipo de Mbuti no usable:678,034
+  POSICIONES EMITIDAS:        106,640
+
+  Map20 presente en 104,880 posiciones (98.3%); de ellas, con valor 1: 98,592
+  marcadas RM: 38,937 (36.5%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           99,189 ( 93.0%)   derivados: 53,593
+    Vi3319      101,583 ( 95.3%)   derivados: 58,661
+    D3          104,314 ( 97.8%)   derivados: 56,038
+    Chag8       101,130 ( 94.8%)   derivados: 57,659
+    Mbuti       106,640 (100.0%)   derivados: 0
+  cr8: 439K en results/genome/chr8_inf.npz
+[cr8] 19:36:25  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr9] 19:36:25  descargando...
+  cr9: descargado 11G (tamaños e integridad verificados)
+[cr9] 19:44:02  procesando...
+
+Escrito: results/genome/chr9_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 120,033,232
+  con CAnc declarado:         107,815,664
+  CAnc no utilizable:         1,658,966
+  genotipo de Mbuti no usable:1,413,007
+  POSICIONES EMITIDAS:        79,456
+
+  Map20 presente en 78,098 posiciones (98.3%); de ellas, con valor 1: 73,457
+  marcadas RM: 28,719 (36.1%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           76,055 ( 95.7%)   derivados: 41,431
+    Vi3319       75,259 ( 94.7%)   derivados: 41,343
+    D3           77,720 ( 97.8%)   derivados: 40,807
+    Chag8        74,664 ( 94.0%)   derivados: 40,783
+    Mbuti        79,456 (100.0%)   derivados: 0
+  cr9: 329K en results/genome/chr9_inf.npz
+[cr9] 19:54:17  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr10] 19:54:17  descargando...
+  cr10: descargado 12G (tamaños e integridad verificados)
+[cr10] 20:02:07  procesando...
+
+Escrito: results/genome/chr10_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 131,224,487
+  con CAnc declarado:         123,489,517
+  CAnc no utilizable:         1,128,735
+  genotipo de Mbuti no usable:1,066,044
+  POSICIONES EMITIDAS:        89,188
+
+  Map20 presente en 87,748 posiciones (98.4%); de ellas, con valor 1: 82,808
+  marcadas RM: 30,611 (34.3%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           83,677 ( 93.8%)   derivados: 44,893
+    Vi3319       83,621 ( 93.8%)   derivados: 46,360
+    D3           87,735 ( 98.4%)   derivados: 48,181
+    Chag8        83,887 ( 94.1%)   derivados: 46,762
+    Mbuti        89,188 (100.0%)   derivados: 0
+  cr10: 369K en results/genome/chr10_inf.npz
+[cr10] 20:13:27  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr11] 20:13:27  descargando...
+  cr11: descargado 13G (tamaños e integridad verificados)
+[cr11] 20:21:40  procesando...
+
+Escrito: results/genome/chr11_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 131,040,696
+  con CAnc declarado:         124,387,987
+  CAnc no utilizable:         1,637,443
+  genotipo de Mbuti no usable:385,406
+  POSICIONES EMITIDAS:        87,565
+
+  Map20 presente en 85,814 posiciones (98.0%); de ellas, con valor 1: 80,792
+  marcadas RM: 32,033 (36.6%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           81,727 ( 93.3%)   derivados: 44,461
+    Vi3319       82,569 ( 94.3%)   derivados: 47,528
+    D3           85,522 ( 97.7%)   derivados: 45,907
+    Chag8        83,320 ( 95.2%)   derivados: 47,969
+    Mbuti        87,565 (100.0%)   derivados: 0
+  cr11: 363K en results/genome/chr11_inf.npz
+[cr11] 20:33:01  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr12] 20:33:01  descargando...
+  cr12: descargado 12G (tamaños e integridad verificados)
+[cr12] 20:42:14  procesando...
+
+Escrito: results/genome/chr12_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 130,392,014
+  con CAnc declarado:         126,087,136
+  CAnc no utilizable:         1,388,368
+  genotipo de Mbuti no usable:422,910
+  POSICIONES EMITIDAS:        83,531
+
+  Map20 presente en 82,084 posiciones (98.3%); de ellas, con valor 1: 76,919
+  marcadas RM: 30,964 (37.1%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           78,658 ( 94.2%)   derivados: 41,682
+    Vi3319       79,403 ( 95.1%)   derivados: 44,268
+    D3           82,026 ( 98.2%)   derivados: 43,578
+    Chag8        79,821 ( 95.6%)   derivados: 44,926
+    Mbuti        83,531 (100.0%)   derivados: 0
+  cr12: 347K en results/genome/chr12_inf.npz
+[cr12] 20:53:39  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr13] 20:53:39  descargando...
+  cr13: descargado 9,1G (tamaños e integridad verificados)
+[cr13] 21:00:08  procesando...
+
+Escrito: results/genome/chr13_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 95,539,725
+  con CAnc declarado:         93,649,076
+  CAnc no utilizable:         922,355
+  genotipo de Mbuti no usable:249,112
+  POSICIONES EMITIDAS:        68,975
+
+  Map20 presente en 68,057 posiciones (98.7%); de ellas, con valor 1: 63,897
+  marcadas RM: 24,676 (35.8%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           64,342 ( 93.3%)   derivados: 33,552
+    Vi3319       65,188 ( 94.5%)   derivados: 35,551
+    D3           67,545 ( 97.9%)   derivados: 36,049
+    Chag8        64,920 ( 94.1%)   derivados: 35,501
+    Mbuti        68,975 (100.0%)   derivados: 0
+  cr13: 287K en results/genome/chr13_inf.npz
+[cr13] 21:08:47  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr14] 21:08:47  descargando...
+  cr14: descargado 8,2G (tamaños e integridad verificados)
+[cr14] 21:14:42  procesando...
+
+Escrito: results/genome/chr14_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 88,200,838
+  con CAnc declarado:         84,685,836
+  CAnc no utilizable:         969,660
+  genotipo de Mbuti no usable:237,944
+  POSICIONES EMITIDAS:        61,133
+
+  Map20 presente en 60,012 posiciones (98.2%); de ellas, con valor 1: 56,452
+  marcadas RM: 21,615 (35.4%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           59,038 ( 96.6%)   derivados: 31,594
+    Vi3319       58,181 ( 95.2%)   derivados: 31,936
+    D3           60,165 ( 98.4%)   derivados: 31,781
+    Chag8        57,842 ( 94.6%)   derivados: 31,785
+    Mbuti        61,133 (100.0%)   derivados: 0
+  cr14: 254K en results/genome/chr14_inf.npz
+[cr14] 21:23:11  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr15] 21:23:11  descargando...
+  cr15: descargado 7,3G (tamaños e integridad verificados)
+[cr15] 21:28:25  procesando...
+
+Escrito: results/genome/chr15_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 81,622,633
+  con CAnc declarado:         75,027,196
+  CAnc no utilizable:         721,166
+  genotipo de Mbuti no usable:653,904
+  POSICIONES EMITIDAS:        53,395
+
+  Map20 presente en 52,716 posiciones (98.7%); de ellas, con valor 1: 49,646
+  marcadas RM: 18,758 (35.1%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           51,186 ( 95.9%)   derivados: 26,957
+    Vi3319       50,889 ( 95.3%)   derivados: 27,912
+    D3           52,444 ( 98.2%)   derivados: 27,311
+    Chag8        50,414 ( 94.4%)   derivados: 27,191
+    Mbuti        53,395 (100.0%)   derivados: 0
+  cr15: 223K en results/genome/chr15_inf.npz
+[cr15] 21:35:50  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr16] 21:35:50  descargando...
+  cr16: descargado 6,8G (tamaños e integridad verificados)
+[cr16] 21:41:02  procesando...
+
+Escrito: results/genome/chr16_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 78,775,954
+  con CAnc declarado:         71,228,673
+  CAnc no utilizable:         748,151
+  genotipo de Mbuti no usable:517,779
+  POSICIONES EMITIDAS:        57,384
+
+  Map20 presente en 56,151 posiciones (97.9%); de ellas, con valor 1: 53,040
+  marcadas RM: 19,742 (34.4%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           54,333 ( 94.7%)   derivados: 28,365
+    Vi3319       54,146 ( 94.4%)   derivados: 29,917
+    D3           56,376 ( 98.2%)   derivados: 28,996
+    Chag8        54,821 ( 95.5%)   derivados: 30,275
+    Mbuti        57,384 (100.0%)   derivados: 0
+  cr16: 238K en results/genome/chr16_inf.npz
+[cr16] 21:48:13  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr17] 21:48:13  descargando...
+  cr17: descargado 6,7G (tamaños e integridad verificados)
+[cr17] 21:53:08  procesando...
+
+Escrito: results/genome/chr17_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 77,680,249
+  con CAnc declarado:         72,578,750
+  CAnc no utilizable:         800,958
+  genotipo de Mbuti no usable:360,959
+  POSICIONES EMITIDAS:        46,718
+
+  Map20 presente en 45,476 posiciones (97.3%); de ellas, con valor 1: 43,028
+  marcadas RM: 15,084 (32.3%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           44,596 ( 95.5%)   derivados: 24,050
+    Vi3319       44,535 ( 95.3%)   derivados: 25,059
+    D3           45,767 ( 98.0%)   derivados: 24,225
+    Chag8        43,711 ( 93.6%)   derivados: 24,072
+    Mbuti        46,718 (100.0%)   derivados: 0
+  cr17: 196K en results/genome/chr17_inf.npz
+[cr17] 21:59:54  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr18] 21:59:54  descargando...
+  cr18: descargado 7,3G (tamaños e integridad verificados)
+[cr18] 22:05:06  procesando...
+
+Escrito: results/genome/chr18_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 74,612,496
+  con CAnc declarado:         72,933,654
+  CAnc no utilizable:         715,697
+  genotipo de Mbuti no usable:163,939
+  POSICIONES EMITIDAS:        56,217
+
+  Map20 presente en 55,673 posiciones (99.0%); de ellas, con valor 1: 52,483
+  marcadas RM: 19,155 (34.1%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           52,443 ( 93.3%)   derivados: 27,289
+    Vi3319       52,884 ( 94.1%)   derivados: 29,052
+    D3           55,192 ( 98.2%)   derivados: 29,051
+    Chag8        53,685 ( 95.5%)   derivados: 29,784
+    Mbuti        56,217 (100.0%)   derivados: 0
+  cr18: 234K en results/genome/chr18_inf.npz
+[cr18] 22:12:24  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr19] 22:12:24  descargando...
+  cr19: descargado 4,2G (tamaños e integridad verificados)
+[cr19] 22:15:36  procesando...
+
+Escrito: results/genome/chr19_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 55,680,173
+  con CAnc declarado:         45,074,698
+  CAnc no utilizable:         1,030,676
+  genotipo de Mbuti no usable:228,180
+  POSICIONES EMITIDAS:        27,462
+
+  Map20 presente en 26,092 posiciones (95.0%); de ellas, con valor 1: 24,580
+  marcadas RM: 9,666 (35.2%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           26,080 ( 95.0%)   derivados: 13,911
+    Vi3319       25,925 ( 94.4%)   derivados: 14,353
+    D3           26,942 ( 98.1%)   derivados: 14,894
+    Chag8        25,938 ( 94.5%)   derivados: 14,504
+    Mbuti        27,462 (100.0%)   derivados: 0
+  cr19: 118K en results/genome/chr19_inf.npz
+[cr19] 22:19:41  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr20] 22:19:41  descargando...
+  cr20: descargado 5,7G (tamaños e integridad verificados)
+[cr20] 22:23:44  procesando...
+
+Escrito: results/genome/chr20_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 59,418,906
+  con CAnc declarado:         57,322,190
+  CAnc no utilizable:         581,457
+  genotipo de Mbuti no usable:148,135
+  POSICIONES EMITIDAS:        42,331
+
+  Map20 presente en 41,518 posiciones (98.1%); de ellas, con valor 1: 39,172
+  marcadas RM: 15,890 (37.5%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           39,078 ( 92.3%)   derivados: 21,031
+    Vi3319       39,919 ( 94.3%)   derivados: 22,690
+    D3           41,404 ( 97.8%)   derivados: 22,489
+    Chag8        40,016 ( 94.5%)   derivados: 22,628
+    Mbuti        42,331 (100.0%)   derivados: 0
+  cr20: 178K en results/genome/chr20_inf.npz
+[cr20] 22:29:56  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr21] 22:29:56  descargando...
+  cr21: descargado 3,2G (tamaños e integridad verificados)
+[cr21] 22:32:23  procesando...
+
+Escrito: results/genome/chr21_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 35,078,368
+  con CAnc declarado:         32,562,394
+  CAnc no utilizable:         305,868
+  genotipo de Mbuti no usable:286,958
+  POSICIONES EMITIDAS:        26,758
+
+  Map20 presente en 26,380 posiciones (98.6%); de ellas, con valor 1: 24,830
+  marcadas RM: 9,048 (33.8%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           25,716 ( 96.1%)   derivados: 13,894
+    Vi3319       24,899 ( 93.1%)   derivados: 13,617
+    D3           26,220 ( 98.0%)   derivados: 14,232
+    Chag8        25,333 ( 94.7%)   derivados: 14,001
+    Mbuti        26,758 (100.0%)   derivados: 0
+  cr21: 113K en results/genome/chr21_inf.npz
+[cr21] 22:35:38  hecho. VCF borrados.
+
+------------------------------------------------------------------
+[cr22] 22:35:38  descargando...
+  cr22: descargado 3,0G (tamaños e integridad verificados)
+[cr22] 22:37:56  procesando...
+
+Escrito: results/genome/chr22_inf.npz
+  modo homozygous, semilla 20261025, exclude_rm=False, min_dp=0
+  líneas de Mbuti recorridas: 34,818,569
+  con CAnc declarado:         30,394,558
+  CAnc no utilizable:         360,705
+  genotipo de Mbuti no usable:300,470
+  POSICIONES EMITIDAS:        22,215
+
+  Map20 presente en 21,464 posiciones (96.6%); de ellas, con valor 1: 20,382
+  marcadas RM: 7,511 (33.8%)
+
+  cobertura por individuo (posiciones con dato):
+    D5           20,849 ( 93.9%)   derivados: 11,113
+    Vi3319       20,856 ( 93.9%)   derivados: 11,626
+    D3           21,677 ( 97.6%)   derivados: 11,251
+    Chag8        21,286 ( 95.8%)   derivados: 11,925
+    Mbuti        22,215 (100.0%)   derivados: 0
+  cr22: 95K en results/genome/chr22_inf.npz
+[cr22] 22:41:01  hecho. VCF borrados.
+
+==================================================================
+Fin: 2026-10-25 22:41:01   cromosomas completados: 22
+7,5M	results/genome
+==================================================================
